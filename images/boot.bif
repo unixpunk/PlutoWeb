@@ -1,0 +1,1 @@
+img:{[bootloader] build/sdk/fsbl/Release/fsbl.elf build/u-boot.elf }

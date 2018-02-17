@@ -1,0 +1,15 @@
+prefix=/home/steve/Desktop/SDR/Pluto/tools
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Soapy SDR
+Description: Vendor and platform neutral SDR interface library.
+URL: https://github.com/pothosware/SoapySDR/wiki
+Version: 0.7.0
+Requires:
+Requires.private:
+Conflicts:
+Cflags: -I${includedir}
+Libs: -L${libdir} -lSoapySDR
+Libs.private:
