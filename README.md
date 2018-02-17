@@ -2,7 +2,7 @@
 
 The image and tools.tar are needed to run openwebrx on the PlutoSDR.
 
-Flash the image and upload tools.tar to /root. (I will add curl to the image)
+Flash the pluto image and upload tools.tar to /root. (I will add curl to the image later...)
 
 ssh root@pluto.local (pw:analog)
 <BR>
