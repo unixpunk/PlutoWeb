@@ -10,7 +10,7 @@ cd /
 <BR>
 tar xf root/tools.tar
 <BR>
-openwebrx
+openwebrx.sh
 
 Point your browser to http://pluto.local:18075
 
