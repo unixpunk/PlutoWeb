@@ -13,3 +13,7 @@ tar xf root/tools.tar
 openwebrx
 
 Point your browser to http://pluto.local:18075
+
+<H1>TO-DO</h1>
+Add curl binary to image
+<BR>Figure out how to overlay the tools folder on the image so tools.tar isn't needed anymore
