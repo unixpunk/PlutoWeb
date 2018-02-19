@@ -4,7 +4,12 @@ Flash the pluto image
 
 ssh root@pluto.local (pw:analog)
 <BR>
-openwebrx.sh
+fw_setenv maxcpus
+<BR>pluto_reboot reset
+
+ssh root@pluto.local (pw:analog)
+<BR>cd /
+<BR>openwebrx.sh
 
 Point your browser to http://pluto.local:18075
 
