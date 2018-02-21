@@ -35,12 +35,12 @@ config_webrx: configuration options for OpenWebRX
 #       https://github.com/simonyiszk/openwebrx/wiki
 
 # ==== Server settings ====
-web_port=18075
-server_hostname="kiwi.rfoverride.com" # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
+web_port=8073
+server_hostname="pluto.local" # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
 max_clients=3
 
 # ==== Web GUI configuration ====
-receiver_name="PlutoWebRX Off by 2khz"
+receiver_name="PlutoWebRX Off by 2khz?"
 receiver_location=""
 receiver_qra="SWL"
 receiver_asl=200
