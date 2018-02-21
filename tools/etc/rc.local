@@ -1,2 +1,0 @@
-#!/bin/sh
-screen -Dm /bin/openwebrx.sh &

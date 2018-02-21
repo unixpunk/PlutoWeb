@@ -1,18 +1,8 @@
 # PlutoSDR
 
-Flash the pluto image
+Flash the pluto image and wait for it to boot and then reboot again.  This is the script checking if dual-core mode is enabled.  If its not, then it enables it and reboots.
 
-ssh root@pluto.local (pw:analog)
-<BR>
-fw_setenv maxcpus
-<BR>pluto_reboot reset
-
-ssh root@pluto.local (pw:analog)
-<BR>cd /
-<BR>openwebrx.sh
-
-Point your browser to http://pluto.local:18075
+OpenwebRx now starts automatically at boot.  My working test case is using an OTG NIC on the 'USB' port and 1a or larger power adapter on the 'power' port.  It uses DHCP, normally you can just use http://pluto.local:18075 and it will just work, even if your PC is connected to the 'USB' port, though I haven't tested this.
 
 <H1>TO-DO</h1>
-Figure out how to run openwebrx in bg, it doesn't like '&' and I'm having issues with getting 'screen' to run the same as I do on another server.
-<BR>Once above is done, figure out how to get openwebrx to start on boot, rc.local doesn't seem to work.
+...

@@ -37,7 +37,7 @@ config_webrx: configuration options for OpenWebRX
 # ==== Server settings ====
 web_port=18075
 server_hostname="kiwi.rfoverride.com" # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
-max_clients=5
+max_clients=3
 
 # ==== Web GUI configuration ====
 receiver_name="PlutoWebRX Off by 2khz"
@@ -82,7 +82,7 @@ ppm = 0
 audio_compression="adpcm" #valid values: "adpcm", "none"
 fft_compression="adpcm" #valid values: "adpcm", "none"
 
-digimodes_enable=False #Decoding digimodes come with higher CPU usage. 
+digimodes_enable=True #Decoding digimodes come with higher CPU usage. 
 digimodes_fft_size=1024
 
 start_rtl_thread=True
