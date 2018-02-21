@@ -1,4 +1,4 @@
-# PlutoSDR
+# OpenwebRx
 
 Flash the pluto image and wait for it to boot and then reboot again.  This is the script checking if dual-core mode is enabled.  If its not, then it enables it and reboots.
 
