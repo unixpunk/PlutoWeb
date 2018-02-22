@@ -4,7 +4,7 @@
 
 start() {
 	printf "Starting dump1090: "
-	screen -Dm /bin/dump1090.sh $1 &
+	screen -Dm /bin/dump1090.sh $0 &
 	echo "done"
 }
 
