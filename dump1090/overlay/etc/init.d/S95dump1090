@@ -1,36 +1,19 @@
 #! /bin/sh
-REBOOTNEEDED=0
-export `fw_printenv maxcpus`
-export `fw_printenv attr_val`
-
-## Check/set dual-core mode (not needed for dump1090)
-if [ $maxcpus == 1 ]; then
-#	fw_setenv maxcpus
-#	REBOOTNEEDED=1
-fi
-
-## Check/set 70-6000mhz trick (not needed for dump1090, default is 325-3800mhz)
-if [ "$attr_val" != "ad9364" ]; then
-#       fw_setenv attr_name compatible
-#	fw_setenv attr_val "ad9364"
-#	REBOOTNEEDED=1
-fi
-
-if [ $REBOOTNEEDED == 1 ]; then
-	pluto_reboot reset
-fi
 
 [ -f /bin/dump1090.sh ] || exit 0
 
 start() {
 	printf "Starting dump1090: "
-	screen -Dm /bin/dump1090.sh $0 &
+	screen -Dm /bin/dump1090.sh $1 &
 	echo "done"
 }
 
 
 stop() {
-	echo "ignoring, stop it yourself"
+        printf "Stopping dump1090: "
+	killall dump1090
+	killall screen
+        echo "done"
 }
 
 restart() {

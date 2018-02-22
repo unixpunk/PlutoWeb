@@ -25,13 +25,19 @@ fi
 
 start() {
 	printf "Starting OpenwebRx: "
-	screen -Dm /bin/openwebrx.sh $0 &
+	screen -Dm /bin/openwebrx.sh $1 &
 	echo "done"
 }
 
 
 stop() {
-	echo "ignoring, stop it yourself"
+	printf "Stopping OpenwebRx: "
+	killall python
+	killall csdr
+	killall nc
+	killall nmux
+	killall screen
+	echo "done"
 }
 
 restart() {
