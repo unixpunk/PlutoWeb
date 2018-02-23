@@ -4,4 +4,4 @@ Create new issues with suggestions for other software to package into images for
 
 # TO-DO
 --sdrdaemon as a POC - had issues cross-compiling csdr for neon even after tricking cmake into thinking I was neon - ON-HOLD for now.
-<BR>--Something else like 'rtl_tcp' would be nice but rx_tools doesn't seem to have an 'rx_tcp'.  Will do some more searching, has to support SoapySDR or libiio directly.
+<BR>--SoapyRemote - Stuck here: https://github.com/pothosware/SoapyRemote/issues/37
