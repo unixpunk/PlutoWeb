@@ -5,23 +5,23 @@
 if [ -f /root/temp-settings ]; then
 	echo "Temp settings found, using them..."
 	source /root/temp-settings
-if [ -z ${center_freq} ]; then                      
-        export center_freq=460250000                
+if [ -z ${center_freq} ]; then
+        export center_freq=460250000
 fi
-if [ -z ${start_freq} ]; then                                   
-        export start_freq=460152000             
-fi                                                  
-if [ -z ${samp_rate} ]; then                    
-        export samp_rate=600000                     
-fi                                                  
-if [ -z ${start_mod} ]; then                   
-        export start_mod="nfm"                      
-fi                                              
-if [ -z ${rf_gain} ]; then                          
-        export rf_gain=89          
-fi                                                  
-if [ -z ${ppm} ]; then             
-        export ppm=0                
+if [ -z ${start_freq} ]; then
+        export start_freq=460102200
+fi
+if [ -z ${samp_rate} ]; then
+        export samp_rate=600000
+fi
+if [ -z ${start_mod} ]; then
+        export start_mod="nfm"
+fi
+if [ -z ${rf_gain} ]; then
+        export rf_gain=89
+fi
+if [ -z ${ppm} ]; then
+        export ppm=0
 fi
 	echo ""
 	echo "Current settings are:"
@@ -40,13 +40,12 @@ if [ -z ${center_freq} ]; then
 fi
 export `fw_printenv start_freq`
 if [ -z ${start_freq} ]; then
-        export start_freq=460152000
+        export start_freq=460102200
 fi
 export `fw_printenv samp_rate`
 if [ -z ${samp_rate} ]; then
         export samp_rate=600000
 fi
-export `fw_printenv start_mod`
 if [ -z ${start_mod} ]; then
         export start_mod="nfm"
 fi

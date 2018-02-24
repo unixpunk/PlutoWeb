@@ -7,7 +7,7 @@ case $yn in
 	[Yy]* ) 
 echo "If you make a mistake, CTRL+C to exit and then start over."
 read -p "Enter the new center frequency (70000000-6000000000): [460250000] " center_freq
-read -p "Enter the new starting frequency (70000000-6000000000): [460152000] " start_freq
+read -p "Enter the new starting frequency (70000000-6000000000): [460102200] " start_freq
 read -p "Enter the new sample rate (65105-10000000): [600000] " samp_rate
 read -p "Enter the new starting demodulator (nfm,am,lsb,usb,cw): [nfm] " start_mod
 read -p "Enter the new RF gain in dB (0-89): [89] " rf_gain
