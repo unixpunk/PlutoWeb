@@ -58,6 +58,12 @@ export `fw_printenv ppm`
 if [ -z ${ppm} ]; then
         export ppm=0
 fi
+echo "center_freq=$center_freq" >/root/temp-settings
+echo "start_freq=$start_freq" >>/root/temp-settings
+echo "samp_rate=$samp_rate" >>/root/temp-settings
+echo "start_mod=$start_mod" >>/root/temp-settings
+echo "rf_gain=$rf_gain" >>/root/temp-settings
+echo "ppm=$ppm" >>/root/temp-settings
 echo ""
 echo "Ignore any messages above this line..."
 echo ""
