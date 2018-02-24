@@ -1,10 +1,17 @@
 #! /bin/sh
+export `fw_printenv maxcpus`
+
+## Check/set dual-core mode
+if [ $maxcpus == 1 ]; then
+	fw_setenv maxcpus
+	pluto_reboot reset
+fi
 
 [ -f /bin/dump1090.sh ] || exit 0
 
 start() {
 	printf "Starting dump1090: "
-	screen -Dm /bin/dump1090.sh $0 &
+	/bin/dump1090.sh &
 	echo "done"
 }
 
@@ -12,7 +19,6 @@ start() {
 stop() {
         printf "Stopping dump1090: "
 	killall dump1090
-	killall screen
         echo "done"
 }
 
