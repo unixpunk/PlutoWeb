@@ -42,8 +42,8 @@ max_clients=3
 # ==== Web GUI configuration ====
 receiver_name="PlutoWebRX Off by 2khz?"
 receiver_location=""
-receiver_qra="SWL"
-receiver_asl=200
+receiver_qra=""
+receiver_asl=0
 receiver_ant=""
 receiver_device="PlutoSDR"
 receiver_admin="root@pluto.local"
@@ -67,20 +67,26 @@ sdrhu_key = ""
 sdrhu_public_listing = False
 
 # ==== DSP/RX settings ====
-fft_fps=9
+fft_fps=5
 fft_size=4096 #Should be power of 2
-fft_voverlap_factor=0.3 #If fft_voverlap_factor is above 0, multiple FFTs will be used for creating a line on the diagram.
+fft_voverlap_factor=0.1 #If fft_voverlap_factor is above 0, multiple FFTs will be used for creating a line on the diagram.
 
-# samp_rate = 250000
-samp_rate = 600000
-center_freq = 460250000
-start_freq = 460152000
-start_mod = "nfm" #nfm, am, lsb, usb, cw
-rf_gain = 89  #in dB. For an RTL-SDR, rf_gain=0 will set the tuner to auto gain mode, else it will be in manual gain mode.
-ppm = 0
+import os
+# Can do 3 users @ 600ksps but can barely do 1 user @ 1msps...
+samp_rate = int(os.environ["samp_rate"])
+# PlutoSDR 'modded' range of 70000000 - 6000000000
+center_freq = int(os.environ["center_freq"])
+start_freq = int(os.environ["start_freq"])
+# nfm, am, lsb, usb, cw
+start_mod = os.environ["start_mod"]
+# 0-89db
+rf_gain = int(os.environ["rf_gain"])
+# Not sure if this setting actually works correctly here
+ppm =  int(os.environ["ppm"])
 
-audio_compression="adpcm" #valid values: "adpcm", "none"
-fft_compression="adpcm" #valid values: "adpcm", "none"
+# Compressed: adpcm or not: none
+audio_compression="adpcm"
+fft_compression="adpcm"
 
 digimodes_enable=True #Decoding digimodes come with higher CPU usage. 
 digimodes_fft_size=1024

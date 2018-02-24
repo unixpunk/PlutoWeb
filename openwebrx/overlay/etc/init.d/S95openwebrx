@@ -1,31 +1,10 @@
 #! /bin/sh
-REBOOTNEEDED=0
-export `fw_printenv maxcpus`
-export `fw_printenv attr_val`
-
-## Check/set dual-core mode
-if [ $maxcpus == 1 ]; then
-	fw_setenv maxcpus
-	REBOOTNEEDED=1
-fi
-
-## Check/set 70-6000mhz trick (default is 325-3800Mhz)
-if [ "$attr_val" != "ad9364" ]; then
-        fw_setenv attr_name compatible
-	fw_setenv attr_val "ad9364"
-	REBOOTNEEDED=1
-fi
-
-if [ $REBOOTNEEDED == 1 ]; then
-	pluto_reboot reset
-fi
-
 
 [ -f /bin/openwebrx.sh ] || exit 0
 
 start() {
 	printf "Starting OpenwebRx: "
-	screen -Dm /bin/openwebrx.sh $1 &
+	screen -Dm /bin/openwebrx.sh $0 &
 	echo "done"
 }
 
