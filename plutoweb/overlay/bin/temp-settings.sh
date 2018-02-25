@@ -13,12 +13,13 @@ read -p "Enter the new starting demodulator (nfm,am,lsb,usb,cw): [nfm] " start_m
 read -p "Enter the new RF gain in dB (0-89): [89] " rf_gain
 read -p "Enter the new PPM adjustment: [0] " ppm
 echo "Writting settings to temp file..."
-echo "center_freq=$center_freq" >/root/temp-settings
-echo "start_freq=$start_freq" >>/root/temp-settings
-echo "samp_rate=$samp_rate" >>/root/temp-settings
-echo "start_mod=$start_mod" >>/root/temp-settings
-echo "rf_gain=$rf_gain" >>/root/temp-settings
-echo "ppm=$ppm" >>/root/temp-settings
+echo "export center_freq=$center_freq" >/root/temp-settings
+echo "export start_freq=$start_freq" >>/root/temp-settings
+echo "export samp_rate=$samp_rate" >>/root/temp-settings
+echo "export start_mod=$start_mod" >>/root/temp-settings
+echo "export rf_gain=$rf_gain" >>/root/temp-settings
+echo "export ppm=$ppm" >>/root/temp-settings
+chmod +x /root/temp-settings
 echo "Done.  Restarting OpenwebRx now..."
 /etc/init.d/S95openwebrx stop
 /etc/init.d/S95openwebrx start
