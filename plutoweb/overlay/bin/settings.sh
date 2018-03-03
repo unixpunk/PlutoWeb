@@ -7,6 +7,7 @@ read -p "Do you want to change these settings? (y/n): " yn
 case $yn in
 	[Yy]* ) 
 echo "If you make a mistake, CTRL+C to exit and then start over."
+read -p "Auto-start anything? (openwebrx,dump1090,SoapyRemote,none): [openwebrx] " autostart
 read -p "Enter the new center frequency (70000000-6000000000): [460250000] " center_freq
 read -p "Enter the new starting frequency (70000000-6000000000): [460102200] " start_freq
 read -p "Enter the new sample rate (65105-10000000): [600000] " samp_rate
@@ -14,7 +15,8 @@ read -p "Enter the new starting demodulator (nfm,am,lsb,usb,cw): [nfm] " start_m
 read -p "Enter the new RF gain in dB (0-89): [89] " rf_gain
 read -p "Enter the new PPM adjustment: [0] " ppm
 echo "Writting settings to temp file..."
-echo "export center_freq=$center_freq" >/root/temp-settings
+echo "export autostart=$autostart" >/root/temp-settings
+echo "export center_freq=$center_freq" >>/root/temp-settings
 echo "export start_freq=$start_freq" >>/root/temp-settings
 echo "export samp_rate=$samp_rate" >>/root/temp-settings
 echo "export start_mod=$start_mod" >>/root/temp-settings
@@ -22,15 +24,15 @@ echo "export rf_gain=$rf_gain" >>/root/temp-settings
 echo "export ppm=$ppm" >>/root/temp-settings
 chmod +x /root/temp-settings
 echo "Wait while writing to NVRAM..."
+fw_setenv autostart $autostart
 fw_setenv center_freq $center_freq
 fw_setenv start_freq $start_freq
 fw_setenv samp_rate $samp_rate
 fw_setenv start_mod $start_mod
 fw_setenv rf_gain $rf_gain
 fw_setenv ppm $ppm
-echo "Done.  Restarting OpenwebRx now..."
-/etc/init.d/S95openwebrx stop
-/etc/init.d/S95openwebrx start
+echo "Done.  (Re)Starting selected auto-start program now..."
+/etc/init.d/S95autostart restart
 exit;;
 	* ) exit;;
 esac

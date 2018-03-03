@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 start() {
 REBOOTNEEDED=0
@@ -21,12 +21,13 @@ fi
 if [ $REBOOTNEEDED == 1 ]; then
 	echo "Rebooting!"
         pluto_reboot reset
-fi
+else
 	echo "Mods already in place, continuing."
+fi
 }
 
 stop() {
-	echo "Nothing to stop."
+echo
 }
 
 # See how we were called.
@@ -38,7 +39,7 @@ case "$1" in
 	stop
 	;;
   *)
-	echo "Usage: $0 {start|stop}"
+	echo "Usage: $0 {start}"
 	exit 1
 esac
 

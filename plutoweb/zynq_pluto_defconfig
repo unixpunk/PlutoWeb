@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2017.08-git-g72f3cd7 Configuration
+# Buildroot 2017.08-git-g72f3cd7-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_5=y
@@ -299,7 +299,7 @@ BR2_ROOTFS_SKELETON_DEFAULT=y
 # BR2_ROOTFS_SKELETON_CUSTOM is not set
 # BR2_ROOTFS_MERGED_USR is not set
 BR2_TARGET_GENERIC_HOSTNAME="pluto"
-BR2_TARGET_GENERIC_ISSUE="Welcome to Pluto running PlutoWeb3000"
+BR2_TARGET_GENERIC_ISSUE="Welcome to Pluto running PlutoWeb"
 BR2_TARGET_GENERIC_PASSWD_MD5=y
 # BR2_TARGET_GENERIC_PASSWD_SHA256 is not set
 # BR2_TARGET_GENERIC_PASSWD_SHA512 is not set
@@ -1069,126 +1069,7 @@ BR2_PACKAGE_LUAJIT_ARCH_SUPPORTS=y
 BR2_PACKAGE_MONO_ARCH_SUPPORTS=y
 # BR2_PACKAGE_MONO is not set
 # BR2_PACKAGE_PERL is not set
-BR2_PACKAGE_PHP=y
-BR2_PACKAGE_PHP_SAPI_APACHE=y
-# BR2_PACKAGE_PHP_SAPI_CGI is not set
-# BR2_PACKAGE_PHP_SAPI_CLI is not set
-# BR2_PACKAGE_PHP_SAPI_FPM is not set
-
-#
-# Extensions
-#
-# BR2_PACKAGE_PHP_EXT_CALENDAR is not set
-# BR2_PACKAGE_PHP_EXT_FILEINFO is not set
-# BR2_PACKAGE_PHP_EXT_OPCACHE is not set
-# BR2_PACKAGE_PHP_EXT_READLINE is not set
-BR2_PACKAGE_PHP_EXT_SESSION=y
-
-#
-# Compression extensions
-#
-# BR2_PACKAGE_PHP_EXT_BZIP2 is not set
-# BR2_PACKAGE_PHP_EXT_PHAR is not set
-# BR2_PACKAGE_PHP_EXT_ZIP is not set
-BR2_PACKAGE_PHP_EXT_ZLIB=y
-
-#
-# Cryptography extensions
-#
-# BR2_PACKAGE_PHP_EXT_HASH is not set
-# BR2_PACKAGE_PHP_EXT_MCRYPT is not set
-# BR2_PACKAGE_PHP_EXT_OPENSSL is not set
-
-#
-# Database extensions
-#
-# BR2_PACKAGE_PHP_EXT_DBA is not set
-# BR2_PACKAGE_PHP_EXT_MYSQLI is not set
-# BR2_PACKAGE_PHP_EXT_SQLITE is not set
-# BR2_PACKAGE_PHP_EXT_PDO is not set
-
-#
-# Human language and character encoding support
-#
-
-#
-# Gettext support needs NLS enabled
-#
-# BR2_PACKAGE_PHP_EXT_ICONV is not set
-# BR2_PACKAGE_PHP_EXT_INTL is not set
-# BR2_PACKAGE_PHP_EXT_MBSTRING is not set
-
-#
-# Image processing
-#
-# BR2_PACKAGE_PHP_EXT_EXIF is not set
-# BR2_PACKAGE_PHP_EXT_GD is not set
-
-#
-# Mathematical extensions
-#
-# BR2_PACKAGE_PHP_EXT_BCMATH is not set
-# BR2_PACKAGE_PHP_EXT_GMP is not set
-
-#
-# Other basic extensions
-#
-# BR2_PACKAGE_PHP_EXT_JSON is not set
-# BR2_PACKAGE_PHP_EXT_TOKENIZER is not set
-
-#
-# Other services
-#
-# BR2_PACKAGE_PHP_EXT_CURL is not set
-# BR2_PACKAGE_PHP_EXT_FTP is not set
-# BR2_PACKAGE_PHP_EXT_SNMP is not set
-# BR2_PACKAGE_PHP_EXT_SOCKETS is not set
-
-#
-# Process Control
-#
-# BR2_PACKAGE_PHP_EXT_PCNTL is not set
-BR2_PACKAGE_PHP_EXT_POSIX=y
-# BR2_PACKAGE_PHP_EXT_SHMOP is not set
-# BR2_PACKAGE_PHP_EXT_SYSVMSG is not set
-# BR2_PACKAGE_PHP_EXT_SYSVSEM is not set
-# BR2_PACKAGE_PHP_EXT_SYSVSHM is not set
-
-#
-# Variable and Type related
-#
-# BR2_PACKAGE_PHP_EXT_CTYPE is not set
-# BR2_PACKAGE_PHP_EXT_FILTER is not set
-
-#
-# Web services
-#
-# BR2_PACKAGE_PHP_EXT_SOAP is not set
-# BR2_PACKAGE_PHP_EXT_XMLRPC is not set
-
-#
-# XML manipulation
-#
-# BR2_PACKAGE_PHP_EXT_DOM is not set
-# BR2_PACKAGE_PHP_EXT_LIBXML2 is not set
-# BR2_PACKAGE_PHP_EXT_SIMPLEXML is not set
-# BR2_PACKAGE_PHP_EXT_WDDX is not set
-# BR2_PACKAGE_PHP_EXT_XML is not set
-# BR2_PACKAGE_PHP_EXT_XMLREADER is not set
-# BR2_PACKAGE_PHP_EXT_XMLWRITER is not set
-# BR2_PACKAGE_PHP_EXT_XSL is not set
-
-#
-# External php extensions
-#
-# BR2_PACKAGE_PHP_AMQP is not set
-# BR2_PACKAGE_PHP_GEOIP is not set
-# BR2_PACKAGE_PHP_GNUPG is not set
-# BR2_PACKAGE_PHP_IMAGICK is not set
-# BR2_PACKAGE_PHP_MEMCACHED is not set
-# BR2_PACKAGE_PHP_SSH2 is not set
-# BR2_PACKAGE_PHP_YAML is not set
-# BR2_PACKAGE_PHP_ZMQ is not set
+# BR2_PACKAGE_PHP is not set
 BR2_PACKAGE_PYTHON=y
 # BR2_PACKAGE_PYTHON_PY_ONLY is not set
 BR2_PACKAGE_PYTHON_PYC_ONLY=y
@@ -1978,8 +1859,8 @@ BR2_PACKAGE_LIBNL=y
 #
 # Other
 #
-BR2_PACKAGE_APR=y
-BR2_PACKAGE_APR_UTIL=y
+# BR2_PACKAGE_APR is not set
+# BR2_PACKAGE_APR_UTIL is not set
 # BR2_PACKAGE_ARMADILLO is not set
 # BR2_PACKAGE_ATF is not set
 # BR2_PACKAGE_BCTOOLBOX is not set
@@ -2111,11 +1992,7 @@ BR2_PACKAGE_NCURSES=y
 # BR2_PACKAGE_NCURSES_WCHAR is not set
 # BR2_PACKAGE_NCURSES_TARGET_PROGS is not set
 # BR2_PACKAGE_NEWT is not set
-BR2_PACKAGE_PCRE=y
-# BR2_PACKAGE_PCRE_16 is not set
-# BR2_PACKAGE_PCRE_32 is not set
-# BR2_PACKAGE_PCRE_UTF is not set
-# BR2_PACKAGE_PCRE_UCP is not set
+# BR2_PACKAGE_PCRE is not set
 # BR2_PACKAGE_POPT is not set
 # BR2_PACKAGE_READLINE is not set
 # BR2_PACKAGE_SLANG is not set
@@ -2168,10 +2045,7 @@ BR2_PACKAGE_QEMU_ARCH_SUPPORTS_TARGET=y
 #
 # BR2_PACKAGE_AICCU is not set
 # BR2_PACKAGE_AIRCRACK_NG is not set
-BR2_PACKAGE_APACHE=y
-# BR2_PACKAGE_APACHE_MPM_EVENT is not set
-# BR2_PACKAGE_APACHE_MPM_PREFORK is not set
-BR2_PACKAGE_APACHE_MPM_WORKER=y
+# BR2_PACKAGE_APACHE is not set
 # BR2_PACKAGE_ARGUS is not set
 # BR2_PACKAGE_ARP_SCAN is not set
 # BR2_PACKAGE_ARPTABLES is not set

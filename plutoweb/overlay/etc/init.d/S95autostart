@@ -1,0 +1,40 @@
+#!/bin/sh
+# Update motd
+cat /etc/motd.new >>/etc/motd
+
+# Read settings from NVRAM
+. /bin/readsettings.sh
+
+start() {
+	/bin/sh /etc/init.d/S96$autostart start
+}
+
+
+stop() {
+	for i in `ls -1 /etc/init.d/S96*`; do
+		/bin/sh $i stop
+	done
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?

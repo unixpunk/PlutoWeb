@@ -7,6 +7,7 @@ read -p "Do you want to save the current settings to NVRAM? (y/n): " yn
 case $yn in
 	[Yy]* ) 
 echo "Wait while writing to NVRAM..."
+fw_setenv autostart $autostart
 fw_setenv center_freq $center_freq
 fw_setenv start_freq $start_freq
 fw_setenv samp_rate $samp_rate
