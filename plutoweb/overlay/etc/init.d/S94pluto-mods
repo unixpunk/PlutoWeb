@@ -23,6 +23,8 @@ if [ $REBOOTNEEDED == 1 ]; then
         pluto_reboot reset
 else
 	echo "Mods already in place, continuing."
+	# Update motd
+	cat /etc/motd.new >>/etc/motd
 fi
 }
 

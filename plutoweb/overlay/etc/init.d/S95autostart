@@ -1,6 +1,4 @@
 #!/bin/sh
-# Update motd
-cat /etc/motd.new >>/etc/motd
 
 # Read settings from NVRAM
 . /bin/readsettings.sh
