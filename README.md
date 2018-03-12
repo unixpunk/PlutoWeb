@@ -10,6 +10,9 @@ New plutoweb image combines all the other images into one with the ability to se
 <BR>SoapyRemote image automatically allows both normal PlutoSDR via USB and remotely via OTG Ethernet/Wifi
 <BR>OpenwebRx supports persistent settings - change them via SSH settings.sh command
 
+# Fixes
+Added auto-reboot every 24 hours to overcome an issue where the OTG USB seems to lose power until its unplugged/plugged back in or the Pluto is rebooted
+
 # TO-DO
 --Web interface to control and run most/all of these SDR tools on a single image
 <BR>--Patch the other version of dump1090 for the pluto radio so we get the added features and better webUI

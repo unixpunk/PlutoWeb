@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Read settings from NVRAM
+. /bin/readsettings.sh
+
+start() {
+	if [ $autoreboot = 'y' ]; then
+		echo "*** Auto-reboot enabled ***" >>/etc/motd
+		sleep 24h
+		pluto_reboot reset
+	else
+		echo "Auto-reboot disabled" >>/etc/motd
+	fi
+}
+
+
+stop() {
+	echo "Nothing to stop..."
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?

@@ -2,6 +2,7 @@
 ## Set commands
 . /bin/readsettings.sh
 echo "Changes made here will take effect now and reset to previous on reboot."
+echo "This also means that if auto-reboot is enabled, they will be reset then!"
 read -p "Do you want to change these settings? (y/n): " yn
 case $yn in
 	[Yy]* ) 
@@ -15,6 +16,7 @@ read -p "Enter the new RF gain in dB (0-89): [89] " rf_gain
 read -p "Enter the new PPM adjustment: [0] " ppm
 echo "Writting settings to temp file..."
 echo "export autostart=$autostart" >/root/temp-settings
+echo "export autoreboot=$autoreboot" >>/root/temp-settings
 echo "export center_freq=$center_freq" >>/root/temp-settings
 echo "export start_freq=$start_freq" >>/root/temp-settings
 echo "export samp_rate=$samp_rate" >>/root/temp-settings

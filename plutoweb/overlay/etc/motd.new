@@ -1,11 +1,11 @@
 
-PlutoWeb v1.1
-
-Dual-core enabled
-70-6000Mhz range enabled
+PlutoWeb v1.2
 
 Run tools:
 temp-settings.sh
-or settings.sh
-can also do savenow.sh
+settings.sh
+savenow.sh
+
+Dual-core enabled
+70-6000Mhz range enabled
 

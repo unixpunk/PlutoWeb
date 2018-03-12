@@ -2,6 +2,7 @@
 ## Source this file for either default or previous settings
 # Set defaults if no previous settings found
 autostart_def=openwebrx
+autoreboot_def=y
 center_freq_def=460250000
 start_freq_def=460102200
 samp_rate_def=600000
@@ -15,6 +16,9 @@ if [ -f /root/temp-settings ]; then
 	. /root/temp-settings
 if [ -z ${autostart} ]; then
         export autostart=$autostart_def
+fi
+if [ -z ${autoreboot} ]; then
+        export autoreboot=$autoreboot_def
 fi
 if [ -z ${center_freq} ]; then
         export center_freq=$center_freq_def
@@ -37,6 +41,7 @@ fi
 	echo ""
 	echo "Current settings are:"
 	echo "Auto-start = $autostart"
+	echo "Auto-reboot = $autoreboot"
 	echo "Center frequency = $center_freq"
 	echo "Starting frequency = $start_freq"
 	echo "Sample rate = $samp_rate"
@@ -49,6 +54,10 @@ echo "No temp settings found, pulling from NVRAM and saving to temp file..."
 export `fw_printenv autostart`
 if [ -z ${autostart} ]; then
         export autostart=$autostart_def
+fi
+export `fw_printenv autoreboot`
+if [ -z ${autoreboot} ]; then
+        export autoreboot=$autoreboot_def
 fi
 export `fw_printenv center_freq`
 if [ -z ${center_freq} ]; then
@@ -74,6 +83,7 @@ if [ -z ${ppm} ]; then
         export ppm=$ppm_def
 fi
 echo "export autostart=$autostart" >/root/temp-settings
+echo "export autoreboot=$autoreboot" >>/root/temp-settings
 echo "export center_freq=$center_freq" >>/root/temp-settings
 echo "export start_freq=$start_freq" >>/root/temp-settings
 echo "export samp_rate=$samp_rate" >>/root/temp-settings
@@ -86,6 +96,7 @@ echo "Ignore any messages above this line..."
 echo ""
 echo "Current settings are:"
 echo "Auto-start = $autostart"
+echo "Auto-reboot = $autoreboot"
 echo "Center frequency = $center_freq"
 echo "Starting frequency = $start_freq"
 echo "Sample rate = $samp_rate"

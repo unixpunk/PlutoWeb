@@ -24,7 +24,19 @@ if [ $REBOOTNEEDED == 1 ]; then
 else
 	echo "Mods already in place, continuing."
 	# Update motd
+	. /bin/readsettings.sh
 	cat /etc/motd.new >>/etc/motd
+	echo "Current settings are:" >>/etc/motd
+        echo "Auto-start = $autostart" >>/etc/motd
+        echo "Auto-reboot = $autoreboot" >>/etc/motd
+	echo "Center frequency = $center_freq" >>/etc/motd
+        echo "Starting frequency = $start_freq" >>/etc/motd
+        echo "Sample rate = $samp_rate" >>/etc/motd
+	echo "Starting demodulator = $start_mod" >>/etc/motd
+        echo "RF gain = $rf_gain" >>/etc/motd
+        echo "PPM = $ppm" >>/etc/motd
+        echo "" >>/etc/motd
+	/bin/sh /etc/init.d/S97autoreboot start &
 fi
 }
 
