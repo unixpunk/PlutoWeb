@@ -5,8 +5,8 @@
 # Help
 if [ $# = 0 ]; then
 echo "
-Usage: settings.sh [-i] | <-r prog> <-R y|n> <-c HZ> <-s HZ> <-S SPS> <-d DEMOD>
-			  <-g DB> <-p PPM> <-W>
+Usage: settings.sh [-i] | [-r prog] [-R y|n] [-c HZ] [-s HZ] [-S SPS] [-d DEMOD]
+			  [-g DB] [-p PPM] [-W]
 
 Make temp changes to the operations of the PlutoSDR, at least until a reboot.
 

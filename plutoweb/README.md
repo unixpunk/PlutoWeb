@@ -10,12 +10,12 @@ Find the corresponding README.md for each program in the respective legacy folde
 
 # settings.sh
 
-Usage: settings.sh [-i] | <-r prog> <-R y|n> <-c HZ> <-s HZ> <-S SPS> <-d DEMOD>
-			  <-g DB> <-p PPM> <-W>
+Usage: settings.sh [-i] | [-r prog] [-R y|n] [-c HZ] [-s HZ] [-S SPS] [-d DEMOD]
+                          [-g DB] [-p PPM] [-W]
 
-Make temp changes to the operations of the PlutoSDR, at least until a reboot.
+Make changes to the operations of the PlutoSDR, at least until a reboot.
 
-*Options omitted will revert to the defaults set at the top of readsettings.sh.
+**Options omitted will revert to the defaults set at the top of readsettings.sh.
 
 	-i	Interactive mode
 	-r	Program to run (openwebrx,dump1090,SoapyRemote,none) [openwebrx]
