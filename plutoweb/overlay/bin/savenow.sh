@@ -1,13 +1,17 @@
 #!/bin/sh
-## Set commands
 . /bin/readsettings.sh
 echo "Changes saved here will take effect now and persist across reboots."
 echo "If you (re)flash the PlutoSDR you will lose your settings."
-read -p "Do you want to save the current settings to NVRAM? (y/n): " yn
+if [ "$1" != "y" ]; then
+	read -p "Do you want to save the current settings to NVRAM? (y/n): " yn
+else
+	yn=y
+fi
 case $yn in
 	[Yy]* ) 
 echo "Wait while writing to NVRAM..."
 fw_setenv autostart $autostart
+fw_setenv autoreboot $autoreboot
 fw_setenv center_freq $center_freq
 fw_setenv start_freq $start_freq
 fw_setenv samp_rate $samp_rate

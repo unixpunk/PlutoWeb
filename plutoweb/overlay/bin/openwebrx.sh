@@ -1,6 +1,6 @@
 #!/bin/sh
 ## Pull in any saved settings or use defaults
-. /bin/readsettings.sh
+. /bin/readsettings.sh >/dev/null
 
 ## This is a workaround for an issue where SoapySDR remembers its install path
 ## and tries to use it as its 'root' directory...Fake it.

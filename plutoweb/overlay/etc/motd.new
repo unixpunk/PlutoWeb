@@ -1,10 +1,7 @@
 
-PlutoWeb v1.2
+PlutoWeb v1.3
 
-Run tools:
-temp-settings.sh
-settings.sh
-savenow.sh
+Run settings.sh to see available options.
 
 Dual-core enabled
 70-6000Mhz range enabled

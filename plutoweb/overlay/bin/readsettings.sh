@@ -1,5 +1,5 @@
 #!/bin/sh
-## Source this file for either default or previous settings
+## Source this file for default and/or previous settings
 # Set defaults if no previous settings found
 autostart_def=openwebrx
 autoreboot_def=y

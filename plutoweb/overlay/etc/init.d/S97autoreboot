@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Read settings from NVRAM
-. /bin/readsettings.sh
+. /bin/readsettings.sh >/dev/null
 
 start() {
 	if [ $autoreboot = 'y' ]; then
