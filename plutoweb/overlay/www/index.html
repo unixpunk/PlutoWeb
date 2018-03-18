@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PlutoWeb</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+	<div id="logo">
+		<h1><a href="#">PlutoWeb  </a></h1>
+		<p><em> A web interface for the PlutoSDR</em></p>
+	</div>
+	<hr />
+	<!-- end #logo -->
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="index.html">Home</a></li>
+				<li><a href="#">Settings</a></li>
+				<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">Help</a></li>
+				<li><a href="http://www.rfoverride.com" target="blank">Antennas</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+		<!-- <div id="search">
+			<form method="get" action="">
+				<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+				<input type="submit" id="search-submit" value="GO" />
+				</fieldset>
+			</form>
+		</div> -->
+		<!-- end #search -->
+	</div>
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+		  <div class="post">
+		  
+				<h2 class="title"><img src="images/openwebrx.png" alt="OpenWebRX"></h2>
+				<div class="entry">
+				<!-- <div class="input"> -->
+					<br>OpenWebRX is a multi-user SDR receiver software with a web interface that runs on port 8073<br><br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<!-- <fieldset> -->
+					<input type="hidden" name="app" value="openwebrx">
+					Enter a center freq in Hz: <input type="text" name="freq" value="460125000"></input><br>
+					<input type="radio" name="dmod" value="nfm" checked> NFM
+					<input type="radio" name="dmod" value="am"> AM
+					<input type="radio" name="dmod" value="lsb"> LSB
+					<input type="radio" name="dmod" value="usb"> USB
+					<input type="radio" name="dmod" value="cw"> CW<br><br>
+					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="600000" size="8"><br><br>
+					RF gain in dB: (0-89) <input type="number" name="gain" min="0" max="89" value="89"><br><br>
+					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
+					<input id="search-submit" type="submit" name="search-submit" value="Start OpenWebRX"></input>
+					<!-- </fieldset> -->
+					</form>
+					
+					<!-- </div> -->
+					
+			</div>
+		  </div>
+			<div class="post">
+				<h2 class="title"><a href="#">Dump1090</a></h2>
+				<div class="entry">
+					<p>Dump 1090 is a Mode S decoder runs on port 8080</p>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="dump1090"></input><br>
+					<input id="search-submit" type="submit" name="subbtn" value="Start Dump1090">
+					</form>
+				</div>
+					<!-- <div><a href="#" class="links">View Full Story</a><a href="#" class="comments">View Comments</a></div> -->
+			</div>
+			<div class="post">
+				<h2 class="title"><a href="#"><img src="images/soapyremote.png" alt="SoapyRemote" height="35"> SoapyRemote</a></h2>
+				<div class="entry">
+					<p>Use any SoapySDR supported device transparently over a local network link. The remote support feature can turn any SDR into a network peripheral.</p>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="soapy"></input><br>
+					<input id="search-submit" type="submit" name="subbtn" value="Start SoapyRemote">
+					</form>
+			  </div>
+			</div>
+		</div><!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Welcome to PlutoWeb</h2>
+					<p>PlutoWeb allows you to start different software on your PlutoSDR</p>
+				</li>
+				<li>
+					<h2>Links </h2>
+					<ul>
+						<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">PlutoWeb Github</a></li>
+						<li><a href="http://www.rfoverride.com" target="blank">RFOverride.com</a></li>
+						<li><a href="http://sdr.hu/openwebrx" target="blank">OpenWebRX</a></li>
+						<li><a href="https://github.com/antirez/dump1090" target="blank">Dump1090</a></li>
+						<li><a href="https://github.com/pothosware/SoapyRemote" target="blank">SoapyRemote</a></li>
+						
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Happy scanning</p>
+	</div>
+	<!-- end #footer -->
+</body>
+</html>
