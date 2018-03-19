@@ -10,21 +10,23 @@ Find the corresponding README.md for each program in the respective legacy folde
 
 # settings.sh
 
-Usage: settings.sh [-i] | [-r prog] [-R y|n] [-c HZ] [-s HZ] [-S SPS] [-d DEMOD]
-                          [-g DB] [-p PPM] [-W]
+Usage: settings.sh <-i> <-r prog> <-R y|n> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
+                   <-d DEMOD> <-g DB> <-p PPM> <-E> <-W>
 
-Make changes to the operations of the PlutoSDR, at least until a reboot.
-
-**Options omitted will revert to the defaults set at the top of readsettings.sh.
-
-	-i	Interactive mode
-	-r	Program to run (openwebrx,dump1090,SoapyRemote,none) [openwebrx]
-	-R	Enable/Disable auto-reboot (y/n) [y]
-		(Auto-reboot doesn't take effect now, use with -W and reboot)
-	-c	Center frequency in Hz (70000000-6000000000) [460250000]
-	-s	Starting frequency in Hz (70000000-6000000000) [460102200]
-	-S	Sample rate in SPS (samples/sec) (65105-10000000) [600000]
-	-d	Demodulation (nfm,am,lsb,usb,cw) [nfm]
-	-g	RF gain in dB (0-89) [89]
-	-p	PPM [0]
-	-W	Write changes to NVRAM for persistence
+Make changes to the operations of the PlutoSDR.
+General Options:
+        -i      Interactive mode
+        -r      Program to run (openwebrx,dump1090,SoapyRemote,none) [$autostart]
+        -R      Enable/Disable 24hr auto-reboot (y/n) [$autoreboot]
+                (Auto-reboot doesn't take effect now, use with -W and reboot)
+        -u      Enable/Disable auto-updates (y/n) [$autoupdate]
+OpenwebRx Options:
+        -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
+        -s      Starting frequency in Hz (70000000-6000000000) [$start_freq]
+        -S      Sample rate in SPS (samples/sec) (65105-10000000) [$samp_rate]
+        -d      Demodulation (nfm,am,lsb,usb,cw) [$start_mod]
+        -g      RF gain in dB (0-89) [$rf_gain]
+        -p      PPM [$ppm]
+NVRAM Options:
+        -E      Erase all settings from NVRAM
+        -W      Write changes to NVRAM for persistence
