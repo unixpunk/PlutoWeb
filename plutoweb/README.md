@@ -10,7 +10,7 @@ Find the corresponding README.md for each program in the respective legacy folde
 
 # settings.sh
 
-Usage: settings.sh <-i> <-r prog> <-R y|n> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
+"Usage: settings.sh <-i> <-r prog> <-R y|n> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
                    <-d DEMOD> <-g DB> <-p PPM> <-E> <-W>
 
 Make changes to the operations of the PlutoSDR.
@@ -29,4 +29,4 @@ OpenwebRx Options:
         -p      PPM [$ppm]
 NVRAM Options:
         -E      Erase all settings from NVRAM
-        -W      Write changes to NVRAM for persistence
+        -W      Write changes to NVRAM for persistence"
