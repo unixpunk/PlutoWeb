@@ -4,12 +4,10 @@
 . /bin/readsettings.sh >/dev/null
 
 start() {
-	if [ $autoreboot = 'y' ]; then
-		echo "*** Auto-reboot enabled ***" >>/etc/motd
-		sleep 24h
-		pluto_reboot reset
+	if [ $autoupdate = 'y' ]; then
+		echo "*** Auto-updates not yet functional ***" >>/etc/motd
 	else
-		echo "Auto-reboot disabled" >>/etc/motd
+		echo "Auto-updates disabled" >>/etc/motd
 	fi
 }
 
