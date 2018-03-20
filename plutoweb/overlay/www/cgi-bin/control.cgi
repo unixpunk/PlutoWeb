@@ -37,7 +37,7 @@ echo "<h1>OpenWebRX:</h1><br><br>"
 
 echo "Starting OpenWebRX on $FREQ: <br>"
 echo "Sample rate: $SRATE"
-echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br>$AREBOOT<br>"
+echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br><br>"
 echo "</body></html>"
 /bin/settings.sh -r openwebrx -c $FREQ -s $FREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE
 
