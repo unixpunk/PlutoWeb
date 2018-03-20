@@ -40,7 +40,7 @@ server_hostname="pluto.local" # If this contains an incorrect value, the web UI 
 max_clients=3
 
 # ==== Web GUI configuration ====
-receiver_name="PlutoWebRX Off by 2khz?"
+receiver_name="PlutoWebRX - Off by 2khz?"
 receiver_location=""
 receiver_qra=""
 receiver_asl=0
@@ -55,7 +55,7 @@ You can add your own background photo and receiver information.<br />
 Receiver is operated by: <a href="mailto:%[RX_ADMIN]">%[RX_ADMIN]</a><br/>
 Device: %[RX_DEVICE]<br />
 Antenna: %[RX_ANT]<br />
-Website: <a href="http://localhost" target="_blank">http://localhost</a>
+Settings: <a href="http://pluto.local/" target="_blank">PlutoWeb</a>
 """
 
 # ==== sdr.hu listing ====

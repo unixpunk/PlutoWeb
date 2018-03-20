@@ -1,17 +1,18 @@
-#! /bin/sh
+#!/bin/sh
 
 [ -f /bin/dump1090.sh ] || exit 0
 
 start() {
 	printf "Starting dump1090: "
-	/bin/dump1090.sh &
-	echo "done"
+	screen -Dm /bin/dump1090.sh $0 &
+	echo "<BR> - Done - Available here:  <a href=\"http://pluto.local:8080\">http://pluto.local:8080</a>  "
 }
 
 
 stop() {
         printf "Stopping dump1090: "
 	killall dump1090
+	killall screen
         echo "done"
 }
 

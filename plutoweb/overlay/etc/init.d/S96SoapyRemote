@@ -1,17 +1,18 @@
-#! /bin/sh
+#!/bin/sh
 
 [ -f /bin/SoapySDRServer ] || exit 0
 
 start() {
 	printf "Starting SoapyRemote: "
-	/bin/SoapySDRServer --bind &
-	echo "done"
+	screen -Dm /bin/soapyremote.sh $0 &
+	echo "<BR> - Done - Available here:  pluto.local:55132  "
 }
 
 
 stop() {
 	printf "Stopping SoapyRemote: "
 	killall SoapySDRServer
+	killall screen
 	echo "done"
 }
 

@@ -1,11 +1,11 @@
-#! /bin/sh
+#!/bin/sh
 
 [ -f /bin/openwebrx.sh ] || exit 0
 
 start() {
 	printf "Starting OpenwebRx: "
 	screen -Dm /bin/openwebrx.sh $0 &
-	echo "done"
+	echo "<BR> - Done - Available here:  <a href=\"http://pluto.local:8073\">http://pluto.local:8073</a>  "
 }
 
 
