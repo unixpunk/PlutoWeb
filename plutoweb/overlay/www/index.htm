@@ -5,6 +5,16 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>PlutoWeb</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".inline").colorbox({inline:true, width:"50%", height:"80%"});
+				
+			});
+		</script>
 </head>
 <body>
 	<div id="logo">
@@ -16,22 +26,14 @@
 	<div id="header">
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="index.html">Home</a></li>
-				<li><a href="#">Settings</a></li>
+				<li class="current_page_item"><a href="index.htm">Home</a></li>
+				<li><a class='inline' href="#inline_content">Settings</a></li>
 				<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">Help</a></li>
-				<li><a href="http://www.rfoverride.com" target="blank">Antennas</a></li>
+				<li><a href="http://www.rfoverride.com/antennas/" target="blank">Antennas</a></li>
 			</ul>
 		</div>
 		<!-- end #menu -->
-		<!-- <div id="search">
-			<form method="get" action="">
-				<fieldset>
-				<input type="text" name="s" id="search-text" size="15" />
-				<input type="submit" id="search-submit" value="GO" />
-				</fieldset>
-			</form>
-		</div> -->
-		<!-- end #search -->
+		
 	</div>
 	<!-- end #header -->
 	<!-- end #header-wrapper -->
@@ -41,12 +43,10 @@
 		  
 				<h2 class="title"><img src="images/openwebrx.png" alt="OpenWebRX"></h2>
 				<div class="entry">
-				<!-- <div class="input"> -->
 					<br>OpenWebRX is a multi-user SDR receiver software with a web interface that runs on port 8073<br><br>
 					<form action="cgi-bin/control.cgi" method="get">
-					<!-- <fieldset> -->
 					<input type="hidden" name="app" value="openwebrx">
-					Enter a center freq in Hz: <input type="text" name="freq" value="460125000"></input><br>
+					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
 					<input type="radio" name="dmod" value="nfm" checked> NFM
 					<input type="radio" name="dmod" value="am"> AM
 					<input type="radio" name="dmod" value="lsb"> LSB
@@ -56,7 +56,6 @@
 					RF gain in dB: (0-89) <input type="number" name="gain" min="0" max="89" value="89"><br><br>
 					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
 					<input id="search-submit" type="submit" name="search-submit" value="Start OpenWebRX"></input>
-					<!-- </fieldset> -->
 					</form>
 					
 					<!-- </div> -->
@@ -92,12 +91,17 @@
 					<p>PlutoWeb allows you to start different software on your PlutoSDR</p>
 				</li>
 				<li>
+					<h2><font color="red">::::: : : : WARNING : : : :::::</h2>
+					<p>This is not secure in any way at all. I would not put this thing on the internet. First off everyone knows the root password. Second this page is not secure one tiny bit, it uses CGI script and runs system commands. A specially crafted URL would probably p0wn this thing. You have been warned.</p>
+				</font>
+				</li>
+				<li>
 					<h2>Links </h2>
 					<ul>
 						<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">PlutoWeb Github</a></li>
 						<li><a href="http://www.rfoverride.com" target="blank">RFOverride.com</a></li>
 						<li><a href="http://sdr.hu/openwebrx" target="blank">OpenWebRX</a></li>
-						<li><a href="https://github.com/antirez/dump1090" target="blank">Dump1090</a></li>
+						<li><a href="https://github.com/PlutoSDR/dump1090" target="blank">Dump1090</a></li>
 						<li><a href="https://github.com/pothosware/SoapyRemote" target="blank">SoapyRemote</a></li>
 						
 					</ul>
@@ -113,5 +117,56 @@
 		<p>Happy scanning</p>
 	</div>
 	<!-- end #footer -->
+	<!-- This contains the hidden content for inline calls -->
+		<div style='display:none'>
+			<div id='inline_content' style='padding:10px; background:#fff;'>
+			<h1><font color="#639CBF">PlutoWeb Settings</font></h1>
+			Make changes to the operations of the PlutoSDR, at least until a reboot.<br><br>
+			<h2><font color="#639CBF">OpenWebRX Settings</font></h2>
+			<p>Change the default settings for OpenWebRX</p>
+			<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="settings">
+					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
+					<input type="radio" name="dmod" value="nfm" checked> NFM
+					<input type="radio" name="dmod" value="am"> AM
+					<input type="radio" name="dmod" value="lsb"> LSB
+					<input type="radio" name="dmod" value="usb"> USB
+					<input type="radio" name="dmod" value="cw"> CW<br><br>
+					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="600000" size="8"><br><br>
+					RF gain in dB: (0-89) <input type="number" name="gain" min="0" max="89" value="89"><br><br>
+					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
+					
+					<br>
+					<h2><font color="#639CBF">Auto start program</font></h2>
+					Change the default program to run at boot<br>
+					<input type="radio" name="astart" value="openwebrx" checked> OpenWebRX
+					<input type="radio" name="astart" value="dump1090"> Dump1090
+					<input type="radio" name="astart" value="soapyremote"> SoapyRemote
+					<input type="radio" name="astart" value="none"> None<br><br>
+					
+					<h2><font color="#639CBF">Auto Update</font></h2>
+					Enable auto updates of the overlay folder from GitHub (Auto update upon boot)<br>
+					<input type="radio" name="aupdate" value="y" checked> Yes
+					<input type="radio" name="aupdate" value="n"> No
+					<br><br>
+					<h2><font color="#639CBF">Auto Reboot</font></h2>
+					Enable auto reboot every 24 hours (Auto reboot doesn't take effect now, write changes to NVRAM and reboot)<br>
+					<input type="radio" name="areboot" value="y" checked> Yes
+					<input type="radio" name="areboot" value="n"> No
+					<br><br>
+					<input type="checkbox" name="nvram" value="writenvram">Write changes to NVRAM for persistence after reboot (Not yet working in web)<br><br>
+					<input id="search-submit" type="submit" name="subbtn" value="Save Settings"></input>
+					</form>
+					<br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="reboot">
+					<input id="search-submit" type="submit" name="subbtn" value="Reboot the PlutoSDR" onclick="return confirm('Are you sure?')"></input>
+					<br><br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="wipe">
+					<input id="search-submit" type="submit" name="subbtn" value="Wipe Settings from NVRAM" onclick="return confirm('Are you sure?')"></input>
+					
+			</div>
+		</div>
 </body>
 </html>
