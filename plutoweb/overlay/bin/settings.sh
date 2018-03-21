@@ -12,7 +12,7 @@ Make changes to the operations of the PlutoSDR.
 General Options:
         -i      Interactive mode
         -r      Program to run (openwebrx,dump1090,SoapyRemote,none) [$autostart]
-        -R      Enable/Disable 24hr auto-reboot (y/n) [$autoreboot]
+        -R      Enable/Disable 12hr auto-reboot (y/n) [$autoreboot]
                 (Auto-reboot doesn't take effect now, use with -W and reboot)
         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
 OpenwebRx Options:

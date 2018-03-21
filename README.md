@@ -15,7 +15,7 @@ PlutoWeb interface up and running thanks to ImDroided
 <BR>OpenwebRx supports persistent settings - change them via SSH settings.sh command -W to write to memory
 
 # Fixes
-Added auto-reboot every 24 hours to overcome an issue where the OTG USB seems to lose power until its unplugged/plugged back in or the Pluto is rebooted
+Added auto-reboot every 12 hours to overcome an issue where the OTG USB seems to lose power until its unplugged/plugged back in or the Pluto is rebooted
 
 # TO-DO
 <BR>--Patch the other version of dump1090 for the pluto radio so we get the added features and better webUI

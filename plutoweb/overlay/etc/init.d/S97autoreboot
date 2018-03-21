@@ -6,7 +6,7 @@
 start() {
 	if [ $autoreboot = 'y' ]; then
 		echo "*** Auto-reboot enabled ***" >>/etc/motd
-		sleep 24h
+		sleep 12h
 		pluto_reboot reset
 	else
 		echo "Auto-reboot disabled" >>/etc/motd
