@@ -1,6 +1,8 @@
 #!/bin/sh
 ## Source this file for default and/or previous settings
+
 # Set defaults if no previous settings found
+# Persistent variables
 autostart_def=openwebrx
 autoreboot_def=y
 autoupdate_def=n
@@ -10,6 +12,9 @@ samp_rate_def=600000
 start_mod_def=nfm
 rf_gain_def=89
 ppm_def=0
+
+# Non-persistent variables
+updatesrunning_def=n
 
 ## Use temp settings if they exist instead of pulling from NVRAM
 if [ -f /root/temp-settings ]; then
@@ -42,11 +47,15 @@ fi
 if [ -z ${ppm} ]; then
         export ppm=$ppm_def
 fi
+if [ -z ${updatesrunning} ]; then
+        export updatesrunning=$updatesrunning_def
+fi
 	echo ""
 	echo "Current settings are:"
 	echo "Auto-start = $autostart"
 	echo "Auto-reboot = $autoreboot"
 	echo "Auto-update = $autoupdate"
+	echo "Updates running = $updatesrunning"
 	echo "Center frequency = $center_freq"
 	echo "Starting frequency = $start_freq"
 	echo "Sample rate = $samp_rate"
@@ -91,6 +100,9 @@ export `fw_printenv ppm`
 if [ -z ${ppm} ]; then
         export ppm=$ppm_def
 fi
+if [ -z ${updatesrunning} ]; then
+        export updatesrunning=$updatesrunning_def
+fi
 echo "export autostart=$autostart" >/root/temp-settings
 echo "export autoreboot=$autoreboot" >>/root/temp-settings
 echo "export autoupdate=$autoupdate" >>/root/temp-settings
@@ -100,6 +112,7 @@ echo "export samp_rate=$samp_rate" >>/root/temp-settings
 echo "export start_mod=$start_mod" >>/root/temp-settings
 echo "export rf_gain=$rf_gain" >>/root/temp-settings
 echo "export ppm=$ppm" >>/root/temp-settings
+echo "export updatesrunning=$updatesrunning" >>/root/temp-settings
 chmod +x /root/temp-settings
 echo ""
 echo "Ignore any messages above this line..."
@@ -108,6 +121,7 @@ echo "Current settings are:"
 echo "Auto-start = $autostart"
 echo "Auto-reboot = $autoreboot"
 echo "Auto-update = $autoupdate"
+echo "Updates running = $updatesrunning"
 echo "Center frequency = $center_freq"
 echo "Starting frequency = $start_freq"
 echo "Sample rate = $samp_rate"

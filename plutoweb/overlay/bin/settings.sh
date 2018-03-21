@@ -52,6 +52,12 @@ case $i in
 	-u)
 	sed -i "s/autoupdate=$autoupdate/autoupdate=$2/" /root/temp-settings
 	autoupdate=$2
+	if [ "$2" = "y" ] || [ "$2" = "Y" ]; then
+		/bin/sh /etc/init.d/S97autoupdate start
+	fi
+	if [ "$2" = "n" ] || [ "$2" = "N" ]; then
+		/bin/sh /etc/init.d/S97autoupdate stop
+	fi
         shift
         shift;;
 	-c)
@@ -139,7 +145,7 @@ esac;;
 esac
 done
 
-if [ $WRITE = 'y' ]; then
+if [ "$WRITE" = "y" ]; then
 	/bin/savenow.sh yes
 fi
 

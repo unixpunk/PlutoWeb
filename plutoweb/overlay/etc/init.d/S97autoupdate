@@ -4,16 +4,62 @@
 . /bin/readsettings.sh >/dev/null
 
 start() {
-	if [ $autoupdate = 'y' ]; then
-		echo "*** Auto-updates not yet functional ***" >>/etc/motd
+	if [ "$updatesrunning" = "y" ]; then
+		exit
+	fi
+	if [ "$autoupdate" = "y" ]; then
+		updatesrunning=y
+		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
+		# Start watchdog looking for update.zip in /root
+		/bin/updatewatch.sh &
+		# Start downloading and updating
+		wget -qT 15 -O /root/update.zip.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoSDR/master/plutoweb/update.zip.md5sum
+		if [ ! -f /root/update.zip.md5sum ] || [ ! -s /root/update.zip.md5sum ]; then
+			echo "*** Auto-updates enabled but unable to download md5sum ***" >>/etc/motd
+			rm -f /root/update.zip*
+			updatesrunning=n
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			exit
+		fi
+		if diff -q /root/update.zip.md5sum /root/.update.zip.md5sum; then
+			echo "*** Auto-updates enabled - already up to date ***" >>/etc/motd
+			rm -f /root/update.zip*
+			updatesrunning=n
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			exit
+		else
+			wget -qT 15 -O /root/update.zip --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoSDR/master/plutoweb/update.zip
+			if [ ! -f /root/update.zip ] || [ ! -s /root/update.zip ]; then
+                        echo "*** Auto-updates enabled but unable to download update.zip ***" >>/etc/motd
+			rm -f /root/update.zip*
+			updatesrunning=n
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			exit
+			fi
+			if [ "$(md5sum -b /root/update.zip | awk -F\\  '{ print $1 }')" = "$(cat /root/update.zip.md5sum | awk -F\\  '{ print $1 }')" ]; then
+			cd / && unzip -o /root/update.zip && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
+			rm -f /root/update.zip* /root/temp-settings
+			updatesrunning=n
+			exit
+			else
+			echo "*** Auto-updates enabled but md5 mismatch on update.zip ***" >>/etc/motd
+			rm -f /root/update.zip*
+			updatesrunning=n
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			exit
+			fi
+		fi
 	else
 		echo "Auto-updates disabled" >>/etc/motd
 	fi
+exit
 }
 
 
 stop() {
-	echo "Nothing to stop..."
+	echo "Stopping updatewatch.sh..."
+	killall updatewatch.sh
+	echo "Done."
 }
 
 # See how we were called.

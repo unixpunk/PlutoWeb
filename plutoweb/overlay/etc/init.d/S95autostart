@@ -9,8 +9,8 @@ start() {
 
 
 stop() {
-	for i in `ls -1 /etc/init.d/S96*`; do
-		/bin/sh $i stop
+	for file in /etc/init.d/S96*; do
+		/bin/sh $file stop
 	done
 }
 
