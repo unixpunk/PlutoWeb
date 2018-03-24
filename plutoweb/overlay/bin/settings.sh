@@ -29,6 +29,7 @@ exit
 fi
 
 # Read args from command line
+RESTARTNOW=0
 while [[ $# -gt 0 ]]; do
 i="$1"
 case $i in
@@ -42,6 +43,7 @@ case $i in
 	-r)
 	sed -i "s/$autostart/$2/" /root/temp-settings
 	autostart=$2
+	RESTARTNOW=1
 	shift
 	shift;;
 	-R)
@@ -53,7 +55,7 @@ case $i in
 	sed -i "s/autoupdate=$autoupdate/autoupdate=$2/" /root/temp-settings
 	autoupdate=$2
 	if [ "$2" = "y" ] || [ "$2" = "Y" ]; then
-		/bin/sh /etc/init.d/S97autoupdate start
+		/bin/sh /etc/init.d/S97autoupdate restart
 	fi
 	if [ "$2" = "n" ] || [ "$2" = "N" ]; then
 		/bin/sh /etc/init.d/S97autoupdate stop
@@ -63,31 +65,49 @@ case $i in
 	-c)
 	sed -i "s/center_freq=$center_freq/center_freq=$2/" /root/temp-settings
 	center_freq=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -s)
 	sed -i "s/start_freq=$start_freq/start_freq=$2/" /root/temp-settings
 	start_freq=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -S)
 	sed -i "s/samp_rate=$samp_rate/samp_rate=$2/" /root/temp-settings
 	samp_rate=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -d)
 	sed -i "s/$start_mod/$2/" /root/temp-settings
 	start_mod=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -g)
 	sed -i "s/rf_gain=$rf_gain/rf_gain=$2/" /root/temp-settings
 	rf_gain=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -p)
 	sed -i "s/ppm=$ppm/ppm=$2/" /root/temp-settings
 	ppm=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
         shift
         shift;;
         -i)
@@ -107,33 +127,67 @@ read -p "Enter the new sample rate (65105-10000000): [$samp_rate] " samp_rate_ne
 read -p "Enter the new starting demodulator (nfm,am,lsb,usb,cw): [$start_mod] " start_mod_new
 read -p "Enter the new RF gain in dB (0-89): [$rf_gain] " rf_gain_new
 read -p "Enter the new PPM adjustment: [$ppm] " ppm_new
+read -p "Should these settings be saved to NVRAM now? (y/n): [n] " savenow_new
 echo "Writting settings to temp file..."
 if [ -n "$autostart_new" ]; then
 	sed -i "s/$autostart/$autostart_new/" /root/temp-settings
+	RESTARTNOW=1
 fi
 if [ -n "$autoreboot_new" ]; then
 	sed -i "s/autoreboot=$autoreboot/autoreboot=$autoreboot_new/" /root/temp-settings
+		
 fi
 if [ -n "$autoupdate_new" ]; then
 	sed -i "s/autoupdate=$autoupdate/autoupdate=$autoupdate_new/" /root/temp-settings
+	if [ "$autoupdate_new" = "y" ] || [ "$autoupdate_new" = "Y" ]; then
+		/bin/sh /etc/init.d/S97autoupdate restart
+	fi
+	if [ "$autoupdate_new" = "n" ] || [ "$autoupdate_new" = "N" ]; then
+		/bin/sh /etc/init.d/S97autoupdate stop
+	fi
 fi
 if [ -n "$center_freq_new" ]; then
 	sed -i "s/center_freq=$center_freq/center_freq=$center_freq_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
 fi
 if [ -n "$start_freq_new" ]; then
 	sed -i "s/start_freq=$start_freq/start_freq=$start_freq_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
 fi
 if [ -n "$samp_rate_new" ]; then
 	sed -i "s/samp_rate=$samp_rate/samp_rate=$samp_rate_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
 fi
 if [ -n "$start_mod_new" ]; then
 	sed -i "s/$start_mod/$start_mod_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
 fi
 if [ -n "$rf_gain_new" ]; then
 	sed -i "s/rf_gain=$rf_gain/rf_gain=$rf_gain_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
 fi
 if [ -n "$ppm_new" ]; then
 	sed -i "s/ppm=$ppm/ppm=$ppm_new/" /root/temp-settings
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
+fi
+if [ -n "$savenow_new" ]; then
+case $savenow_new in
+	[Yy]* )
+	WRITE=y
+	;;
+esac
 fi
 shift;;
 	* )
@@ -149,6 +203,8 @@ if [ "$WRITE" = "y" ]; then
 	/bin/savenow.sh yes
 fi
 
-echo "Done.  Starting selected program now..."
-/etc/init.d/S95autostart restart
-exit
+echo "Done."
+if [ "$RESTARTNOW" = "1" ]; then
+	echo "One or more changes require (re)starting the running program, doing now..."
+	/etc/init.d/S95autostart restart
+fi
