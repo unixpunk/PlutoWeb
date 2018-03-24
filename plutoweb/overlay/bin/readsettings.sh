@@ -5,7 +5,7 @@
 # Persistent variables
 autostart_def=openwebrx
 autoreboot_def=y
-autoupdate_def=n
+autoupdate_def=y
 center_freq_def=460250000
 start_freq_def=460102200
 samp_rate_def=600000
@@ -128,5 +128,6 @@ echo "Sample rate = $samp_rate"
 echo "Starting demodulator = $start_mod"
 echo "RF gain = $rf_gain"
 echo "PPM = $ppm"
+echo "Update running = $updatesrunning"
 echo ""
 fi
