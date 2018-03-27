@@ -6,7 +6,7 @@ If you don't want to flash these images to test, tar up the overlay folder from 
 Create new issues with suggestions for other software to package into images for the PlutoSDR and I'll see what I can do.
 
 # Notice
-The PlutoSDR was designed to be hacked...its a learning tool.  There is NO security on it.  It should NEVER be presented to the internet publicly.  Any remote access should be done via VPN or other secure tunnle like SSH.  This ESPECIALLY includes PlutoWeb itself!
+The PlutoSDR was designed to be hacked...its a learning tool.  There is NO security on it.  It should NEVER be presented to the internet publicly.  Any remote access should be done via VPN or other secure tunnel like SSH.  This ESPECIALLY includes PlutoWeb itself!
 
 # Features
 PlutoWeb interface up and running thanks to ImDroided
