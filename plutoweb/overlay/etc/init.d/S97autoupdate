@@ -13,7 +13,7 @@ start() {
 		# Start watchdog looking for update.zip in /root
 		/bin/updatewatch.sh &
 		# Start downloading and updating
-		wget -qT 15 -O /root/update.zip.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoSDR/master/plutoweb/update.zip.md5sum
+		wget -qT 15 -O /root/update.zip.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.zip.md5sum
 		if [ ! -f /root/update.zip.md5sum ] || [ ! -s /root/update.zip.md5sum ]; then
 			echo "*** Auto-updates enabled but unable to download md5sum ***" >>/etc/motd
 			rm -f /root/update.zip*
@@ -28,7 +28,7 @@ start() {
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
 			exit
 		else
-			wget -qT 15 -O /root/update.zip --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoSDR/master/plutoweb/update.zip
+			wget -qT 15 -O /root/update.zip --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.zip
 			if [ ! -f /root/update.zip ] || [ ! -s /root/update.zip ]; then
                         echo "*** Auto-updates enabled but unable to download update.zip ***" >>/etc/motd
 			rm -f /root/update.zip*
