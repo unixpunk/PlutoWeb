@@ -59,6 +59,7 @@ exit
 stop() {
 	echo "Stopping updatewatch.sh..."
 	killall updatewatch.sh
+	sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
 	echo "Done."
 }
 
