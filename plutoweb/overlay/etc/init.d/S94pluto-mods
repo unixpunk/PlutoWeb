@@ -26,7 +26,6 @@ else
 	echo "Updating motd..."
 	# Update motd
 	cat /etc/motd.new >>/etc/motd
-	mv /www/index.htm /www/index.html
 	/bin/sh /etc/init.d/S97autoreboot start &
 	/bin/sh /etc/init.d/S97autoupdate start
 fi
