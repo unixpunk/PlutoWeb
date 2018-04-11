@@ -28,6 +28,7 @@ PPM=${PPM//+/ }
 SRATE=${QUERY_STRING#*srate=}
 SRATE=${SRATE%%&*}
 SRATE=${SRATE//+/ }
+TEST=$(uptime)
 echo "Content-type: text/html"
 echo ""
 echo "<html><head><title>Starting OpenWebRX"
@@ -37,7 +38,7 @@ echo "<h1>OpenWebRX:</h1><br><br>"
 
 echo "Starting OpenWebRX on $FREQ: <br>"
 echo "Sample rate: $SRATE"
-echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br><br>"
+echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br>Uptime: $TEST<br>"
 echo "</body></html>"
 /bin/settings.sh -r openwebrx -c $FREQ -s $FREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE
 
@@ -137,6 +138,6 @@ else
 	echo ""
 	echo "<html><head><title>Error"
 	echo "</title></head><body>"
-	echo "<h1>"I think you broke it Beavis"</h1><br><br>"
+	echo "<h1>"I think you broke it Beavis. You dumbass."</h1><br><br>"
 	echo "</body></html>"
 fi

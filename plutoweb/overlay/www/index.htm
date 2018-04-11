@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript" />
 <title>PlutoWeb</title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <link rel="stylesheet" href="colorbox.css" />
@@ -12,6 +13,7 @@
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				$(".inline").colorbox({inline:true, width:"50%", height:"80%"});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
 				
 			});
 		</script>
@@ -27,8 +29,13 @@
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="index.htm">Home</a></li>
+				<li><a href="http://pluto.local:8073" target="blank">OpenWebRX</a></li>
+				<li><a href="http://pluto.local:8080" target="blank">Dump1090</a></li>
+				<!-- <li><a href="#">     </a></li>
+				<li><a href="#">     </a></li>
+				<li><a href="#">     </a></li> -->
 				<li><a class='inline' href="#inline_content">Settings</a></li>
-				<li><a href="https://github.com/unixpunk/PlutoWeb/" target="blank">Help</a></li>
+				<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">Help</a></li>
 				<li><a href="http://www.rfoverride.com/antennas/" target="blank">Antennas</a></li>
 			</ul>
 		</div>
@@ -40,11 +47,9 @@
 	<div id="page">
 		<div id="content">
 		  <div class="post">
-		  
-				<h2 class="title"><img src="images/openwebrx.png" alt="OpenWebRX"></h2>
+				<h2 class="title"><a href="http://pluto.local:8073" target=blank><img src="images/openwebrx.png" alt="OpenWebRX"></a></h2>
 				<div class="entry">
-					<br>OpenWebRX is a multi-user SDR receiver software with a web interface that runs on port 8073<br><br>
-					<form action="cgi-bin/control.cgi" method="get">
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="openwebrx">
 					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
 					<input type="radio" name="dmod" value="nfm" checked> NFM
@@ -63,10 +68,10 @@
 			</div>
 		  </div>
 			<div class="post">
-				<h2 class="title"><a href="#">Dump1090</a></h2>
+				<h2 class="title"><img src="images/dump1090.png" height="35" alt="dump1090"> <a href="http://pluto.local:8080" target=blank>Dump1090</a></h2>
 				<div class="entry">
-					<p>Dump 1090 is a Mode S decoder runs on port 8080</p>
-					<form action="cgi-bin/control.cgi" method="get">
+					<p>Dump 1090 is a ADS-B Mode S decoder that runs on port 8080</p>
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="dump1090"></input><br>
 					<input id="search-submit" type="submit" name="subbtn" value="Start Dump1090">
 					</form>
@@ -76,8 +81,8 @@
 			<div class="post">
 				<h2 class="title"><a href="#"><img src="images/soapyremote.png" alt="SoapyRemote" height="35"> SoapyRemote</a></h2>
 				<div class="entry">
-					<p>Use any SoapySDR supported device transparently over a local network link. The remote support feature can turn any SDR into a network peripheral.</p>
-					<form action="cgi-bin/control.cgi" method="get">
+					<p>Use any SoapySDR supported device transparently over a local network link. The remote support feature can turn any SDR into a network peripheral. It runs on port 55132</p>
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="soapy"></input><br>
 					<input id="search-submit" type="submit" name="subbtn" value="Start SoapyRemote">
 					</form>
@@ -88,7 +93,7 @@
 			<ul>
 				<li>
 					<h2>Welcome to PlutoWeb</h2>
-					<p>PlutoWeb allows you to start different software on your PlutoSDR</p>
+					<p>This is a firmware image with a web interface to control settings for OpenWebRX and which program to auto-start so you don't need to use ssh anymore.</p>
 				</li>
 				<li>
 					<h2><font color="red">::::: : : : WARNING : : : :::::</h2>
@@ -98,11 +103,11 @@
 				<li>
 					<h2>Links </h2>
 					<ul>
-						<li><a href="https://github.com/unixpunk/PlutoWeb/" target="blank">PlutoWeb Github</a></li>
+						<li><a href="https://github.com/unixpunk/PlutoSDR/" target="blank">PlutoWeb Github</a></li>
 						<li><a href="http://www.rfoverride.com" target="blank">RFOverride.com</a></li>
-						<li><a href="http://sdr.hu/openwebrx" target="blank">OpenWebRX</a></li>
-						<li><a href="https://github.com/PlutoSDR/dump1090" target="blank">Dump1090</a></li>
-						<li><a href="https://github.com/pothosware/SoapyRemote" target="blank">SoapyRemote</a></li>
+						<li><a href="http://sdr.hu/openwebrx" target="blank">OpenWebRX Homepage</a></li>
+						<li><a href="https://github.com/PlutoSDR/dump1090" target="blank">Dump1090 GitHub</a></li>
+						<li><a href="https://github.com/pothosware/SoapyRemote" target="blank">SoapyRemote GitHub</a></li>
 						
 					</ul>
 				</li>
@@ -124,7 +129,7 @@
 			Make changes to the operations of the PlutoSDR, at least until a reboot.<br><br>
 			<h2><font color="#639CBF">OpenWebRX Settings</font></h2>
 			<p>Change the default settings for OpenWebRX</p>
-			<form action="cgi-bin/control.cgi" method="get">
+			<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="settings">
 					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
 					<input type="radio" name="dmod" value="nfm" checked> NFM
@@ -138,23 +143,23 @@
 					
 					<br>
 					<h2><font color="#639CBF">Auto start program</font></h2>
-					Change the default program to run at boot<br>
+					Change the default program to run at boot.<br>
 					<input type="radio" name="astart" value="openwebrx" checked> OpenWebRX
 					<input type="radio" name="astart" value="dump1090"> Dump1090
 					<input type="radio" name="astart" value="soapyremote"> SoapyRemote
 					<input type="radio" name="astart" value="none"> None<br><br>
 					
 					<h2><font color="#639CBF">Auto Update</font></h2>
-					Enable auto updates of the overlay folder from GitHub (Auto update upon boot)<br>
+					Enable auto updates of the overlay folder from GitHub. (Auto update upon boot)<br>
 					<input type="radio" name="aupdate" value="y" checked> Yes
 					<input type="radio" name="aupdate" value="n"> No
 					<br><br>
 					<h2><font color="#639CBF">Auto Reboot</font></h2>
-					Enable auto reboot every 24 hours (Auto reboot doesn't take effect now, write changes to NVRAM and reboot)<br>
+					Enable auto reboot every X hours this helps OTG Ethernet to stay connected. (Auto reboot doesn't take effect now, write changes to NVRAM and reboot)<br>
 					<input type="radio" name="areboot" value="y" checked> Yes
 					<input type="radio" name="areboot" value="n"> No
 					<br><br>
-					<input type="checkbox" name="nvram" value="writenvram">Write changes to NVRAM for persistence after reboot (Not yet working in web)<br><br>
+					<input type="checkbox" name="nvram" value="writenvram">Write changes to NVRAM for persistence after reboot. (Not yet working in web)<br><br>
 					<input id="search-submit" type="submit" name="subbtn" value="Save Settings"></input>
 					</form>
 					<br>

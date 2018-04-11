@@ -1,0 +1,8 @@
+460250000
+NFM
+600000
+89
+0
+OpenWebRX
+yes
+yes
