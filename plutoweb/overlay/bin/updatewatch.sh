@@ -36,7 +36,7 @@ else
 			echo "Found $file"
 			sleep 10
 			if [ "$(md5sum -b $file | awk -F\\  '{ print $1 }')" = "$(cat $file.md5sum | awk -F\\  '{ print $1 }')" ]; then
-				cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
+				cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
 				rm -f $file $file.md5sum
 				updatesrunning=n
 				sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
@@ -60,7 +60,7 @@ else
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
 		echo "Found $file - Waiting 10 seconds before proceeding..."
 		sleep 10
-		cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
+		cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
 		rm -f $file $file.md5sum
 		updatesrunning=n
 		sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
