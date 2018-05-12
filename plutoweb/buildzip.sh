@@ -1,5 +1,5 @@
 #/bin/sh
-cd /home/steve/Desktop/SDR/Pluto/PlutoWeb/plutoweb/overlay
+cd overlay
 rm -f ../update.zip*
 zip -roy ../update.zip *
 cd ..
