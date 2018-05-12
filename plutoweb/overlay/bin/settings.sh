@@ -37,7 +37,7 @@ case $i in
 	if [ "$2" == "y" ]; then
 	echo "Erase command issued, ignoring all other options!"
 	/bin/savenow.sh erase
-	exit;;
+	exit
 	fi
 	shift
 	shift;;
