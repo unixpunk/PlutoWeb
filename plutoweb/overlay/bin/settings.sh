@@ -1,5 +1,5 @@
 #!/bin/sh
-# Pull defaults now
+
 . /bin/readsettings.sh >/dev/null
 
 # Help
