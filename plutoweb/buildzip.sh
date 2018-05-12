@@ -1,4 +1,5 @@
 #/bin/sh
+
 cd overlay
 rm -f ../update.zip*
 zip -roy ../update.zip *
