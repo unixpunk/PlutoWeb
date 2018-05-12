@@ -38,13 +38,14 @@ case $i in
 	echo "Erase command issued, ignoring all other options!"
 	/bin/savenow.sh erase
 	exit;;
-	else
-	shift;;
 	fi
+	shift
+	shift;;
 	-W)
 	if [ "$2" == "y" ]; then
 	WRITE=y
 	fi
+	shift
 	shift;;
 	-r)
 	sed -i "s/$autostart/$2/" /root/temp-settings
