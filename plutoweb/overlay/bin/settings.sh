@@ -6,7 +6,7 @@
 if [ $# = 0 ]; then
 echo "
 Usage: settings.sh <-i> <-r prog> <-R y|n> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
-                   <-d DEMOD> <-g DB> <-p PPM> <-E> <-W>
+                   <-d DEMOD> <-g DB> <-p PPM> <-E y> <-W y>
 
 Make changes to the operations of the PlutoSDR.
 General Options:
@@ -23,8 +23,8 @@ OpenwebRx Options:
         -g      RF gain in dB (0-89) [$rf_gain]
         -p      PPM [$ppm]
 NVRAM Options:
-        -E      Erase all settings from NVRAM
-        -W      Write changes to NVRAM for persistence"
+        -E y    Erase all settings from NVRAM
+        -W y    Write changes to NVRAM for persistence"
 exit
 fi
 
@@ -34,11 +34,17 @@ while [[ $# -gt 0 ]]; do
 i="$1"
 case $i in
 	-E)
+	if [ "$2" == "y" ]; then
 	echo "Erase command issued, ignoring all other options!"
 	/bin/savenow.sh erase
 	exit;;
+	else
+	shift;;
+	fi
 	-W)
+	if [ "$2" == "y" ]; then
 	WRITE=y
+	fi
 	shift;;
 	-r)
 	sed -i "s/$autostart/$2/" /root/temp-settings
