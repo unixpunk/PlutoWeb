@@ -9,13 +9,41 @@
 <link rel="stylesheet" href="colorbox.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="jquery.colorbox.js"></script>
+		<script script type="text/javascript" src="formdata.js"></script>
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
-				$(".inline").colorbox({inline:true, width:"50%", height:"80%"});
+				$(".inline").colorbox({inline:true, width:"50%", height:"87%"});
 				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				$(".iframe-settings").colorbox({iframe:true, width:"50%", height:"95%"});
 				
 			});
+		</script>
+		<script>
+		var myArray
+		$.ajax({
+			
+			url:'settings.txt',
+			success: function (data){
+		//parse your data here
+		//you can split into lines using data.split('\n') 
+		//an use regex functions to effectively parse it
+		
+		var myArray = data.split('\n');
+		for (i = 0; i < myArray.length; i++) {
+                $('#test' + i).text(myArray[i]);
+            	}
+			initForm(document.forms[0], 'freq', myArray[0]);
+			initForm(document.forms[0], 'sfreq', myArray[1]);
+			initForm(document.forms[0], 'dmod', myArray[2]);
+			initForm(document.forms[0], 'srate', myArray[3]);
+			initForm(document.forms[0], 'gain', myArray[4]);
+			initForm(document.forms[0], 'ppm', myArray[5]);
+			}
+		});
+		
+		
+
 		</script>
 </head>
 <body>
@@ -34,7 +62,7 @@
 				<!-- <li><a href="#">     </a></li>
 				<li><a href="#">     </a></li>
 				<li><a href="#">     </a></li> -->
-				<li><a class='inline' href="#inline_content">Settings</a></li>
+				<li><a class='iframe-settings' href="settings.htm">Settings</a></li>
 				<li><a href="https://github.com/unixpunk/PlutoWeb/" target="blank">Help</a></li>
 				<li><a href="http://www.rfoverride.com/antennas/" target="blank">Antennas</a></li>
 			</ul>
@@ -49,17 +77,19 @@
 		  <div class="post">
 				<h2 class="title"><a href="http://pluto.local:8073" target=blank><img src="images/openwebrx.png" alt="OpenWebRX"></a></h2>
 				<div class="entry">
-					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
+										
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"90%", height:"90%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="openwebrx">
-					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
+					Enter a center freq in Hz: <input type="text" name="freq" value=""></input><br><br>
+					Enter a starting freq in Hz: <input type="text" name="sfreq" value=""></input><br>
 					<input type="radio" name="dmod" value="nfm" checked> NFM
 					<input type="radio" name="dmod" value="am"> AM
 					<input type="radio" name="dmod" value="lsb"> LSB
 					<input type="radio" name="dmod" value="usb"> USB
 					<input type="radio" name="dmod" value="cw"> CW<br><br>
-					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="600000" size="8"><br><br>
-					RF gain in dB: (0-89) <input type="number" name="gain" min="0" max="89" value="89"><br><br>
-					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
+					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="" size="8"><br><br>
+					RF gain in dB: (0-89) <input type="text" name="gain" min="0" max="89" value=""><br><br>
+					PPM Correction: <input type="text" name="ppm" value="" size="4"><br><br>
 					<input id="search-submit" type="submit" name="search-submit" value="Start OpenWebRX"></input>
 					</form>
 					
@@ -71,7 +101,7 @@
 				<h2 class="title"><img src="images/dump1090.png" height="35" alt="dump1090"> <a href="http://pluto.local:8080" target=blank>Dump1090</a></h2>
 				<div class="entry">
 					<p>Dump 1090 is a ADS-B Mode S decoder that runs on port 8080</p>
-					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"90%", height:"90%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="dump1090"></input><br>
 					<input id="search-submit" type="submit" name="subbtn" value="Start Dump1090">
 					</form>
@@ -128,7 +158,7 @@
 			<h1><font color="#639CBF">PlutoWeb Settings</font></h1>
 			Make changes to the operations of the PlutoSDR, at least until a reboot.<br><br>
 			<h2><font color="#639CBF">OpenWebRX Settings</font></h2>
-			<p>Change the default settings for OpenWebRX</p>
+			Change the default settings for OpenWebRX<br><br>
 			<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="settings">
 					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
@@ -163,13 +193,23 @@
 					<input id="search-submit" type="submit" name="subbtn" value="Save Settings"></input>
 					</form>
 					<br>
-					<form action="cgi-bin/control.cgi" method="get">
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="reboot">
 					<input id="search-submit" type="submit" name="subbtn" value="Reboot the PlutoSDR" onclick="return confirm('Are you sure?')"></input>
 					<br><br>
-					<form action="cgi-bin/control.cgi" method="get">
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
 					<input type="hidden" name="app" value="wipe">
 					<input id="search-submit" type="submit" name="subbtn" value="Wipe Settings from NVRAM" onclick="return confirm('Are you sure?')"></input>
+					</form>
+					<br>
+					<h2><font color="#639CBF">Upload update.zip file</font></h2>
+					If you dont have OTG ehternet or WiFi for auto updates you can download the latest update.zip file from <a href="https://github.com/unixpunk/PlutoWeb/tree/master/plutoweb" target="new">Plutoweb's GitHub</a> and upload it here.  
+					<br><br>
+  					<form action="cgi-bin/upload.cgi" method="POST" enctype="multipart/form-data">
+    					File: <input id="search-submit" name="file" type="file" accept=".zip">
+    					<input id="search-submit" name="submit" type="submit" value="Upload">
+  					</form>
+					<br>
 					
 			</div>
 		</div>

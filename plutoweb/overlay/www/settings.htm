@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript" />
+<title>PlutoWeb</title>
+<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.colorbox.js"></script>
+		<script script type="text/javascript" src="formdata.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".inline").colorbox({inline:true, width:"50%", height:"80%"});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				
+			});
+		</script>
+		<script>
+		var myArray
+		$.ajax({
+			
+			url:'settings.txt',
+			success: function (data){
+		//parse your data here
+		//you can split into lines using data.split('\n') 
+		//an use regex functions to effectively parse it
+		
+		var myArray = data.split('\n');
+		for (i = 0; i < myArray.length; i++) {
+                $('#test' + i).text(myArray[i]);
+            }
+			initForm(document.forms[0], 'freq', myArray[0]);
+			initForm(document.forms[0], 'sfreq', myArray[1]);
+			initForm(document.forms[0], 'dmod', myArray[2]);
+			initForm(document.forms[0], 'srate', myArray[3]);
+			initForm(document.forms[0], 'gain', myArray[4]);
+			initForm(document.forms[0], 'ppm', myArray[5]);
+			}
+		});
+		
+		
+
+		</script>
+<style>
+body {
+	margin-top: 10px;
+	padding: 0;
+	background: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #8A8A8A;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #549900;
+}
+
+h1 { font-size: 44px; }
+
+h2 { font-size: 18px; }
+
+h3 { }
+#search {
+	float: right;
+	width: 240px;
+	padding: 10px 10px 0px 0px;
+}
+
+#search form {
+	float: right;
+	margin: 0;
+	padding: 4px 0px 0 0;
+}
+
+#search fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+#search input {
+	float: left;
+	font: 12px Georgia, "Times New Roman", Times, serif;
+}
+
+#search-text {
+	width: 150px;
+	height: 18px;
+	padding: 3px 0 0 5px;
+	border: 1px solid #333333;
+	background: #ECF9E4;
+	color: #000000;
+}
+
+#search-submit {
+	height: 21px;
+	margin-left: 10px;
+	padding: 0px 5px;
+	background: #2A4345;
+	border: 1px solid #5F817E;
+	color: #FFFFFF;
+}
+</style>
+</head>
+<body background="fff">
+	<h1><font color="#639CBF">PlutoWeb Settings</font></h1>
+			Make changes to the operations of the PlutoSDR, at least until a reboot.<br><br>
+			<h2><font color="#639CBF">OpenWebRX Settings</font></h2>
+			<p>Change the default settings for OpenWebRX</p>
+			<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
+					<input type="hidden" name="app" value="settings">
+					Enter a center freq in Hz: <input type="text" name="freq" value=""></input><br><br>
+					Enter a starting freq in Hz: <input type="text" name="sfreq" value=""></input><br>
+					<input type="radio" name="dmod" value="nfm" checked> NFM
+					<input type="radio" name="dmod" value="am"> AM
+					<input type="radio" name="dmod" value="lsb"> LSB
+					<input type="radio" name="dmod" value="usb"> USB
+					<input type="radio" name="dmod" value="cw"> CW<br><br>
+					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="600000" size="8"><br><br>
+					RF gain in dB: (0-89) <input type="text" name="gain" min="0" max="89" value="89" size="2"><br><br>
+					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
+					
+					<br>
+					<h2><font color="#639CBF">Auto start program</font></h2>
+					Change the default program to run at boot.<br>
+					<input type="radio" name="astart" value="openwebrx" checked> OpenWebRX
+					<input type="radio" name="astart" value="dump1090"> Dump1090
+					<input type="radio" name="astart" value="soapyremote"> SoapyRemote
+					<input type="radio" name="astart" value="none"> None<br><br>
+					
+					<h2><font color="#639CBF">Auto Update</font></h2>
+					Enable auto updates of the overlay folder from GitHub. (Auto update upon boot. Requires internet)<br>
+					<input type="radio" name="aupdate" value="y" checked> Yes
+					<input type="radio" name="aupdate" value="n"> No
+					<br><br>
+					<h2><font color="#639CBF">Auto Reboot</font></h2>
+					Enable auto reboot every X hours this helps OTG Ethernet to stay connected. (Auto reboot doesn't take effect now, write changes to NVRAM and reboot)<br>
+					<input type="radio" name="areboot" value="y" checked> Yes
+					<input type="radio" name="areboot" value="n"> No
+					<br><br>
+					Write changes to NVRAM for persistence after reboot.<br>
+					<input type="radio" name="nvram" value="y" checked> Yes
+					<input type="radio" name="nvram" value="n"> No					
+					<br><br>
+					<input id="search-submit" type="submit" name="subbtn" value="Save Settings"></input>
+					</form>
+					<br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="reboot">
+					<input id="search-submit" type="submit" name="subbtn" value="Reboot the PlutoSDR" onclick="return confirm('Are you sure?')"></input>
+					<br><br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="wipe">
+					<input id="search-submit" type="submit" name="subbtn" value="Wipe Settings from NVRAM" onclick="return confirm('Are you sure?')"></input>
+					</form>
+					<br>
+					<h2><font color="#639CBF">Upload update.zip file</font></h2>
+					If you dont have OTG ehternet or WiFi for auto updates you can download the latest update.zip file from <a href="https://github.com/unixpunk/PlutoWeb/tree/master/plutoweb" target="new">Plutoweb's GitHub</a> and upload it here.  
+					<br><br>
+  					<form action="cgi-bin/upload.cgi" method="POST" enctype="multipart/form-data">
+    					File: <input id="search-submit" name="file" type="file" accept=".zip">
+    					<input id="search-submit" name="submit" type="submit" value="Upload">
+  					</form>
+					<br>			
+				
+					
+</body>
+</html>

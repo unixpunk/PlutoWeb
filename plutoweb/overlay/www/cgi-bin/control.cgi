@@ -16,6 +16,9 @@ if [ "$APP" == "openwebrx" ]; then
 FREQ=${QUERY_STRING#*freq=}
 FREQ=${FREQ%%&*}
 FREQ=${FREQ//+/ }
+SFREQ=${QUERY_STRING#*sfreq=}
+SFREQ=${SFREQ%%&*}
+SFREQ=${SFREQ//+/ }
 DMOD=${QUERY_STRING#*dmod=}
 DMOD=${DMOD%%&*}
 DMOD=${DMOD//+/ }
@@ -37,10 +40,11 @@ echo "</title></head><body>"
 echo "<h1>OpenWebRX:</h1><br><br>"
 
 echo "Starting OpenWebRX on $FREQ: <br>"
+echo "With $SFREQ as a starting freq<br>"
 echo "Sample rate: $SRATE"
 echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br>Uptime: $TEST<br>"
 echo "</body></html>"
-/bin/settings.sh -r openwebrx -c $FREQ -s $FREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE
+/bin/settings.sh -r openwebrx -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE
 
 elif [ "$APP" == "dump1090" ]; then
 
@@ -81,6 +85,9 @@ echo "Settings have been saved.<br><br><br>"
 FREQ=${QUERY_STRING#*freq=}
 FREQ=${FREQ%%&*}
 FREQ=${FREQ//+/ }
+SFREQ=${QUERY_STRING#*sfreq=}
+SFREQ=${SFREQ%%&*}
+SFREQ=${SFREQ//+/ }
 DMOD=${QUERY_STRING#*dmod=}
 DMOD=${DMOD%%&*}
 DMOD=${DMOD//+/ }
@@ -102,7 +109,11 @@ AUPDATE=${AUPDATE//+/ }
 AREBOOT=${QUERY_STRING#*auto-reboot=}
 AREBOOT=${AREBOOT%%&*}
 AREBOOT=${AREBOOT//+/ }
-/bin/settings.sh -r $ASTART -c $FREQ -s $FREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT
+NVRAM=${QUERY_STRING#*nvram=}
+NVRAM=${NVRAM%%&*}
+NVRAM=${NVRAM//+/ }
+echo "$NVRAM test<br><br><br>"
+/bin/settings.sh -r $ASTART -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT -W $NVRAM
 
 echo "</body></html>"
 
@@ -117,7 +128,7 @@ echo "<h1>Erasing setings</h1><br><br>"
 
 echo "The settings have been erased from NVRAM<br><br><br>"
 echo "</body></html>"
-/bin/settings.sh -E
+/bin/settings.sh -E y
 
 elif [ "$APP" == "reboot" ]; then
 
