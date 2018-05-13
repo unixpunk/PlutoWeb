@@ -4,7 +4,7 @@
 # Set defaults if no previous settings found
 # Persistent variables
 autostart_def=openwebrx
-autoreboot_def=y
+autoreboot_def=12
 autoupdate_def=y
 center_freq_def=460250000
 start_freq_def=460102200
@@ -25,6 +25,12 @@ if [ -z ${autostart} ]; then
 fi
 if [ -z ${autoreboot} ]; then
         export autoreboot=$autoreboot_def
+fi
+if [ ${autoreboot} = "y" ]; then
+        export autoreboot=12
+fi
+if [ ${autoreboot} = "n" ]; then
+        export autoreboot=0
 fi
 if [ -z ${autoupdate} ]; then
         export autoupdate=$autoupdate_def

@@ -5,15 +5,15 @@
 # Help
 if [ $# = 0 ]; then
 echo "
-Usage: settings.sh <-i> <-r prog> <-R y|n> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
+Usage: settings.sh <-i> <-r prog> <-R Hrs> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
                    <-d DEMOD> <-g DB> <-p PPM> <-E y> <-W y>
 
 Make changes to the operations of the PlutoSDR.
 General Options:
         -i      Interactive mode
         -r      Program to run (openwebrx,dump1090,SoapyRemote,none) [$autostart]
-        -R      Enable/Disable 12hr auto-reboot (y/n) [$autoreboot]
-                (Auto-reboot doesn't take effect now, use with -W and reboot)
+        -R      Enable/Disable auto-reboot (In hours, 0 to disable) [$autoreboot]
+                (Auto-reboot doesn't take effect now, use with -W y and reboot)
         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
 OpenwebRx Options:
         -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
@@ -128,7 +128,7 @@ case $yn in
 	[Yy]* ) 
 echo "If you make a mistake, CTRL+C to exit and then start over."
 read -p "Auto-start anything? (openwebrx,dump1090,SoapyRemote,none): [$autostart] " autostart_new
-read -p "Enable auto-reboot every 24h? (y/n): [$autoreboot] " autoreboot_new
+read -p "Enable scheduled auto-reboot? (In hours, 0 to disable): [$autoreboot] " autoreboot_new
 read -p "Enable automatic updates? (y/n): [$autoupdate] " autoupdate_new
 read -p "Enter the new center frequency (70000000-6000000000): [$center_freq] " center_freq_new
 read -p "Enter the new starting frequency (70000000-6000000000): [$start_freq] " start_freq_new
