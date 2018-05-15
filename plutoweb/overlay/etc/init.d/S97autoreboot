@@ -4,10 +4,10 @@
 . /bin/readsettings.sh >/dev/null
 
 start() {
-	if ! [[ $autoreboot =~ '^[0-9]+$' ]]; then
+	if [ "$autoreboot" = "y" ]; then
 		autoreboot=12
 	fi
-	if [ "$autoreboot" != "0" ]; then
+	if [ "$autoreboot" != "0" ] && [ "$autoreboot" != "n" ]; then
                 echo "*** Auto-reboot enabled every $autoreboot hours ***" >>/etc/motd
                 sleep "$autoreboot"h
                 pluto_reboot reset
