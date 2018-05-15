@@ -110,17 +110,6 @@ if [ -z ${updatesrunning} ]; then
         export updatesrunning=$updatesrunning_def
 fi
 
-# Create /www/settings.txt
-echo $autostart >/www/settings.txt
-echo $autoreboot >>/www/settings.txt
-echo $autoupdate >>/www/settings.txt
-echo $center_freq >>/www/settings.txt
-echo $start_freq >>/www/settings.txt
-echo $samp_rate >>/www/settings.txt
-echo $start_mod >>/www/settings.txt
-echo $rf_gain >>/www/settings.txt
-echo $ppm >>/www/settings.txt
-
 # Create /root/temp-settings
 echo "export autostart=$autostart" >/root/temp-settings
 echo "export autoreboot=$autoreboot" >>/root/temp-settings
@@ -150,3 +139,14 @@ echo "PPM = $ppm"
 echo "Update running = $updatesrunning"
 echo ""
 fi
+
+# Create /www/settings.txt
+echo $autostart >/www/settings.txt
+echo $autoreboot >>/www/settings.txt
+echo $autoupdate >>/www/settings.txt
+echo $center_freq >>/www/settings.txt
+echo $start_freq >>/www/settings.txt
+echo $samp_rate >>/www/settings.txt
+echo $start_mod >>/www/settings.txt
+echo $rf_gain >>/www/settings.txt
+echo $ppm >>/www/settings.txt
