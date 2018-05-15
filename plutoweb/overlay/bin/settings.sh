@@ -6,7 +6,7 @@
 if [ $# = 0 ]; then
 echo "
 Usage: settings.sh <-i> <-r prog> <-R Hrs> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
-                   <-d DEMOD> <-g DB> <-p PPM> <-E y> <-W y>
+                   <-d DEMOD> <-g DB> <-p PPM> <-E y|d> <-W y>
 
 Make changes to the operations of the PlutoSDR.
 General Options:
@@ -23,7 +23,7 @@ OpenwebRx Options:
         -g      RF gain in dB (0-89) [$rf_gain]
         -p      PPM [$ppm]
 NVRAM Options:
-        -E y    Erase all settings from NVRAM
+        -E y|d  Erase all settings from NVRAM (d to reset to defaults too)
         -W y    Write changes to NVRAM for persistence"
 exit
 fi
@@ -37,6 +37,13 @@ case $i in
 	if [ "$2" == "y" ]; then
 	echo "Erase command issued, ignoring all other options!"
 	/bin/savenow.sh erase
+	exit
+	fi
+        if [ "$2" == "d" ]; then
+        echo "Erase and reset issued, ignoring all other options!"
+        /bin/savenow.sh erase
+	rm /root/temp-settings
+	/etc/init.d/S95autostart restart
 	exit
 	fi
 	shift

@@ -13,6 +13,17 @@ start_mod_def=nfm
 rf_gain_def=89
 ppm_def=0
 
+# Leave these all empty
+autostart=
+autoreboot=
+autoupdate=
+center_freq=
+start_freq=
+samp_rate=
+start_mod=
+rf_gain=
+ppm=
+
 # Non-persistent variables
 updatesrunning_def=n
 
