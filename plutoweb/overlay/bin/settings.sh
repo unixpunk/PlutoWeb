@@ -208,6 +208,9 @@ esac;;
 esac
 done
 
+# Re-run readsettings.sh to re-write settings.txt for PlutoWeb
+. /bin/readsettings.sh >/dev/null
+
 if [ "$WRITE" = "y" ]; then
 	/bin/savenow.sh yes
 fi
