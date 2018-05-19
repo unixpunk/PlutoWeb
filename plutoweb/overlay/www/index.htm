@@ -33,12 +33,15 @@
 		for (i = 0; i < myArray.length; i++) {
                 $('#test' + i).text(myArray[i]);
             	}
-			initForm(document.forms[0], 'freq', myArray[0]);
-			initForm(document.forms[0], 'sfreq', myArray[1]);
-			initForm(document.forms[0], 'dmod', myArray[2]);
-			initForm(document.forms[0], 'srate', myArray[3]);
-			initForm(document.forms[0], 'gain', myArray[4]);
-			initForm(document.forms[0], 'ppm', myArray[5]);
+			initForm(document.forms[0], 'freq', myArray[3]);
+			initForm(document.forms[0], 'sfreq', myArray[4]);
+			initForm(document.forms[0], 'dmod', myArray[6]);
+			initForm(document.forms[0], 'srate', myArray[5]);
+			initForm(document.forms[0], 'gain', myArray[7]);
+			initForm(document.forms[0], 'ppm', myArray[8]);
+			initForm(document.forms[0], 'aupdate', myArray[2]);
+			initForm(document.forms[0], 'areboot', myArray[1]);
+			initForm(document.forms[0], 'astart', myArray[0]);
 			}
 		});
 		
@@ -88,7 +91,7 @@
 					<input type="radio" name="dmod" value="usb"> USB
 					<input type="radio" name="dmod" value="cw"> CW<br><br>
 					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="" size="8"><br><br>
-					RF gain in dB: (0-89) <input type="text" name="gain" min="0" max="89" value=""><br><br>
+					RF gain in dB: (0-89) <input type="text" name="gain" min="0" max="89" value="" size="4"><br><br>
 					PPM Correction: <input type="text" name="ppm" value="" size="4"><br><br>
 					<input id="search-submit" type="submit" name="search-submit" value="Start OpenWebRX"></input>
 					</form>

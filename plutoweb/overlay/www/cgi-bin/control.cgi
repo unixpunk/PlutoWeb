@@ -79,9 +79,8 @@ echo ""
 echo "<html><head><title>Saving Settings"
 echo "</title></head><body>"
 
-echo "<h1>Saved Settings</h1><br><br>"
+echo "<h1>Saving Settings</h1><br><br>"
 
-echo "Settings have been saved.<br><br><br>"
 FREQ=${QUERY_STRING#*freq=}
 FREQ=${FREQ%%&*}
 FREQ=${FREQ//+/ }
@@ -112,9 +111,9 @@ AREBOOT=${AREBOOT//+/ }
 NVRAM=${QUERY_STRING#*nvram=}
 NVRAM=${NVRAM%%&*}
 NVRAM=${NVRAM//+/ }
-echo "$NVRAM test<br><br><br>"
 /bin/settings.sh -r $ASTART -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT -W $NVRAM
 
+echo "Settings have been saved.<br><br><br>"
 echo "</body></html>"
 
 elif [ "$APP" == "wipe" ]; then

@@ -41,7 +41,7 @@ def save_uploaded_file():
 
     print '''
 <hr>
-<a href="../index.htm">Back to upload page</a>
+Please give at least 10 seconds for update to be applied
 </body>
 </html>
 '''
