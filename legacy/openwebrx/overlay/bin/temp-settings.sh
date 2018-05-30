@@ -20,7 +20,7 @@ echo "export start_mod=$start_mod" >>/root/temp-settings
 echo "export rf_gain=$rf_gain" >>/root/temp-settings
 echo "export ppm=$ppm" >>/root/temp-settings
 chmod +x /root/temp-settings
-echo "Done.  Restarting OpenwebRx now..."
+echo "Done.  Restarting OpenWebRX now..."
 /etc/init.d/S95openwebrx stop
 /etc/init.d/S95openwebrx start
 exit;;

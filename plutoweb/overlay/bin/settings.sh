@@ -15,7 +15,7 @@ General Options:
         -R      Enable/Disable auto-reboot (In hours, 0 to disable) [$autoreboot]
                 (Auto-reboot doesn't take effect now, use with -W y and reboot)
         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
-OpenwebRx Options:
+OpenWebRX Options:
         -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
         -s      Starting frequency in Hz (70000000-6000000000) [$start_freq]
         -S      Sample rate in SPS (samples/sec) (65105-10000000) [$samp_rate]

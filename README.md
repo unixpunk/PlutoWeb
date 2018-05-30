@@ -12,7 +12,7 @@ The PlutoSDR was designed to be hacked...its a learning tool.  There is NO secur
 PlutoWeb interface up and running thanks to ImDroided
 <BR>New plutoweb image combines all the other images into one with the ability to select which program to auto-start at boot
 <BR>SoapyRemote image automatically allows both normal PlutoSDR via USB and remotely via OTG Ethernet/Wifi
-<BR>OpenwebRx supports persistent settings - change them via SSH settings.sh command -W to write to memory
+<BR>OpenWebRX supports persistent settings - change them via SSH settings.sh command -W to write to memory
 
 # Fixes
 Added auto-reboot every 12 hours to overcome an issue where the OTG USB seems to lose power until its unplugged/plugged back in or the Pluto is rebooted

@@ -28,7 +28,7 @@ fw_setenv samp_rate $samp_rate
 fw_setenv start_mod $start_mod
 fw_setenv rf_gain $rf_gain
 fw_setenv ppm $ppm
-echo "Done.  Restarting OpenwebRx now..."
+echo "Done.  Restarting OpenWebRX now..."
 /etc/init.d/S95openwebrx stop
 /etc/init.d/S95openwebrx start
 exit;;

@@ -22,7 +22,7 @@ Find the corresponding README.md for each program in the respective legacy folde
 >         -R      Enable/Disable 12hr auto-reboot (y/n) [$autoreboot]
 >                 (Auto-reboot doesn't take effect now, use with -W and reboot)
 >         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
-> OpenwebRx Options:
+> OpenWebRX Options:
 >         -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
 >         -s      Starting frequency in Hz (70000000-6000000000) [$start_freq]
 >         -S      Sample rate in SPS (samples/sec) (65105-10000000) [$samp_rate]

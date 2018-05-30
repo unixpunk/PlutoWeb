@@ -3,14 +3,14 @@
 [ -f /bin/openwebrx.sh ] || exit 0
 
 start() {
-	printf "Starting OpenwebRx: "
+	printf "Starting OpenWebRX: "
 	screen -Dm /bin/openwebrx.sh $0 &
 	echo "<BR> - Done - Available here:  <a href=\"http://pluto.local:8073\">http://pluto.local:8073</a>  "
 }
 
 
 stop() {
-	printf "Stopping OpenwebRx: "
+	printf "Stopping OpenWebRX: "
 	killall python
 	killall csdr
 	killall nc
