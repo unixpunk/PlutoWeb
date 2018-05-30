@@ -63,7 +63,7 @@
             <img id="webrx-rx-avatar-background" src="gfx/openwebrx-avatar-background.png" onclick="toggle_rx_photo();"/>
             <img id="webrx-rx-avatar" src="gfx/openwebrx-avatar.png" onclick="toggle_rx_photo();"/>
             <div id="webrx-rx-title" onclick="toggle_rx_photo();">%[RX_TITLE]</div>
-            <div id="webrx-rx-desc" onclick="toggle_rx_photo();">%[RX_LOC] | Loc: %[RX_QRA], ASL: %[RX_ASL] m, <a href="https://www.google.hu/maps/place/%[RX_GPS]" target="_blank" onclick="dont_toggle_rx_photo();">[maps]</a></div>
+            <div id="webrx-rx-desc" onclick="toggle_rx_photo();">%[RX_LOC] | Loc: %[RX_QRA], ASL: %[RX_ASL] m</div>
             <div id="openwebrx-rx-details-arrow">
                 <a id="openwebrx-rx-details-arrow-up" onclick="toggle_rx_photo();"><img src="gfx/openwebrx-rx-details-arrow-up.png" /></a>
                 <a id="openwebrx-rx-details-arrow-down" onclick="toggle_rx_photo();"><img src="gfx/openwebrx-rx-details-arrow.png" /></a>
