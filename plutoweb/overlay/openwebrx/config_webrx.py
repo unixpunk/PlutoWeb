@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 """
 config_webrx: configuration options for OpenWebRX
@@ -35,24 +36,22 @@ config_webrx: configuration options for OpenWebRX
 #       https://github.com/simonyiszk/openwebrx/wiki
 
 # ==== Server settings ====
-web_port=8073
+web_port=int(os.environ["web_port"])
 server_hostname="pluto.local" # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
-max_clients=3
+max_clients=int(os.environ["max_clients"])
 
 # ==== Web GUI configuration ====
-receiver_name="PlutoWebRX - Off by 2khz?"
-receiver_location=""
-receiver_qra=""
-receiver_asl=0
-receiver_ant=""
-receiver_device="PlutoSDR"
-receiver_admin="root@pluto.local"
-receiver_gps=(47.000000,19.000000)
+receiver_name="PlutoWeb running OpenWebRX"
+receiver_location=str(os.environ["receiver_location"])
+receiver_qra=str(os.environ["receiver_qra"])
+receiver_asl=int(os.environ["receiver_asl"])
+receiver_ant=str(os.environ["receiver_ant"])
+receiver_device="ADALM-PLUTO (PlutoSDR)"
+receiver_admin=str(os.environ["receiver_admin"])
+receiver_gps=str(os.environ["receiver_gps"])
 photo_height=350
 photo_title="Panorama of Budapest from Schönherz Zoltán Dormitory"
 photo_desc="""
-You can add your own background photo and receiver information.<br />
-Receiver is operated by: <a href="mailto:%[RX_ADMIN]">%[RX_ADMIN]</a><br/>
 Device: %[RX_DEVICE]<br />
 Antenna: %[RX_ANT]<br />
 Settings: <a href="http://pluto.local/" target="_blank">PlutoWeb</a>
@@ -62,16 +61,15 @@ Settings: <a href="http://pluto.local/" target="_blank">PlutoWeb</a>
 # If you want your ham receiver to be listed publicly on sdr.hu, then take the following steps:
 # 1. Register at: http://sdr.hu/register
 # 2. You will get an unique key by email. Copy it and paste here:
-sdrhu_key = ""
+sdrhu_key = str(os.environ["sdrhu_key"])
 # 3. Set this setting to True to enable listing:
-sdrhu_public_listing = False
+sdrhu_public_listing = os.environ["sdrhu_public_listing"]
 
 # ==== DSP/RX settings ====
-fft_fps=5
-fft_size=4096 #Should be power of 2
-fft_voverlap_factor=0.1 #If fft_voverlap_factor is above 0, multiple FFTs will be used for creating a line on the diagram.
+fft_fps=int(os.environ["fft_fps"])
+fft_size=int(os.environ["fft_size"]) #Should be power of 2
+fft_voverlap_factor=float(os.environ["fft_voverlap_factor"]) #If fft_voverlap_factor is above 0, multiple FFTs will be used for creating a line on the diagram.
 
-import os
 # Can do 3 users @ 600ksps but can barely do 1 user @ 1msps...
 samp_rate = int(os.environ["samp_rate"])
 # PlutoSDR 'modded' range of 70000000 - 6000000000

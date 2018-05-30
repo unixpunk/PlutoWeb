@@ -12,6 +12,20 @@ samp_rate_def=600000
 start_mod_def=nfm
 rf_gain_def=89
 ppm_def=0
+web_port_def=8073
+max_clients_def=3
+receiver_location_def="\"Planet Earth\""
+receiver_qra_def=ABC123
+receiver_asl_def=0
+receiver_ant_def=Wideband
+receiver_admin_def=""
+receiver_gps_def=0.000000,0.000000
+sdrhu_key_def=""
+sdrhu_public_listing_def=False
+fft_fps_def=5
+fft_size_def=4096
+fft_voverlap_factor_def=0.1
+
 
 # Leave these all empty
 autostart=
@@ -23,6 +37,19 @@ samp_rate=
 start_mod=
 rf_gain=
 ppm=
+web_port=
+max_clients=
+receiver_location=
+receiver_qra=
+receiver_asl=
+receiver_ant=
+receiver_admin=
+receiver_gps=
+fft_fps=
+fft_size=
+fft_voverlap_factor=
+sdrhu_key=
+sdrhu_public_listing=
 
 # Non-persistent variables
 updatesrunning_def=n
@@ -64,6 +91,45 @@ fi
 if [ -z ${ppm} ]; then
         export ppm=$ppm_def
 fi
+if [ -z ${web_port} ]; then
+        export web_port=$web_port_def
+fi
+if [ -z ${max_clients} ]; then
+        export max_clients=$max_clients_def
+fi
+if [ -z ${receiver_location} ]; then
+        export receiver_location=$receiver_location_def
+fi
+if [ -z ${receiver_qra} ]; then
+        export receiver_qra=$receiver_qra_def
+fi
+if [ -z ${receiver_asl} ]; then
+        export receiver_asl=$receiver_asl_def
+fi
+if [ -z ${receiver_ant} ]; then
+        export receiver_ant=$receiver_ant_def
+fi
+if [ -z ${receiver_admin} ]; then
+        export receiver_admin=$receiver_admin_def
+fi
+if [ -z ${receiver_gps} ]; then
+        export receiver_gps=$receiver_gps_def
+fi
+if [ -z ${fft_fps} ]; then
+        export fft_fps=$fft_fps_def
+fi
+if [ -z ${fft_size} ]; then
+        export fft_size=$fft_size_def
+fi
+if [ -z ${fft_voverlap_factor} ]; then
+        export fft_voverlap_factor=$fft_voverlap_factor_def
+fi
+if [ -z ${sdrhu_key} ]; then
+        export sdrhu_key=$sdrhu_key_def
+fi
+if [ -z ${sdrhu_public_listing} ]; then
+        export sdrhu_public_listing=$sdrhu_public_listing_def
+fi
 if [ -z ${updatesrunning} ]; then
         export updatesrunning=$updatesrunning_def
 fi
@@ -79,6 +145,19 @@ fi
 	echo "Starting demodulator = $start_mod"
 	echo "RF gain = $rf_gain"
 	echo "PPM = $ppm"
+	echo "web_port = $web_port"
+	echo "max_clients = $max_clients"
+	echo "receiver_location = $receiver_location"
+	echo "receiver_qra = $receiver_qra"
+	echo "receiver_asl = $receiver_asl"
+	echo "receiver_ant = $receiver_ant"
+	echo "receiver_admin = $receiver_admin"
+	echo "receiver_gps = $receiver_gps"
+	echo "fft_fps = $fft_fps"
+	echo "fft_size = $fft_size"
+	echo "fft_voverlap_factor = $fft_voverlap_factor"
+	echo "sdrhu_key = $sdrhu_key"
+	echo "sdrhu_public_listing = $sdrhu_public_listing"
 	echo ""
 else
 echo "No temp settings found, pulling from NVRAM and saving to temp file..."
@@ -117,6 +196,58 @@ export `fw_printenv ppm`
 if [ -z ${ppm} ]; then
         export ppm=$ppm_def
 fi
+export `fw_printenv web_port`
+if [ -z ${web_port} ]; then
+        export web_port=$web_port_def
+fi
+export `fw_printenv max_clients`
+if [ -z ${max_clients} ]; then
+        export max_clients=$max_clients_def
+fi
+export `fw_printenv receiver_location`
+if [ -z ${receiver_location} ]; then
+        export receiver_location=$receiver_location_def
+fi
+export `fw_printenv receiver_qra`
+if [ -z ${receiver_qra} ]; then
+        export receiver_qra=$receiver_qra_def
+fi
+export `fw_printenv receiver_asl`
+if [ -z ${receiver_asl} ]; then
+        export receiver_asl=$receiver_asl_def
+fi
+export `fw_printenv receiver_ant`
+if [ -z ${receiver_ant} ]; then
+        export receiver_ant=$receiver_ant_def
+fi
+export `fw_printenv receiver_admin`
+if [ -z ${receiver_admin} ]; then
+        export receiver_admin=$receiver_admin_def
+fi
+export `fw_printenv receiver_gps`
+if [ -z ${receiver_gps} ]; then
+        export receiver_gps=$receiver_gps_def
+fi
+export `fw_printenv fft_fps`
+if [ -z ${fft_fps} ]; then
+        export fft_fps=$fft_fps_def
+fi
+export `fw_printenv fft_size`
+if [ -z ${fft_size} ]; then
+        export fft_size=$fft_size_def
+fi
+export `fw_printenv fft_voverlap_factor`
+if [ -z ${fft_voverlap_factor} ]; then
+        export fft_voverlap_factor=$fft_voverlap_factor_def
+fi
+export `fw_printenv sdrhu_key`
+if [ -z ${sdrhu_key} ]; then
+        export sdrhu_key=$sdrhu_key_def
+fi
+export `fw_printenv sdrhu_public_listing`
+if [ -z ${sdrhu_public_listing} ]; then
+        export sdrhu_public_listing=$sdrhu_public_listing_def
+fi
 if [ -z ${updatesrunning} ]; then
         export updatesrunning=$updatesrunning_def
 fi
@@ -131,6 +262,19 @@ echo "export samp_rate=$samp_rate" >>/root/temp-settings
 echo "export start_mod=$start_mod" >>/root/temp-settings
 echo "export rf_gain=$rf_gain" >>/root/temp-settings
 echo "export ppm=$ppm" >>/root/temp-settings
+echo "export web_port=$web_port" >>/root/temp-settings
+echo "export max_clients=$max_clients" >>/root/temp-settings
+echo "export receiver_location=$receiver_location" >>/root/temp-settings
+echo "export receiver_qra=$receiver_qra" >>/root/temp-settings
+echo "export receiver_asl=$receiver_asl" >>/root/temp-settings
+echo "export receiver_ant=$receiver_ant" >>/root/temp-settings
+echo "export receiver_admin=$receiver_admin" >>/root/temp-settings
+echo "export receiver_gps=$receiver_gps" >>/root/temp-settings
+echo "export fft_fps=$fft_fps" >>/root/temp-settings
+echo "export fft_size=$fft_size" >>/root/temp-settings
+echo "export fft_voverlap_factor=$fft_voverlap_factor" >>/root/temp-settings
+echo "export sdrhu_key=$sdrhu_key" >>/root/temp-settings
+echo "export sdrhu_public_listing=$sdrhu_public_listing" >>/root/temp-settings
 echo "export updatesrunning=$updatesrunning" >>/root/temp-settings
 chmod +x /root/temp-settings
 echo ""
@@ -147,6 +291,19 @@ echo "Sample rate = $samp_rate"
 echo "Starting demodulator = $start_mod"
 echo "RF gain = $rf_gain"
 echo "PPM = $ppm"
+echo "web_port = $web_port"
+echo "max_clients = $max_clients"
+echo "receiver_location = $receiver_location"
+echo "receiver_qra = $receiver_qra"
+echo "receiver_asl = $receiver_asl"
+echo "receiver_ant = $receiver_ant"
+echo "receiver_admin = $receiver_admin"
+echo "receiver_gps = $receiver_gps"
+echo "fft_fps = $fft_fps"
+echo "fft_size = $fft_size"
+echo "fft_voverlap_factor = $fft_voverlap_factor"
+echo "sdrhu_key = $sdrhu_key"
+echo "sdrhu_public_listing = $sdrhu_public_listing"
 echo "Update running = $updatesrunning"
 echo ""
 fi
@@ -161,3 +318,16 @@ echo $samp_rate >>/www/settings.txt
 echo $start_mod >>/www/settings.txt
 echo $rf_gain >>/www/settings.txt
 echo $ppm >>/www/settings.txt
+echo $web_port >>/www/settings.txt
+echo $max_clients >>/www/settings.txt
+echo $receiver_location >>/www/settings.txt
+echo $receiver_qra >>/www/settings.txt
+echo $receiver_asl >>/www/settings.txt
+echo $receiver_ant >>/www/settings.txt
+echo $receiver_admin >>/www/settings.txt
+echo $receiver_gps >>/www/settings.txt
+echo $fft_fps >>/www/settings.txt
+echo $fft_size >>/www/settings.txt
+echo $fft_voverlap_factor >>/www/settings.txt
+echo $sdrhu_key >>/www/settings.txt
+echo $sdrhu_public_listing >>/www/settings.txt
