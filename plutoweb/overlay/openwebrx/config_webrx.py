@@ -49,8 +49,8 @@ receiver_ant=str(os.environ["receiver_ant"])
 receiver_device="ADALM-PLUTO (PlutoSDR)"
 receiver_admin=str(os.environ["receiver_admin"])
 receiver_gps=str(os.environ["receiver_gps"])
-photo_height=350
-photo_title="Panorama of Budapest from Schönherz Zoltán Dormitory"
+photo_height=400
+photo_title=""
 photo_desc="""
 Device: %[RX_DEVICE]<br />
 Antenna: %[RX_ANT]<br />
