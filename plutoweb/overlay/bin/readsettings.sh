@@ -14,10 +14,10 @@ rf_gain_def=89
 ppm_def=0
 web_port_def=8073
 max_clients_def=3
-receiver_location_def="\"Planet Earth\""
-receiver_qra_def=ABC123
-receiver_asl_def=0
-receiver_ant_def=Wideband
+receiver_location_def="Planet Earth, Solar System, Milky Way Galaxy"
+receiver_qra_def=CALLSIGN
+receiver_asl_def=METERS_ABOVE_SEA_LEVEL
+receiver_ant_def="Generic Wideband Antenna"
 receiver_admin_def=""
 receiver_gps_def=0.000000,0.000000
 sdrhu_key_def=""
@@ -27,7 +27,7 @@ fft_size_def=4096
 fft_voverlap_factor_def=0.1
 
 
-# Leave these all empty
+# Reset environment before starting
 autostart=
 autoreboot=
 autoupdate=
@@ -58,81 +58,31 @@ updatesrunning_def=n
 if [ -f /root/temp-settings ]; then
 	echo "Temp settings found, using them..."
 	. /root/temp-settings
-if [ -z ${autostart} ]; then
-        export autostart=$autostart_def
-fi
-if [ -z ${autoreboot} ]; then
-        export autoreboot=$autoreboot_def
-fi
-if [ ${autoreboot} = "y" ]; then
-        export autoreboot=12
-fi
-if [ ${autoreboot} = "n" ]; then
-        export autoreboot=0
-fi
-if [ -z ${autoupdate} ]; then
-        export autoupdate=$autoupdate_def
-fi
-if [ -z ${center_freq} ]; then
-        export center_freq=$center_freq_def
-fi
-if [ -z ${start_freq} ]; then
-        export start_freq=$start_freq_def
-fi
-if [ -z ${samp_rate} ]; then
-        export samp_rate=$samp_rate_def
-fi
-if [ -z ${start_mod} ]; then
-        export start_mod=$start_mod_def
-fi
-if [ -z ${rf_gain} ]; then
-        export rf_gain=$rf_gain_def
-fi
-if [ -z ${ppm} ]; then
-        export ppm=$ppm_def
-fi
-if [ -z ${web_port} ]; then
-        export web_port=$web_port_def
-fi
-if [ -z ${max_clients} ]; then
-        export max_clients=$max_clients_def
-fi
-if [ -z ${receiver_location} ]; then
-        export receiver_location=$receiver_location_def
-fi
-if [ -z ${receiver_qra} ]; then
-        export receiver_qra=$receiver_qra_def
-fi
-if [ -z ${receiver_asl} ]; then
-        export receiver_asl=$receiver_asl_def
-fi
-if [ -z ${receiver_ant} ]; then
-        export receiver_ant=$receiver_ant_def
-fi
-if [ -z ${receiver_admin} ]; then
-        export receiver_admin=$receiver_admin_def
-fi
-if [ -z ${receiver_gps} ]; then
-        export receiver_gps=$receiver_gps_def
-fi
-if [ -z ${fft_fps} ]; then
-        export fft_fps=$fft_fps_def
-fi
-if [ -z ${fft_size} ]; then
-        export fft_size=$fft_size_def
-fi
-if [ -z ${fft_voverlap_factor} ]; then
-        export fft_voverlap_factor=$fft_voverlap_factor_def
-fi
-if [ -z ${sdrhu_key} ]; then
-        export sdrhu_key=$sdrhu_key_def
-fi
-if [ -z ${sdrhu_public_listing} ]; then
-        export sdrhu_public_listing=$sdrhu_public_listing_def
-fi
-if [ -z ${updatesrunning} ]; then
-        export updatesrunning=$updatesrunning_def
-fi
+[ -z ${autostart} ] && export autostart=$autostart_def
+[ -z ${autoreboot} ] && export autoreboot=$autoreboot_def
+[ ${autoreboot} = "y" ] && export autoreboot=12
+[ ${autoreboot} = "n" ] && export autoreboot=0
+[ -z ${autoupdate} ] && export autoupdate=$autoupdate_def
+[ -z ${center_freq} ] && export center_freq=$center_freq_def
+[ -z ${start_freq} ] && export start_freq=$start_freq_def
+[ -z ${samp_rate} ] && export samp_rate=$samp_rate_def
+[ -z ${start_mod} ] && export start_mod=$start_mod_def
+[ -z ${rf_gain} ] && export rf_gain=$rf_gain_def
+[ -z ${ppm} ] && export ppm=$ppm_def
+[ -z ${web_port} ] && export web_port=$web_port_def
+[ -z ${max_clients} ] && export max_clients=$max_clients_def
+[ -z "${receiver_location}" ] && export receiver_location=\"$receiver_location_def\"
+[ -z ${receiver_qra} ] && export receiver_qra=$receiver_qra_def
+[ -z ${receiver_asl} ] && export receiver_asl=$receiver_asl_def
+[ -z "${receiver_ant}" ] && export receiver_ant=\"$receiver_ant_def\"
+[ -z ${receiver_admin} ] && export receiver_admin=$receiver_admin_def
+[ -z ${receiver_gps} ] && export receiver_gps=$receiver_gps_def
+[ -z ${fft_fps} ] && export fft_fps=$fft_fps_def
+[ -z ${fft_size} ] && export fft_size=$fft_size_def
+[ -z ${fft_voverlap_factor} ] && export fft_voverlap_factor=$fft_voverlap_factor_def
+[ -z ${sdrhu_key} ] && export sdrhu_key=$sdrhu_key_def
+[ -z ${sdrhu_public_listing} ] && export sdrhu_public_listing=$sdrhu_public_listing_def
+[ -z ${updatesrunning} ] && export updatesrunning=$updatesrunning_def
 	echo ""
 	echo "Current settings are:"
 	echo "Auto-start = $autostart"
@@ -147,10 +97,10 @@ fi
 	echo "PPM = $ppm"
 	echo "web_port = $web_port"
 	echo "max_clients = $max_clients"
-	echo "receiver_location = $receiver_location"
+	echo "receiver_location = \"$receiver_location\""
 	echo "receiver_qra = $receiver_qra"
 	echo "receiver_asl = $receiver_asl"
-	echo "receiver_ant = $receiver_ant"
+	echo "receiver_ant = \"$receiver_ant\""
 	echo "receiver_admin = $receiver_admin"
 	echo "receiver_gps = $receiver_gps"
 	echo "fft_fps = $fft_fps"
@@ -161,96 +111,28 @@ fi
 	echo ""
 else
 echo "No temp settings found, pulling from NVRAM and saving to temp file..."
-export `fw_printenv autostart`
-if [ -z ${autostart} ]; then
-        export autostart=$autostart_def
-fi
-export `fw_printenv autoreboot`
-if [ -z ${autoreboot} ]; then
-        export autoreboot=$autoreboot_def
-fi
-export `fw_printenv autoupdate`
-if [ -z ${autoupdate} ]; then
-        export autoupdate=$autoupdate_def
-fi
-export `fw_printenv center_freq`
-if [ -z ${center_freq} ]; then
-        export center_freq=$center_freq_def
-fi
-export `fw_printenv start_freq`
-if [ -z ${start_freq} ]; then
-        export start_freq=$start_freq_def
-fi
-export `fw_printenv samp_rate`
-if [ -z ${samp_rate} ]; then
-        export samp_rate=$samp_rate_def
-fi
-if [ -z ${start_mod} ]; then
-        export start_mod=$start_mod_def
-fi
-export `fw_printenv rf_gain`
-if [ -z ${rf_gain} ]; then
-        export rf_gain=$rf_gain_def
-fi
-export `fw_printenv ppm`
-if [ -z ${ppm} ]; then
-        export ppm=$ppm_def
-fi
-export `fw_printenv web_port`
-if [ -z ${web_port} ]; then
-        export web_port=$web_port_def
-fi
-export `fw_printenv max_clients`
-if [ -z ${max_clients} ]; then
-        export max_clients=$max_clients_def
-fi
-export `fw_printenv receiver_location`
-if [ -z ${receiver_location} ]; then
-        export receiver_location=$receiver_location_def
-fi
-export `fw_printenv receiver_qra`
-if [ -z ${receiver_qra} ]; then
-        export receiver_qra=$receiver_qra_def
-fi
-export `fw_printenv receiver_asl`
-if [ -z ${receiver_asl} ]; then
-        export receiver_asl=$receiver_asl_def
-fi
-export `fw_printenv receiver_ant`
-if [ -z ${receiver_ant} ]; then
-        export receiver_ant=$receiver_ant_def
-fi
-export `fw_printenv receiver_admin`
-if [ -z ${receiver_admin} ]; then
-        export receiver_admin=$receiver_admin_def
-fi
-export `fw_printenv receiver_gps`
-if [ -z ${receiver_gps} ]; then
-        export receiver_gps=$receiver_gps_def
-fi
-export `fw_printenv fft_fps`
-if [ -z ${fft_fps} ]; then
-        export fft_fps=$fft_fps_def
-fi
-export `fw_printenv fft_size`
-if [ -z ${fft_size} ]; then
-        export fft_size=$fft_size_def
-fi
-export `fw_printenv fft_voverlap_factor`
-if [ -z ${fft_voverlap_factor} ]; then
-        export fft_voverlap_factor=$fft_voverlap_factor_def
-fi
-export `fw_printenv sdrhu_key`
-if [ -z ${sdrhu_key} ]; then
-        export sdrhu_key=$sdrhu_key_def
-fi
-export `fw_printenv sdrhu_public_listing`
-if [ -z ${sdrhu_public_listing} ]; then
-        export sdrhu_public_listing=$sdrhu_public_listing_def
-fi
-if [ -z ${updatesrunning} ]; then
-        export updatesrunning=$updatesrunning_def
-fi
+export autostart=`fw_printenv -n autostart 2> /dev/null || echo $autostart_def`
+export autoreboot=`fw_printenv -n autoreboot 2> /dev/null || echo $autoreboot_def`
+export autoupdate=`fw_printenv -n autoupdate 2> /dev/null || echo $autoupdate_def`
+export center_freq=`fw_printenv -n center_freq 2> /dev/null || echo $center_freq_def`
+export start_freq=`fw_printenv -n start_freq 2> /dev/null || echo $start_freq_def`
+export samp_rate=`fw_printenv -n samp_rate 2> /dev/null || echo $samp_rate_def`
+export start_mod=`fw_printenv -n start_mod 2> /dev/null || echo $start_mod_def`
+export rf_gain=`fw_printenv -n rf_gain 2> /dev/null || echo $rf_gain_def`
+export ppm=`fw_printenv -n ppm 2> /dev/null || echo $ppm_def`
+export web_port=`fw_printenv -n web_port 2> /dev/null || echo $web_port_def`
+export max_clients=`fw_printenv -n max_clients 2> /dev/null || echo $max_clients_def`
+export receiver_location=`fw_printenv -n receiver_location 2> /dev/null || echo \"$receiver_location_def\"`
+export receiver_qra=`fw_printenv -n receiver_qra 2> /dev/null || echo $receiver_qra_def`
+export receiver_asl=`fw_printenv -n receiver_asl 2> /dev/null || echo $receiver_asl_def`
+export receiver_ant=`fw_printenv -n receiver_ant 2> /dev/null || echo \"$receiver_ant_def\"`
+export receiver_admin=`fw_printenv -n receiver_admin 2> /dev/null || echo $receiver_admin_def`
+export receiver_gps=`fw_printenv -n receiver_gps 2> /dev/null || echo $receiver_gps_def`
+export fft_fps=`fw_printenv -n fft_fps 2> /dev/null || echo $fft_fps_def`
+export fft_size=`fw_printenv -n fft_size 2> /dev/null || echo $fft_size_def`
+export fft_voverlap_factor=`fw_printenv -n fft_voverlap_factor 2> /dev/null || echo $fft_voverlap_factor_def`
+export sdrhu_key=`fw_printenv -n sdrhu_key 2> /dev/null || echo ""`
+export sdrhu_public_listing=`fw_printenv -n sdrhu_public_listing 2> /dev/null || echo $sdrhu_public_listing_def`
 
 # Create /root/temp-settings
 echo "export autostart=$autostart" >/root/temp-settings
@@ -284,7 +166,6 @@ echo "Current settings are:"
 echo "Auto-start = $autostart"
 echo "Auto-reboot = $autoreboot"
 echo "Auto-update = $autoupdate"
-echo "Updates running = $updatesrunning"
 echo "Center frequency = $center_freq"
 echo "Starting frequency = $start_freq"
 echo "Sample rate = $samp_rate"
@@ -308,7 +189,7 @@ echo "Update running = $updatesrunning"
 echo ""
 fi
 
-# Create /www/settings.txt
+# (re)Create /www/settings.txt
 echo $autostart >/www/settings.txt
 echo $autoreboot >>/www/settings.txt
 echo $autoupdate >>/www/settings.txt
