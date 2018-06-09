@@ -72,7 +72,7 @@ else
 		updatesrunning=y
 		flash_indication_on
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
-		echo "Found $file - Waiting 10 seconds before proceeding..."
+		echo "Found $file - Waiting 5 seconds before proceeding..."
 		sleep 5
 		cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
 		rm -f $file $file.md5sum
