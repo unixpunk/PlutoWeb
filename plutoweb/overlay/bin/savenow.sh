@@ -24,6 +24,19 @@ write_all() {
                 echo "start_mod $start_mod" >> /opt/fw_set.tmp
                 echo "rf_gain $rf_gain" >> /opt/fw_set.tmp
                 echo "ppm $ppm" >> /opt/fw_set.tmp
+		echo "web_port $web_port" >> /opt/fw_set.tmp
+		echo "max_clients $max_clients" >> /opt/fw_set.tmp
+		echo "receiver_location \"$receiver_location\"" >> /opt/fw_set.tmp
+		echo "receiver_qra $receiver_qra" >> /opt/fw_set.tmp
+		echo "receiver_asl $receiver_asl" >> /opt/fw_set.tmp
+		echo "receiver_ant \"$receiver_ant\"" >> /opt/fw_set.tmp
+		echo "receiver_admin $receiver_admin" >> /opt/fw_set.tmp
+		echo "receiver_gps $receiver_gps" >> /opt/fw_set.tmp
+		echo "fft_fps $fft_fps" >> /opt/fw_set.tmp
+		echo "fft_size $fft_size" >> /opt/fw_set.tmp
+		echo "fft_voverlap_factor $fft_voverlap_factor" >> /opt/fw_set.tmp
+		echo "sdrhu_key $sdrhu_key" >> /opt/fw_set.tmp
+		echo "sdrhu_public_listing $sdrhu_public_listing" >> /opt/fw_set.tmp
                 fw_setenv -s /opt/fw_set.tmp
                 rm /opt/fw_set.tmp
                 echo "Done."
@@ -45,6 +58,19 @@ erase_all() {
                 echo start_mod >>/opt/fw_set.tmp
                 echo rf_gain >>/opt/fw_set.tmp
                 echo ppm >>/opt/fw_set.tmp
+		echo web_port >> /opt/fw_set.tmp
+		echo max_clients >> /opt/fw_set.tmp
+		echo receiver_location >> /opt/fw_set.tmp
+		echo receiver_qra >> /opt/fw_set.tmp
+		echo receiver_asl >> /opt/fw_set.tmp
+		echo receiver_ant >> /opt/fw_set.tmp
+		echo receiver_admin >> /opt/fw_set.tmp
+		echo receiver_gps >> /opt/fw_set.tmp
+		echo fft_fps >> /opt/fw_set.tmp
+		echo fft_size >> /opt/fw_set.tmp
+		echo fft_voverlap_factor >> /opt/fw_set.tmp
+		echo sdrhu_key >> /opt/fw_set.tmp
+		echo sdrhu_public_listing >> /opt/fw_set.tmp
                 fw_setenv -s /opt/fw_set.tmp
                 rm /opt/fw_set.tmp
                 echo "Done."
