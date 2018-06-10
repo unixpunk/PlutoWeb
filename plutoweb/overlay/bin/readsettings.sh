@@ -1,5 +1,14 @@
 #!/bin/sh
 ## Source this file for default and/or previous settings
+# Get network info for OpenWebRX
+export hostname=`hostname`
+export ip=`ifconfig eth0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
+if [ -z ${ip} ]; then
+	export ip=`ifconfig wlan0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
+fi
+if [ -z ${ip} ]; then
+	export ip=`ifconfig usb0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
+fi
 
 # Set defaults if no previous settings found
 # Persistent variables
@@ -25,7 +34,6 @@ sdrhu_public_listing_def=False
 fft_fps_def=5
 fft_size_def=4096
 fft_voverlap_factor_def=0.1
-
 
 # Reset environment before starting
 autostart=
@@ -88,7 +96,6 @@ if [ -f /root/temp-settings ]; then
 	echo "Auto-start = $autostart"
 	echo "Auto-reboot = $autoreboot"
 	echo "Auto-update = $autoupdate"
-	echo "Updates running = $updatesrunning"
 	echo "Center frequency = $center_freq"
 	echo "Starting frequency = $start_freq"
 	echo "Sample rate = $samp_rate"
@@ -108,6 +115,8 @@ if [ -f /root/temp-settings ]; then
 	echo "fft_voverlap_factor = $fft_voverlap_factor"
 	echo "sdrhu_key = $sdrhu_key"
 	echo "sdrhu_public_listing = $sdrhu_public_listing"
+	echo "Active IP and hostname = $ip / $hostname"
+	echo "Updates running = $updatesrunning"
 	echo ""
 else
 echo "No temp settings found, pulling from NVRAM and saving to temp file..."
@@ -185,6 +194,7 @@ echo "fft_size = $fft_size"
 echo "fft_voverlap_factor = $fft_voverlap_factor"
 echo "sdrhu_key = $sdrhu_key"
 echo "sdrhu_public_listing = $sdrhu_public_listing"
+echo "Active IP and hostname = $ip / $hostname"
 echo "Update running = $updatesrunning"
 echo ""
 fi
@@ -212,3 +222,5 @@ echo $fft_size >>/www/settings.txt
 echo $fft_voverlap_factor >>/www/settings.txt
 echo $sdrhu_key >>/www/settings.txt
 echo $sdrhu_public_listing >>/www/settings.txt
+echo $hostname >>/www/settings.txt
+echo $ip >>/www/settings.txt

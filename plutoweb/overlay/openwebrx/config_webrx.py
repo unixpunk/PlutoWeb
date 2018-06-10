@@ -37,7 +37,8 @@ config_webrx: configuration options for OpenWebRX
 
 # ==== Server settings ====
 web_port=int(os.environ["web_port"])
-server_hostname="pluto.local" # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
+server_hostname=str(os.environ["hostname"]) # If this contains an incorrect value, the web UI may freeze on load (it can't open websocket)
+server_ip=str(os.environ["ip"]) # This isn't used, but you could use it in the photo_desc instead of server_hostname if internal LAN use only
 max_clients=int(os.environ["max_clients"])
 
 # ==== Web GUI configuration ====
@@ -54,7 +55,7 @@ photo_title=""
 photo_desc="""
 Device: %[RX_DEVICE]<br />
 Antenna: %[RX_ANT]<br />
-Settings: <a href="http://pluto.local/" target="_blank">PlutoWeb</a>
+Settings: <a href="http://"""+server_hostname+"""/" target=\"_blank\">Here</a> or <a href="http://pluto.local/" target=\"_blank\">Here</a> or <a href="http://pluto/" target=\"_blank\">Here</a> or <a href="http://192.168.2.1/" target=\"_blank\">Here</a> - Otherwise you'll need to use your active Pluto IP to hit PlutoWeb settings.
 """
 
 # ==== sdr.hu listing ====
@@ -63,7 +64,7 @@ Settings: <a href="http://pluto.local/" target="_blank">PlutoWeb</a>
 # 2. You will get an unique key by email. Copy it and paste here:
 sdrhu_key = str(os.environ["sdrhu_key"])
 # 3. Set this setting to True to enable listing:
-sdrhu_public_listing = os.environ["sdrhu_public_listing"]
+sdrhu_public_listing = str(os.environ["sdrhu_public_listing"])
 
 # ==== DSP/RX settings ====
 fft_fps=int(os.environ["fft_fps"])
@@ -76,7 +77,7 @@ samp_rate = int(os.environ["samp_rate"])
 center_freq = int(os.environ["center_freq"])
 start_freq = int(os.environ["start_freq"])
 # nfm, am, lsb, usb, cw
-start_mod = os.environ["start_mod"]
+start_mod = str(os.environ["start_mod"])
 # 0-89db
 rf_gain = int(os.environ["rf_gain"])
 # Not sure if this setting actually works correctly here
