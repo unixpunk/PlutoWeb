@@ -26,6 +26,7 @@ write_all() {
                 echo "ppm $ppm" >> /opt/fw_set.tmp
 		echo "web_port $web_port" >> /opt/fw_set.tmp
 		echo "max_clients $max_clients" >> /opt/fw_set.tmp
+		echo "receiver_name \"$receiver_name\"" >> /opt/fw_set.tmp
 		echo "receiver_location \"$receiver_location\"" >> /opt/fw_set.tmp
 		echo "receiver_qra $receiver_qra" >> /opt/fw_set.tmp
 		echo "receiver_asl $receiver_asl" >> /opt/fw_set.tmp
@@ -60,6 +61,7 @@ erase_all() {
                 echo ppm >>/opt/fw_set.tmp
 		echo web_port >> /opt/fw_set.tmp
 		echo max_clients >> /opt/fw_set.tmp
+		echo receiver_name >> /opt/fw_set.tmp
 		echo receiver_location >> /opt/fw_set.tmp
 		echo receiver_qra >> /opt/fw_set.tmp
 		echo receiver_asl >> /opt/fw_set.tmp

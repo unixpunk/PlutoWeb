@@ -42,7 +42,7 @@ server_ip=str(os.environ["ip"]) # This isn't used, but you could use it in the p
 max_clients=int(os.environ["max_clients"])
 
 # ==== Web GUI configuration ====
-receiver_name="PlutoWeb running OpenWebRX"
+receiver_name=str(os.environ["receiver_name"])+" - PlutoWeb"
 receiver_location=str(os.environ["receiver_location"])
 receiver_qra=str(os.environ["receiver_qra"])
 receiver_asl=str(os.environ["receiver_asl"])
@@ -56,6 +56,7 @@ photo_desc="""
 Device: %[RX_DEVICE]<br />
 Antenna: %[RX_ANT]<br />
 Settings: <a href="http://"""+server_hostname+"""/" target=\"_blank\">Here</a> or <a href="http://pluto.local/" target=\"_blank\">Here</a> or <a href="http://pluto/" target=\"_blank\">Here</a> or <a href="http://192.168.2.1/" target=\"_blank\">Here</a> - Otherwise you'll need to use your active Pluto IP to hit PlutoWeb settings.
+Download <a href="https://github.com/unixpunk/PlutoWeb" target=\"_blank\">PlutoWeb</a> for your PlutoSDR<br />
 """
 
 # ==== sdr.hu listing ====

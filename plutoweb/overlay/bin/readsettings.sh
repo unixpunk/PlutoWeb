@@ -23,11 +23,12 @@ rf_gain_def=89
 ppm_def=0
 web_port_def=8073
 max_clients_def=3
+receiver_name_def="PlutoSDR - OpenWebRX"
 receiver_location_def="Planet Earth, Solar System, Milky Way Galaxy"
 receiver_qra_def=CALLSIGN
 receiver_asl_def=METERS_ABOVE_SEA_LEVEL
 receiver_ant_def="Generic Wideband Antenna"
-receiver_admin_def=""
+receiver_admin_def="root@pluto.local"
 receiver_gps_def=0.000000,0.000000
 sdrhu_key_def=""
 sdrhu_public_listing_def=False
@@ -47,6 +48,7 @@ rf_gain=
 ppm=
 web_port=
 max_clients=
+receiver_name=
 receiver_location=
 receiver_qra=
 receiver_asl=
@@ -79,6 +81,7 @@ if [ -f /root/temp-settings ]; then
 [ -z ${ppm} ] && export ppm=$ppm_def
 [ -z ${web_port} ] && export web_port=$web_port_def
 [ -z ${max_clients} ] && export max_clients=$max_clients_def
+[ -z "${receiver_name}" ] && export receiver_location=\"$receiver_name_def\"
 [ -z "${receiver_location}" ] && export receiver_location=\"$receiver_location_def\"
 [ -z ${receiver_qra} ] && export receiver_qra=$receiver_qra_def
 [ -z ${receiver_asl} ] && export receiver_asl=$receiver_asl_def
@@ -104,6 +107,7 @@ if [ -f /root/temp-settings ]; then
 	echo "PPM = $ppm"
 	echo "web_port = $web_port"
 	echo "max_clients = $max_clients"
+	echo "receiver_name = \"$receiver_name\""
 	echo "receiver_location = \"$receiver_location\""
 	echo "receiver_qra = $receiver_qra"
 	echo "receiver_asl = $receiver_asl"
@@ -131,6 +135,7 @@ export rf_gain=`fw_printenv -n rf_gain 2> /dev/null || echo $rf_gain_def`
 export ppm=`fw_printenv -n ppm 2> /dev/null || echo $ppm_def`
 export web_port=`fw_printenv -n web_port 2> /dev/null || echo $web_port_def`
 export max_clients=`fw_printenv -n max_clients 2> /dev/null || echo $max_clients_def`
+export receiver_name=`fw_printenv -n receiver_name 2> /dev/null || echo \"$receiver_name_def\"`
 export receiver_location=`fw_printenv -n receiver_location 2> /dev/null || echo \"$receiver_location_def\"`
 export receiver_qra=`fw_printenv -n receiver_qra 2> /dev/null || echo $receiver_qra_def`
 export receiver_asl=`fw_printenv -n receiver_asl 2> /dev/null || echo $receiver_asl_def`
@@ -155,6 +160,7 @@ echo "export rf_gain=$rf_gain" >>/root/temp-settings
 echo "export ppm=$ppm" >>/root/temp-settings
 echo "export web_port=$web_port" >>/root/temp-settings
 echo "export max_clients=$max_clients" >>/root/temp-settings
+echo "export receiver_name=$receiver_name" >>/root/temp-settings
 echo "export receiver_location=$receiver_location" >>/root/temp-settings
 echo "export receiver_qra=$receiver_qra" >>/root/temp-settings
 echo "export receiver_asl=$receiver_asl" >>/root/temp-settings
@@ -183,6 +189,7 @@ echo "RF gain = $rf_gain"
 echo "PPM = $ppm"
 echo "web_port = $web_port"
 echo "max_clients = $max_clients"
+echo "receiver_name = $receiver_name"
 echo "receiver_location = $receiver_location"
 echo "receiver_qra = $receiver_qra"
 echo "receiver_asl = $receiver_asl"
@@ -211,6 +218,7 @@ echo $rf_gain >>/www/settings.txt
 echo $ppm >>/www/settings.txt
 echo $web_port >>/www/settings.txt
 echo $max_clients >>/www/settings.txt
+echo $receiver_name >>/www/settings.txt
 echo $receiver_location >>/www/settings.txt
 echo $receiver_qra >>/www/settings.txt
 echo $receiver_asl >>/www/settings.txt
