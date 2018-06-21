@@ -161,6 +161,14 @@ h3 { }
 					<input id="search-submit" type="submit" name="subbtn" value="Wipe Settings from NVRAM" onclick="return confirm('Are you sure?')"></input>
 					</form>
 					<br>
+					<br>
+					<h3><font color="red">Caution: This will run commands as root</font></h3>
+<br>
+					<form action="cgi-bin/control.cgi" method="get">
+					<input type="hidden" name="app" value="command">
+					Run Command <input type="text" name="command" value="" size="8">
+					<input id="search-submit" type="submit" name="subbtn" value="Run"></input><br><br>
+					</form>
 					<h2><font color="#639CBF">Upload update.zip file</font></h2>
 					If you dont have OTG ehternet or WiFi for auto updates you can download the latest update.zip file from <a href="https://github.com/unixpunk/PlutoWeb/tree/master/plutoweb" target="new">Plutoweb's GitHub</a> and upload it here.  
 					<br><br>

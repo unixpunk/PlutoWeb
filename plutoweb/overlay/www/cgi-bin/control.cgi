@@ -111,6 +111,7 @@ AREBOOT=${AREBOOT//+/ }
 NVRAM=${QUERY_STRING#*nvram=}
 NVRAM=${NVRAM%%&*}
 NVRAM=${NVRAM//+/ }
+
 /bin/settings.sh -r $ASTART -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT -W $NVRAM
 
 echo "Settings have been saved.<br><br><br>"
@@ -141,6 +142,24 @@ echo "<h1>Rebooting the PlutoSDR</h1><br><br>"
 echo "The PlutoSDR is being rebooted please give it a minute.<br><br><br>"
 echo "</body></html>"
 reboot
+
+elif [ "$APP" == "command" ]; then
+
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Running command"
+echo "</title></head><body>"
+
+echo "<h1>Running $COMMAND</h1><br><br>"
+
+echo "The command is being run<br><br><br>"
+echo "</body></html>"
+
+COMMAND=${QUERY_STRING#*command=}
+COMMAND=${COMMAND%%&*}
+COMMAND=${COMMAND//+/ }
+
+$COMMAND
 
 else
 	
