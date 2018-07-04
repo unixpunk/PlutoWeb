@@ -1,5 +1,11 @@
 #!/bin/sh
 
+flash_indication_on() {
+        echo timer > /sys/class/leds/led0:green/trigger
+        echo 40 > /sys/class/leds/led0:green/delay_off
+        echo 40 > /sys/class/leds/led0:green/delay_on
+}
+
 start() {
 REBOOTNEEDED=0
 echo "Checking for maxcpus and ad9364 mods..."
@@ -7,12 +13,14 @@ export `fw_printenv maxcpus`
 export `fw_printenv attr_val`
 ## Check/set dual-core mode
 if [ $maxcpus == 1 ]; then
+	flash_indication_on
 	echo "Enabling dual-core mode..."
         fw_setenv maxcpus
         REBOOTNEEDED=1
 fi
 ## Check/set 70-6000mhz trick (default is 325-3800Mhz)
 if [ "$attr_val" != "ad9364" ]; then
+	flash_indication_on
 	echo "Enabling 70-6000Mhz mod..."
         fw_setenv attr_name compatible
         fw_setenv attr_val "ad9364"
