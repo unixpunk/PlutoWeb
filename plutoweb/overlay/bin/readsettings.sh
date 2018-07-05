@@ -65,9 +65,9 @@ sdrhu_public_listing=
 updatesrunning_def=n
 
 ## Use temp settings if they exist instead of pulling from NVRAM
-if [ -f /root/temp-settings ]; then
+if [ -f /root/plutoweb.conf ]; then
 	echo "Temp settings found, using them..."
-	. /root/temp-settings
+	. /root/plutoweb.conf
 [ -z ${autostart} ] && export autostart=$autostart_def
 [ -z ${autoreboot} ] && export autoreboot=$autoreboot_def
 [ ${autoreboot} = "y" ] && export autoreboot=12
@@ -148,32 +148,32 @@ export fft_voverlap_factor=`fw_printenv -n fft_voverlap_factor 2> /dev/null || e
 export sdrhu_key=`fw_printenv -n sdrhu_key 2> /dev/null || echo ""`
 export sdrhu_public_listing=`fw_printenv -n sdrhu_public_listing 2> /dev/null || echo $sdrhu_public_listing_def`
 
-# Create /root/temp-settings
-echo "export autostart=$autostart" >/root/temp-settings
-echo "export autoreboot=$autoreboot" >>/root/temp-settings
-echo "export autoupdate=$autoupdate" >>/root/temp-settings
-echo "export center_freq=$center_freq" >>/root/temp-settings
-echo "export start_freq=$start_freq" >>/root/temp-settings
-echo "export samp_rate=$samp_rate" >>/root/temp-settings
-echo "export start_mod=$start_mod" >>/root/temp-settings
-echo "export rf_gain=$rf_gain" >>/root/temp-settings
-echo "export ppm=$ppm" >>/root/temp-settings
-echo "export web_port=$web_port" >>/root/temp-settings
-echo "export max_clients=$max_clients" >>/root/temp-settings
-echo "export receiver_name=$receiver_name" >>/root/temp-settings
-echo "export receiver_location=$receiver_location" >>/root/temp-settings
-echo "export receiver_qra=$receiver_qra" >>/root/temp-settings
-echo "export receiver_asl=$receiver_asl" >>/root/temp-settings
-echo "export receiver_ant=$receiver_ant" >>/root/temp-settings
-echo "export receiver_admin=$receiver_admin" >>/root/temp-settings
-echo "export receiver_gps=$receiver_gps" >>/root/temp-settings
-echo "export fft_fps=$fft_fps" >>/root/temp-settings
-echo "export fft_size=$fft_size" >>/root/temp-settings
-echo "export fft_voverlap_factor=$fft_voverlap_factor" >>/root/temp-settings
-echo "export sdrhu_key=$sdrhu_key" >>/root/temp-settings
-echo "export sdrhu_public_listing=$sdrhu_public_listing" >>/root/temp-settings
-echo "export updatesrunning=$updatesrunning" >>/root/temp-settings
-chmod +x /root/temp-settings
+# Create /root/plutoweb.conf
+echo "export autostart=$autostart" >/root/plutoweb.conf
+echo "export autoreboot=$autoreboot" >>/root/plutoweb.conf
+echo "export autoupdate=$autoupdate" >>/root/plutoweb.conf
+echo "export center_freq=$center_freq" >>/root/plutoweb.conf
+echo "export start_freq=$start_freq" >>/root/plutoweb.conf
+echo "export samp_rate=$samp_rate" >>/root/plutoweb.conf
+echo "export start_mod=$start_mod" >>/root/plutoweb.conf
+echo "export rf_gain=$rf_gain" >>/root/plutoweb.conf
+echo "export ppm=$ppm" >>/root/plutoweb.conf
+echo "export web_port=$web_port" >>/root/plutoweb.conf
+echo "export max_clients=$max_clients" >>/root/plutoweb.conf
+echo "export receiver_name=$receiver_name" >>/root/plutoweb.conf
+echo "export receiver_location=$receiver_location" >>/root/plutoweb.conf
+echo "export receiver_qra=$receiver_qra" >>/root/plutoweb.conf
+echo "export receiver_asl=$receiver_asl" >>/root/plutoweb.conf
+echo "export receiver_ant=$receiver_ant" >>/root/plutoweb.conf
+echo "export receiver_admin=$receiver_admin" >>/root/plutoweb.conf
+echo "export receiver_gps=$receiver_gps" >>/root/plutoweb.conf
+echo "export fft_fps=$fft_fps" >>/root/plutoweb.conf
+echo "export fft_size=$fft_size" >>/root/plutoweb.conf
+echo "export fft_voverlap_factor=$fft_voverlap_factor" >>/root/plutoweb.conf
+echo "export sdrhu_key=$sdrhu_key" >>/root/plutoweb.conf
+echo "export sdrhu_public_listing=$sdrhu_public_listing" >>/root/plutoweb.conf
+echo "export updatesrunning=$updatesrunning" >>/root/plutoweb.conf
+chmod +x /root/plutoweb.conf
 echo ""
 echo "Ignore any messages above this line..."
 echo ""

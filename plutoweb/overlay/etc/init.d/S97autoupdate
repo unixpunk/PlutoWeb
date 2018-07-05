@@ -9,7 +9,7 @@ start() {
 	fi
 	if [ "$autoupdate" = "y" ]; then
 		updatesrunning=y
-		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
+		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		# Start watchdog looking for update.zip in /root
 		/bin/updatewatch.sh &
 		# Start downloading and updating
@@ -18,14 +18,14 @@ start() {
 			echo "*** Auto-updates enabled but unable to download md5sum ***" >>/etc/motd
 			rm -f /root/update.zip*
 			updatesrunning=n
-			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			exit
 		fi
 		if diff -q /root/update.zip.md5sum /root/.update.zip.md5sum; then
 			echo "*** Auto-updates enabled - already up to date ***" >>/etc/motd
 			rm -f /root/update.zip*
 			updatesrunning=n
-			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			exit
 		else
 			wget -qT 15 -O /root/update.zip --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.zip
@@ -33,19 +33,19 @@ start() {
                         echo "*** Auto-updates enabled but unable to download update.zip ***" >>/etc/motd
 			rm -f /root/update.zip*
 			updatesrunning=n
-			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			exit
 			fi
 			if [ "$(md5sum -b /root/update.zip | awk -F\\  '{ print $1 }')" = "$(cat /root/update.zip.md5sum | awk -F\\  '{ print $1 }')" ]; then
 			cd / && unzip -uo /root/update.zip && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
-			rm -f /root/update.zip* /root/temp-settings
+			rm -f /root/update.zip* /root/plutoweb.conf
 			updatesrunning=n
 			exit
 			else
 			echo "*** Auto-updates enabled but md5 mismatch on update.zip ***" >>/etc/motd
 			rm -f /root/update.zip*
 			updatesrunning=n
-			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			exit
 			fi
 		fi
@@ -59,7 +59,7 @@ exit
 stop() {
 	echo "Stopping updatewatch.sh..."
 	killall updatewatch.sh
-	sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+	sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 	echo "Done."
 }
 

@@ -35,50 +35,50 @@ else
                         echo "*** Auto-updates enabled - already up to date as $file ***" >>/etc/motd
                         rm -f $file $file.md5sum
                         updatesrunning=n
-                        sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+                        sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
                 else
 		updatesrunning=y
 		flash_indication_on
-		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
+		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		echo "Found $file.md5sum, checking for $file"
 		sleep 3 
 		if [ -f $file ]; then
 			echo "Found $file"
 			sleep 5
 			if [ "$(md5sum -b $file | awk -F\\  '{ print $1 }')" = "$(cat $file.md5sum | awk -F\\  '{ print $1 }')" ]; then
-				cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
+				cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 				rm -f $file $file.md5sum
 				updatesrunning=n
 				flash_indication_off
-				sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+				sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			else
 				echo "$file failed the md5sum."
 				echo "*** Auto-updates enabled but $file failed the md5sum ***" >>/etc/motd
 				rm -f $file $file.md5sum
 				updatesrunning=n
 				flash_indication_off
-				sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+				sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			fi
 		else
 			echo "$file not found."
 			rm -f $file $file.md5sum
 			updatesrunning=n
 			flash_indication_off
-			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 		fi
 		fi
 	fi
 	if [ -f $file ]; then
 		updatesrunning=y
 		flash_indication_on
-		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/temp-settings
+		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		echo "Found $file - Waiting 5 seconds before proceeding..."
 		sleep 5
-		cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/temp-settings && /bin/readsettings.sh >/dev/null
+		cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 		rm -f $file $file.md5sum
 		updatesrunning=n
 		flash_indication_off
-		sed -i 's/updatesrunning=y/updatesrunning=n/' /root/temp-settings
+		sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 	fi
 	done
 fi

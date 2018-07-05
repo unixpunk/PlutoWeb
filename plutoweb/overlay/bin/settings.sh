@@ -42,7 +42,7 @@ case $i in
         if [ "$2" == "d" ]; then
         echo "Erase and reset issued, ignoring all other options!"
         /bin/savenow.sh erase
-	rm /root/temp-settings
+	rm /root/plutoweb.conf
 	/etc/init.d/S95autostart restart
 	exit
 	fi
@@ -55,18 +55,18 @@ case $i in
 	shift
 	shift;;
 	-r)
-	sed -i "s/$autostart/$2/" /root/temp-settings
+	sed -i "s/$autostart/$2/" /root/plutoweb.conf
 	autostart=$2
 	RESTARTNOW=1
 	shift
 	shift;;
 	-R)
-	sed -i "s/autoreboot=$autoreboot/autoreboot=$2/" /root/temp-settings
+	sed -i "s/autoreboot=$autoreboot/autoreboot=$2/" /root/plutoweb.conf
 	autoreboot=$2
         shift
         shift;;
 	-u)
-	sed -i "s/autoupdate=$autoupdate/autoupdate=$2/" /root/temp-settings
+	sed -i "s/autoupdate=$autoupdate/autoupdate=$2/" /root/plutoweb.conf
 	autoupdate=$2
 	if [ "$2" = "y" ] || [ "$2" = "Y" ]; then
 		/etc/init.d/S95autostart stop
@@ -79,7 +79,7 @@ case $i in
         shift
         shift;;
 	-c)
-	sed -i "s/center_freq=$center_freq/center_freq=$2/" /root/temp-settings
+	sed -i "s/center_freq=$center_freq/center_freq=$2/" /root/plutoweb.conf
 	center_freq=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -87,7 +87,7 @@ case $i in
         shift
         shift;;
         -s)
-	sed -i "s/start_freq=$start_freq/start_freq=$2/" /root/temp-settings
+	sed -i "s/start_freq=$start_freq/start_freq=$2/" /root/plutoweb.conf
 	start_freq=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -95,7 +95,7 @@ case $i in
         shift
         shift;;
         -S)
-	sed -i "s/samp_rate=$samp_rate/samp_rate=$2/" /root/temp-settings
+	sed -i "s/samp_rate=$samp_rate/samp_rate=$2/" /root/plutoweb.conf
 	samp_rate=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -103,7 +103,7 @@ case $i in
         shift
         shift;;
         -d)
-	sed -i "s/$start_mod/$2/" /root/temp-settings
+	sed -i "s/$start_mod/$2/" /root/plutoweb.conf
 	start_mod=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -111,7 +111,7 @@ case $i in
         shift
         shift;;
         -g)
-	sed -i "s/rf_gain=$rf_gain/rf_gain=$2/" /root/temp-settings
+	sed -i "s/rf_gain=$rf_gain/rf_gain=$2/" /root/plutoweb.conf
 	rf_gain=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -119,7 +119,7 @@ case $i in
         shift
         shift;;
         -p)
-	sed -i "s/ppm=$ppm/ppm=$2/" /root/temp-settings
+	sed -i "s/ppm=$ppm/ppm=$2/" /root/plutoweb.conf
 	ppm=$2
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
@@ -146,15 +146,15 @@ read -p "Enter the new PPM adjustment: [$ppm] " ppm_new
 read -p "Should these settings be saved to NVRAM now? (y/n): [n] " savenow_new
 echo "Writting settings to temp file..."
 if [ -n "$autostart_new" ]; then
-	sed -i "s/$autostart/$autostart_new/" /root/temp-settings
+	sed -i "s/$autostart/$autostart_new/" /root/plutoweb.conf
 	RESTARTNOW=1
 fi
 if [ -n "$autoreboot_new" ]; then
-	sed -i "s/autoreboot=$autoreboot/autoreboot=$autoreboot_new/" /root/temp-settings
+	sed -i "s/autoreboot=$autoreboot/autoreboot=$autoreboot_new/" /root/plutoweb.conf
 		
 fi
 if [ -n "$autoupdate_new" ]; then
-	sed -i "s/autoupdate=$autoupdate/autoupdate=$autoupdate_new/" /root/temp-settings
+	sed -i "s/autoupdate=$autoupdate/autoupdate=$autoupdate_new/" /root/plutoweb.conf
 	if [ "$autoupdate_new" = "y" ] || [ "$autoupdate_new" = "Y" ]; then
 		/bin/sh /etc/init.d/S97autoupdate restart
 	fi
@@ -163,37 +163,37 @@ if [ -n "$autoupdate_new" ]; then
 	fi
 fi
 if [ -n "$center_freq_new" ]; then
-	sed -i "s/center_freq=$center_freq/center_freq=$center_freq_new/" /root/temp-settings
+	sed -i "s/center_freq=$center_freq/center_freq=$center_freq_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
 fi
 if [ -n "$start_freq_new" ]; then
-	sed -i "s/start_freq=$start_freq/start_freq=$start_freq_new/" /root/temp-settings
+	sed -i "s/start_freq=$start_freq/start_freq=$start_freq_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
 fi
 if [ -n "$samp_rate_new" ]; then
-	sed -i "s/samp_rate=$samp_rate/samp_rate=$samp_rate_new/" /root/temp-settings
+	sed -i "s/samp_rate=$samp_rate/samp_rate=$samp_rate_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
 fi
 if [ -n "$start_mod_new" ]; then
-	sed -i "s/$start_mod/$start_mod_new/" /root/temp-settings
+	sed -i "s/$start_mod/$start_mod_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
 fi
 if [ -n "$rf_gain_new" ]; then
-	sed -i "s/rf_gain=$rf_gain/rf_gain=$rf_gain_new/" /root/temp-settings
+	sed -i "s/rf_gain=$rf_gain/rf_gain=$rf_gain_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
 fi
 if [ -n "$ppm_new" ]; then
-	sed -i "s/ppm=$ppm/ppm=$ppm_new/" /root/temp-settings
+	sed -i "s/ppm=$ppm/ppm=$ppm_new/" /root/plutoweb.conf
 	if [ "$autostart" = "openwebrx" ]; then
 		RESTARTNOW=1
 	fi
