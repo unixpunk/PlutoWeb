@@ -13,8 +13,8 @@ fi
 # Set defaults if no previous settings found
 # Persistent variables
 autostart_def=openwebrx
-autoreboot_def=12
-autoupdate_def=y
+autoreboot_def=0
+autoupdate_def=n
 center_freq_def=460250000
 start_freq_def=460102200
 samp_rate_def=600000
@@ -24,11 +24,11 @@ ppm_def=0
 web_port_def=8073
 max_clients_def=3
 receiver_name_def="PlutoSDR - OpenWebRX"
-receiver_location_def="Planet Earth, Solar System, Milky Way Galaxy"
-receiver_qra_def=CALLSIGN
-receiver_asl_def=METERS_ABOVE_SEA_LEVEL
-receiver_ant_def="Generic Wideband Antenna"
-receiver_admin_def="root@pluto.local"
+receiver_location_def="Planet Earth"
+receiver_qra_def=____
+receiver_asl_def=____
+receiver_ant_def="____"
+receiver_admin_def="____"
 receiver_gps_def=0.000000,0.000000
 sdrhu_key_def=""
 sdrhu_public_listing_def=False
