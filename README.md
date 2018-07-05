@@ -10,13 +10,6 @@ The PlutoSDR was designed to be hacked...its a learning tool.  There is NO secur
 
 # Features
 PlutoWeb interface up and running thanks to ImDroided
-<BR>New plutoweb image combines all the other images into one with the ability to select which program to auto-start at boot
-<BR>SoapyRemote image automatically allows both normal PlutoSDR via USB and remotely via OTG Ethernet/Wifi
-<BR>OpenWebRX supports persistent settings - change them via SSH settings.sh command -W to write to memory
-
-# Fixes
-Added auto-reboot every 12 hours to overcome an issue where the OTG USB seems to lose power until its unplugged/plugged back in or the Pluto is rebooted
-
-# TO-DO
-<BR>--Patch the other version of dump1090 for the pluto radio so we get the added features and better webUI
-<BR>--sdrdaemon as a POC - had issues cross-compiling cm256cc for neon even after tricking cmake into thinking I was neon - ON-HOLD for now.
+<BR>PlutoWeb has the ability to select which program to auto-start at boot
+<BR>SoapyRemote automatically allows both normal PlutoSDR via USB and remotely via OTG Ethernet/Wifi
+<BR>OpenWebRX supports persistent settings - change them via USB config.txt file, via SSH settings.sh command or via the PlutoWeb interface
