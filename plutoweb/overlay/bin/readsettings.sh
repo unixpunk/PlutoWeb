@@ -10,6 +10,11 @@ if [ -z ${ip} ]; then
 	export ip=`ifconfig usb0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
 fi
 
+## In case of upgrade, need to move the temp-settings file to plutoweb.conf
+if [ -f /root/temp-settings ]; then
+	mv /root/temp-settings /root/plutoweb.conf
+fi
+
 # Set defaults if no previous settings found
 # Persistent variables
 autostart_def=openwebrx
