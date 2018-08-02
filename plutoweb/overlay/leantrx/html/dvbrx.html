@@ -1,0 +1,92 @@
+<head>
+  <meta charset="UTF-8">
+  <title>DVB receiver</title>
+  <link rel="stylesheet" href="leantrx.css">
+</head>
+<body>
+  <div class="title"><a href="index.html">LeanTRX</a> - DVB receiver</div>
+  <table>
+    <tr><td>Source</td><td><select id="config_source">
+	  <option value="leaniiorx">IIO</option>
+	  <!--TBD <option value="rtl_sdr">RTL-SDR</option> -->
+    </select></td></tr>
+    <tr><td>Device index</td><td><input id="config_devindex" type="text"></td></tr>
+    <tr><td>Center frequency (Hz)</td><td><input id="config_freq" type="text"></td></tr>
+    <tr><td>Sampling rate (Hz)</td><td><input id="config_samprate" type="text"></td></tr>
+    <tr><td>Buffer size (samples)</td><td><input id="config_bufsize" type="text"></td></tr>
+    <tr><td>Buffer count</td><td><input id="config_nbufs" type="text"></td></tr>
+
+    <tr><td>Frequency offset (Hz)</td><td><input id="config_tune" type="text"></td></tr>
+    <tr><td>Symbol rate (baud)</td><td><input id="config_symbrate" type="text"></td></tr>
+    <tr><td>Sampler</td><td><select id="config_sampler">
+	  <option value="nearest">nearest</option>
+	  <option value="linear">linear</option>
+	  <option value="rrc">RRC</option>
+    </select></td></tr>
+    <tr><td>RRC rejection</td><td><input id="config_rrc_rej" type="text"></td></tr>
+    <tr><td>Constellation</td><td><select id="config_cstln">
+	  <option value="BPSK">BPSK</option>
+	  <option value="QPSK">QPSK</option>
+	  <option value="8PSK">8PSK</option>
+	  <option value="16APSK">16APSK</option>
+	  <option value="32APSK">32APSK</option>
+	  <option value="64APSKe">64APSKe</option>
+	  <option value="16QAM">16QAM</option>
+	  <option value="64QAM">64QAM</option>
+	  <option value="256QAM">256QAM</option>
+    </select></td></tr>
+    <tr><td>Standard</td><td><select id="config_standard">
+	  <option value="DVB-S">DVB-S</option>
+	  <!--TBD	  <option value="DVB-S2">DVB-S2</option> -->
+    </select></td></tr>
+    <tr><td>Code rate</td><td><select id="config_cr">
+	  <option value="1/2">1/2</option>
+	  <option value="2/3">2/3</option>
+	  <option value="3/4">3/4</option>
+	  <option value="4/5">4/5</option>
+	  <option value="5/6">5/6</option>
+	  <option value="7/8">7/8</option>
+    </select></td></tr>
+    <tr><td>Viterbi</td><td><input id="config_viterbi" type="checkbox"></td></tr>
+    <tr><td>Fastlock</td><td><input id="config_fastlock" type="checkbox"></td></tr>
+    <tr><td>Drift</td><td><input id="config_drift" type="checkbox"></td></tr>
+    <tr><td>Record TS to file<br><a href="/cgi-bin/leantrx/recordings.cgi?action=list">View recordings</a></td><td><input id="config_file_output" type="checkbox"></td></tr>
+    <tr><td>UI refresh rate (Hz)</td><td><input id="config_uirate" type="text"></td></tr>
+  </table>
+    
+  <hr>
+  <input class="button" type="button" id="heartbeat_sdr" onclick="sdr.toggle()" value="ENABLE SDR">
+  <input class="button" type="button" id="heartbeat_ui" onclick="ui.toggle()" value="ENABLE UI">
+
+  <hr>
+  <table>
+    <tr>
+      <td style="width:192px; text-align:left">
+	<span id="standard" class="info">?</span> <span id="constellation">?</span><br>
+	CR <span id="cr" class="info">?</span><br>
+	SR <span id="sr" class="info">?</span> kbaud<br>
+      </td>
+      <td style="text-align:left">
+	<span id="lock" class="info">?</span><br>
+	Offset <span id="offset" class="info">?</span> Hz<br>
+	MER <span id="mer" class="info">?</span> dB<br>
+	VBER <span id="vber" class="info">?</span><br>
+      </td>
+      <td style="width:128px"><canvas id="symbols" width="128" height="128"></canvas></td>
+    </tr>
+    <tr><td colspan="3"><canvas id="spectrum" width="512" height="128">SPECTRUM</canvas></td></tr>
+    <tr><td colspan="3"><canvas id="waterfall" width="512" height="64">WATERFALL</canvas></td></tr>
+    <tr><td colspan="3">Note: Video decoding is not implemented.<br>
+	<video width="512" height="384" controls autoplay><source srcDISABLED="tmp/hls.m3u8"></video></td></tr>
+  </table>
+
+  <hr>
+  SDR console
+  <pre id="command">(Command pipeline will be displayed here)</pre>
+  <pre id="console">(Error messages will be displayed here) </pre>
+
+  <hr>
+  <script type="text/javascript" src="dvbrx.js"></script>
+  <script type="text/javascript" src="stdui.js"></script>
+
+</body>

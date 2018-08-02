@@ -1,0 +1,59 @@
+<head>
+  <meta charset="UTF-8">
+  <title>DVB transmitter</title>
+  <link rel="stylesheet" href="leantrx.css">
+</head>
+<body>
+  <div class="titl"><a href="index.html">LeanTRX</a> - DVB transmitter</div>
+  <table>
+    <tr><td>Standard</td><td><select id="config_standard">
+	  <option value="DVB-S">DVB-S</option>
+	  <!--TBD	  <option value="DVB-S2">DVB-S2</option> -->
+    </select></td></tr>
+    <tr><td>Code rate</td><td><select id="config_cr">
+	  <option value="1/2">1/2</option>
+	  <option value="2/3">2/3</option>
+	  <option value="3/4">3/4</option>
+	  <option value="4/5">4/5</option>
+	  <option value="5/6">5/6</option>
+	  <option value="7/8">7/8</option>
+    </select></td></tr>
+    <tr><td>Constellation</td><td><select id="config_cstln">
+	  <option value="BPSK">BPSK</option>
+	  <option value="QPSK">QPSK</option>
+	  <option value="8PSK">8PSK</option>
+	  <option value="16APSK">16APSK</option>
+	  <option value="32APSK">32APSK</option>
+	  <option value="64APSKe">64APSKe</option>
+	  <option value="16QAM">16QAM</option>
+	  <option value="64QAM">64QAM</option>
+	  <option value="256QAM">256QAM</option>
+    </select></td></tr>
+    <tr><td>Symbol rate (baud)</td><td><input id="config_symbrate" type="text"></td></tr>
+    <tr><td>Interpolation</td><td><input id="config_interp" type="text"></td></tr>
+    <tr><td>RRC rejection</td><td><input id="config_rrc_rej" type="text"></td></tr>
+
+    <tr><td>Destination</td><td><select id="config_dest">
+	  <option value="leaniiotx">IIO</option>
+    </select></td></tr>
+    <tr><td>Device index</td><td><input id="config_devindex" type="text"></td></tr>
+    <tr><td>Center frequency (Hz)</td><td><input id="config_freq" type="text"></td></tr>
+    <tr><td>Buffer size (samples)</td><td><input id="config_bufsize" type="text"></td></tr>
+    <tr><td>Buffer count</td><td><input id="config_nbufs" type="text"></td></tr>
+  </table>
+    
+  <hr>
+  FOR LABORATORY USE ONLY - CHECK RADIO REGULATIONS BEFORE TRANSMITTING.<br>
+  <input class="button" type="button" id="heartbeat_sdr" onclick="sdr.toggle()" value="ENABLE SDR"><br>
+  NOTE: CLICKING THE BUTTON DOES NOT STOP THE TRANSMITTER.<br>
+
+  <hr>
+  SDR console
+  <pre id="command">(Command pipeline will be displayed here)</pre>
+  <pre id="console">(Error messages will be displayed here) </pre>
+
+  <hr>
+  <script type="text/javascript" src="dvbtx.js"></script>
+  <script type="text/javascript" src="stdui.js"></script>
+
+</body>

@@ -1,0 +1,20 @@
+body { background-color:black; color:white; }
+a { color: cyan; }
+iframe { background-color:grey; }
+canvas { }
+canvas#symbols { background-color:#002000; }
+canvas#spectrum,video { background-color:#101010; }
+#command { background-color:#101010; }
+#console { background-color:#101010; }
+.mlmstation { text-align:center; transform:translate(0,-50%); }
+.mlmboundary { text-align:right; }
+table { border-spacing:0px; }
+.info { color:yellow; }
+.title { font-size:larger; }
+input.button {
+    background: lightgrey;
+    border: 2px solid grey;
+    border-radius: 4px;
+    text-align: center;
+    padding: 8px;
+}

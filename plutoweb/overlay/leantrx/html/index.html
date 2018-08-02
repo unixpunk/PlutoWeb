@@ -1,0 +1,57 @@
+<head>
+  <meta charset="UTF-8">
+  <title>LeanTRX</title>
+</head>
+<body>
+
+  <h2>LeanTRX</h2>
+
+  <p>Documentation: <a href="http://www.pabr.org/radio/leantrx/">http://www.pabr.org/radio/leantrx/</a>
+  <p>Select an activity.
+
+  <ul>
+    <li><b>Broadcast FM</b><ul>
+	<li>Receive the FM band (88-108 MHz). Requires dual core mod and extended coverage mod.<ul>
+	    <li><a href="mlmrx.html?Fc=98e6&Fs=25.6e6&bw=20e6&fftsize=64&maxdev=75e3&autorun=on&uirate=5&channels=(90.4),(91.7),(92.1),(93.5),(94.3),(96.0),(97.4),(98.2),(99.9),(100.3),(100.7),101.1,(101.5),(101.9),(102.7),(103.1),(103.5),(103.9),(104.3),(104.7),(105.1),(105.5),(105.9),(107.1)">24 stations in the Paris area</a></li>
+	    <li><a href="mlmrx.html?Fc=98e6&Fs=25.6e6&bw=20e6&fftsize=64&maxdev=75e3&autorun=on&channels=(89.0),(90.0),(90.4),(90.9),(91.3),(91.7),(92.1),(93.5),(94.3),(96.0),(96.4),(96.9),(97.4),(97.8),(98.2),(99.0),(99.9),(100.3),(100.7),101.1,(101.5),(101.9),(102.3),(102.7),(103.1),(103.5),(103.9),(104.3),(104.7),(105.1),(105.5),(105.9),(106.7),(107.1)">34 stations in the Paris area</a></li>
+	    <li><a href="mlmrx.html?Fc=98e6&Fs=25.6e6&bw=20e6&fftsize=64&maxdev=75e3&autorun=on&channels=(88:0.5:108.1)">41 channels, 500 kHz spacing</a></li>
+	</ul></li>
+	<li>Receive 20% of the FM band. Requires extended coverage mod.<ul>
+	    <li><a href="mlmrx.html?Fc=90e6&Fs=6.4e6&bw=4e6&fftsize=32&maxdev=75e3&autorun=on&channels=(88:0.1:92)">88-92 MHz</a></li>
+	    <li><a href="mlmrx.html?Fc=94e6&Fs=6.4e6&bw=4e6&fftsize=32&maxdev=75e3&autorun=on&channels=(92:0.1:96)">92-96 MHz</a></li>
+	    <li><a href="mlmrx.html?Fc=98e6&Fs=6.4e6&bw=4e6&fftsize=32&maxdev=75e3&autorun=on&channels=(96:0.1:100)">96-100 MHz</a></li>
+	    <li><a href="mlmrx.html?Fc=102e6&Fs=6.4e6&bw=4e6&fftsize=32&maxdev=75e3&autorun=on&channels=(100:0.1:104)">100-104 MHz</a></li>
+	    <li><a href="mlmrx.html?Fc=106e6&Fs=6.4e6&bw=4e6&fftsize=32&maxdev=75e3&autorun=on&channels=(104:0.1:108)">100-108 MHz</a></li>
+	</ul></li>
+    </ul></li>
+    <li><b>Unlicensed personal radio</b><ul>
+	<li><a href="mlmrx.html?Fc=446.1e6&Fs=800e3&bw=200e3&bufsize=65536&fftsize=64&maxdev=5e3&squelch=0.75&uirate=3&autorun=on&channels=446.00625:0.0125:446.19375">Receive the PMR446 band (12.5 kHz spacing).</a> Requires LO calibration.</li>
+	<li><a href="mlmrx.html?Fc=446.1e6&Fs=800e3&bw=200e3&bufsize=65536&fftsize=32&maxdev=10e3&squelch=0.75&uirate=3&autorun=on&channels=446.00625:0.0125:446.19375">Receive the PMR446 band (12.5 kHz spacing).</a> Wider deviation.</li>
+    </ul></li>
+    <li><b>Amateur bands, audio</b><ul>
+	<li><a href="mlmrx.html?Fc=145e6&Fs=3.2e6&bw=2e6&fftsize=64&maxdev=5e3&squelch=0&uirate=3&autorun=on&channels=(144.050:0.050:145.950)">Receive the amateur 144 MHz band (50 kHz spacing).</a> Requires extended coverage mod and LO calibration.</li>
+	<li><a href="mlmrx.html?Fc=145e6&Fs=3.2e6&bw=2e6&fftsize=128&maxdev=5e3&squelch=0&uirate=3&autorun=on&channels=(144.025:0.025:145.975)">Receive the amateur 144 MHz band (25 kHz spacing).</a> Requires extended coverage mod and LO calibration.</li>
+	<li><a href="mlmrx.html?Fc=435e6&Fs=16e6&bw=10e6&fftsize=64&maxdev=5e3&squelch=0&uirate=3&autorun=on&channels=(430.25:0.25:440.025)">Receive the amateur 430 MHz band (250 kHz spacing).</a> Requires LO calibration.</li>
+	<li><a href="mlmrx.html?Fc=435e6&Fs=12.8e6&bw=10e6&fftsize=64&maxdev=5e3&squelch=0&uirate=3&autorun=on&channels=(430.2:0.2:439.8)">Receive the amateur 430 MHz band (200 kHz spacing.)</a> Requires LO calibration.</li>
+    </ul></li>
+    <li><b>Digital Amateur TV</b><ul>
+	<li><a href="dvbtx.html?freq=2449e6&standard=DVB-S&cr=1/2&cstln=QPSK&symbrate=333e3&interp=2">Transmit RB-DATV 333 kbaud QPSK beacon.</a></li>
+	<li><a href="dvbrx.html?freq=2449e6&samprate=2e6&symbrate=333e3&sampler=rrc&rrc_rej=20&cstln=QPSK&standard=DVB-S&cr=1/2&fastlock=on&uirate=4&autorun=on">Receive RB-DATV 333 kbaud QPSK.</a></li>
+
+	<li><a href="dvbtx.html?freq=2449e6&standard=DVB-S&cr=1/2&cstln=QPSK&symbrate=20e3&interp=30">Transmit RB-DATV 20 kbaud QPSK beacon.</a> Requires LO calibration.</li>
+	<li><a href="dvbrx.html?freq=2449e6&samprate=600e3&symbrate=20e3&sampler=rrc&rrc_rej=20&cstln=QPSK&standard=DVB-S&cr=1/2&fastlock=on&uirate=4&autorun=on">Receive RB-DATV 20 kbaud QPSK.</a> Requires LO calibration.</li>
+	
+	<li><a href="dvbtx.html?freq=2449e6&standard=DVB-S&cr=4/5&cstln=32APSK&symbrate=20e3&interp=30">Transmit RB-DATV 20 kbaud 32APSK beacon (experimental).</a></li>
+	<li><a href="dvbrx.html?freq=2449e6&samprate=600e3&symbrate=20e3&sampler=rrc&rrc_rej=20&cstln=32APSK&standard=DVB-S&cr=4/5&viterbi=on&autorun=on">Receive RB-DATV 20 kbaud 32APSK (experimental).</a></li>
+    </ul></li>
+    <li><b>Satellites</b><ul>
+	<li><a href="dvbrx.html?freq=2395e6&samprate=4e6&symbrate=2000e3&cstln=QPSK&standard=DVB-S&cr=1/2&sampler=linear&autorun=on">Receive HAMTV from the International Space Station.</a> Not tested.</li>
+<!--
+	<li><a href="dvbrx.html?freq=1545.94e6&samprate=2.5e3&symbrate=4200&cstln=BPSK&standard=DVB-S&cr=1/2&sampler=rrc&fastlock=on&hdlc=1&packetized=on">Receive Outernet L-band from Alphasat 25E (deprecated)</a></li>
+-->
+    </ul></li>
+    <li><b>Troubleshooting</b><ul>
+	<li><a href="sysinfo.html">System information</a></li>
+    </ul></li>
+  </ul>
+</body>
