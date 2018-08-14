@@ -1,12 +1,17 @@
 #!/bin/sh
-
 # Read settings from NVRAM
 . /bin/readsettings.sh >/dev/null
+
+## This is a workaround for an issue where SoapySDR remembers its install path
+## and tries to use it as its 'root' directory...Fake it.
+if [ ! -d "/home/steve/Desktop/SDR/Pluto" ]; then
+        mkdir -p /home/steve/Desktop/SDR/Pluto
+        ln -s / /home/steve/Desktop/SDR/Pluto/staging
+fi
 
 start() {
 	/bin/sh /etc/init.d/S96$autostart start
 }
-
 
 stop() {
 	for file in /etc/init.d/S96*; do
