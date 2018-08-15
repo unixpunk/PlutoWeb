@@ -17,7 +17,7 @@ param_cr=1/2
 param_cstln=QPSK
 param_symbrate=2000e3
 param_interp=30
-param_rrc_rej=10
+param_rrc_rej=0
 
 param_dest=leaniiotx
 param_devindex=0
@@ -32,7 +32,7 @@ killprocs
 
 samprate=$(dc $param_symbrate $param_interp mul p)
 	      
-command="leantsgen  |  leandvbtx --cr $param_cr --const $param_cstln -f $param_interp --s16 --power -4 --rrc-rej $param_rrc_rej -v |  leaniiotx  --bufsize $param_bufsize  --nbufs $param_nbufs  -f $param_freq  -s $samprate  --bw $param_symbrate -v"
+command="leantsgen  |  leandvbtx --cr $param_cr --const $param_cstln -f $param_interp --s16 --power 0 --rrc-rej $param_rrc_rej -v |  leaniiotx  --bufsize $param_bufsize  --nbufs $param_nbufs  -f $param_freq  -s $samprate  --bw $param_symbrate -v"
 
 echo $command
 eval $command
