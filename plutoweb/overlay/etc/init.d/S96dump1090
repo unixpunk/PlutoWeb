@@ -5,7 +5,8 @@
 start() {
 	printf "Starting dump1090: "
 	screen -Dm /bin/dump1090.sh $0 &
-	echo "<BR> - Done - Available here:  <a href=\"http://pluto.local:8080\">http://pluto.local:8080</a>  "
+	. /bin/readsettings.sh >/dev/null
+	echo "<BR> - Done - Available here:  <a href=\"http://$ip:8080\">http://$ip:8080</a>  "
 }
 
 

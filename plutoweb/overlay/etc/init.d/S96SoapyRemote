@@ -5,7 +5,8 @@
 start() {
 	printf "Starting SoapyRemote: "
 	screen -Dm /bin/soapyremote.sh $0 &
-	echo "<BR> - Done - Available here:  pluto.local:55132  "
+	. /bin/readsettings.sh >/dev/null
+	echo "<BR> - Done - Available here:  $ip  "
 }
 
 
