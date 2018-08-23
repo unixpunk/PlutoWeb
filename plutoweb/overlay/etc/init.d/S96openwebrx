@@ -5,7 +5,8 @@
 start() {
 	printf "Starting OpenWebRX: "
 	screen -Dm /bin/openwebrx.sh $0 &
-	echo "<BR> - Done - Available here:  <a href=\"http://pluto.local:8073\">http://pluto.local:8073</a>  "
+	. /bin/readsettings.sh >/dev/null
+	echo "<BR> - Done - Available here:  <a href=\"http://$ip:$web_port\">http://$ip:$web_port</a>  "
 }
 
 
