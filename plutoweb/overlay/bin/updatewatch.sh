@@ -46,7 +46,7 @@ else
 			echo "Found $file"
 			sleep 5
 			if [ "$(md5sum -b $file | awk -F\\  '{ print $1 }')" = "$(cat $file.md5sum | awk -F\\  '{ print $1 }')" ]; then
-				cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
+				cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 				rm -f $file $file.md5sum
 				updatesrunning=n
 				flash_indication_off
@@ -74,7 +74,7 @@ else
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		echo "Found $file - Waiting 5 seconds before proceeding..."
 		sleep 5
-		cd / && unzip -uo $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
+		cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 		rm -f $file $file.md5sum
 		updatesrunning=n
 		flash_indication_off

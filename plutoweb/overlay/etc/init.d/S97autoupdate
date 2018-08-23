@@ -35,7 +35,7 @@ start() {
 			exit
 			fi
 			if [ "$(md5sum -b /root/update.zip | awk -F\\  '{ print $1 }')" = "$(cat /root/update.zip.md5sum | awk -F\\  '{ print $1 }')" ]; then
-			cd / && unzip -uo /root/update.zip && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
+			cd / && unzip -o /root/update.zip && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
 			rm -f /root/update.zip* /root/plutoweb.conf
 			updatesrunning=n
 			exit
