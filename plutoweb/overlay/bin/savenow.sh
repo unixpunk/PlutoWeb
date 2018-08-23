@@ -1,5 +1,5 @@
 #!/bin/sh
-. /bin/readsettings.sh
+. /bin/readsettings.sh >/dev/null
 flash_indication_on() {
         echo timer > /sys/class/leds/led0:green/trigger
         echo 40 > /sys/class/leds/led0:green/delay_off
