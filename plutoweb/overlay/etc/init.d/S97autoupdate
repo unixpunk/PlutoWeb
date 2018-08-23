@@ -10,8 +10,6 @@ start() {
 	if [ "$autoupdate" = "y" ]; then
 		updatesrunning=y
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
-		# Start watchdog looking for update.zip in /root
-		/bin/updatewatch.sh &
 		# Start downloading and updating
 		wget -qT 15 -O /root/update.zip.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.zip.md5sum
 		if [ ! -f /root/update.zip.md5sum ] || [ ! -s /root/update.zip.md5sum ]; then
@@ -52,15 +50,16 @@ start() {
 	else
 		echo "Auto-updates disabled" >>/etc/motd
 	fi
+# Starting update.zip watchdog in case someone manually drops in an update.zip file
+# into the USB mass storage or /root
+/bin/updatewatch.sh &
 exit
 }
 
 
 stop() {
-	echo "Stopping updatewatch.sh..."
-	killall updatewatch.sh
+	echo "Done. (Nothing to stop)"
 	sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
-	echo "Done."
 }
 
 # See how we were called.

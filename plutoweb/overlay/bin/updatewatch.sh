@@ -22,7 +22,7 @@ flash_indication_off() {
 
 SLEEP=10s
 
-while [ "$autoupdate" = "y" ]
+while true
 do
 	sleep $SLEEP
 if [ "$updatesrunning" = "y" ]; then
