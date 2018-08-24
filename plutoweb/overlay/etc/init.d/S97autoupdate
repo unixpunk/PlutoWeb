@@ -17,6 +17,7 @@ start() {
 			rm -f /root/update.zip*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
+			/bin/updatewatch.sh &
 			exit
 		fi
 		if diff -q /root/update.zip.md5sum /root/.update.zip.md5sum; then
@@ -24,6 +25,7 @@ start() {
 			rm -f /root/update.zip*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
+			/bin/updatewatch.sh &
 			exit
 		else
 			wget -qT 15 -O /root/update.zip --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.zip
@@ -32,18 +34,21 @@ start() {
 			rm -f /root/update.zip*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
+			/bin/updatewatch.sh &
 			exit
 			fi
 			if [ "$(md5sum -b /root/update.zip | awk -F\\  '{ print $1 }')" = "$(cat /root/update.zip.md5sum | awk -F\\  '{ print $1 }')" ]; then
 			cd / && unzip -o /root/update.zip && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
 			rm -f /root/update.zip* /root/plutoweb.conf
 			updatesrunning=n
+			/bin/updatewatch.sh &
 			exit
 			else
 			echo "*** Auto-updates enabled but md5 mismatch on update.zip ***" >>/etc/motd
 			rm -f /root/update.zip*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
+			/bin/updatewatch.sh &
 			exit
 			fi
 		fi
