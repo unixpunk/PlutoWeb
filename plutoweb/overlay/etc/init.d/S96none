@@ -1,8 +1,11 @@
 #!/bin/sh
 
 start() {
+	. /bin/readsettings.sh >/dev/null
 	echo "<BR>"
 	echo "*** All programs have been stopped! ***"
+	echo "<BR>"
+	echo "LeanTRX is available here: <a href=\"http://$ip/leantrx\">http://$ip/leantrx</a>"
 }
 
 
