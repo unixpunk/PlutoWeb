@@ -5,7 +5,7 @@ start() {
 	echo "<BR>"
 	echo "*** All programs have been stopped! ***"
 	echo "<BR>"
-	echo "LeanTRX is available here: <a href=\"http://$ip/leantrx\">http://$ip/leantrx</a>"
+	echo "LeanTRX is available here: <a href="/leantrx">http://$ip/leantrx</a>"
 }
 
 
