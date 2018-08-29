@@ -1,12 +1,12 @@
 #!/bin/sh
 # Don't need to run this directly, its called on boot if autoupdate=y
 
-# Our job is to loop and check for the existence of update.zip and update.zip.md5sum
-# If we find update.zip, we'll assume its legit and use it.  This makes us very hackable.
-# You could use any update.zip and we will blindly extract it right over the top of /
-# The update.zip is simply the overlay folder zipped up.
+# Our job is to loop and check for the existence of update.tgz and update.tgz.md5sum
+# If we find update.tgz, we'll assume its legit and use it.  This makes us very hackable.
+# You could use any update.tgz and we will blindly extract it right over the top of /
+# The update.tgz is simply the overlay folder zipped up.
 
-# If we see an update.zip.md5sum first, we'll use it to verify the upload
+# If we see an update.tgz.md5sum first, we'll use it to verify the upload
 # Again, this screams, "HACK ME!".  But for real, hack it better.
 # Source current settings
 . /bin/readsettings.sh >/dev/null
@@ -28,10 +28,10 @@ do
 if [ "$updatesrunning" = "y" ]; then
 	sleep $SLEEP
 else
-	for file in /root/update.zip
+	for file in /root/update.tgz
 		do
 	if [ -f $file.md5sum ]; then
-		if diff -q $file.md5sum /root/.update.zip.md5sum; then
+		if diff -q $file.md5sum /root/.update.tgz.md5sum; then
                         echo "*** Auto-updates enabled - already up to date as $file ***" >>/etc/motd
                         rm -f $file $file.md5sum
                         updatesrunning=n
@@ -46,7 +46,7 @@ else
 			echo "Found $file"
 			sleep 5
 			if [ "$(md5sum -b $file | awk -F\\  '{ print $1 }')" = "$(cat $file.md5sum | awk -F\\  '{ print $1 }')" ]; then
-				cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
+				cd / && gzip -dc $file | tar -xvf - && echo "*** Auto-updates enabled and $file completed successfully with md5 ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 				rm -f $file $file.md5sum
 				updatesrunning=n
 				flash_indication_off
@@ -74,7 +74,7 @@ else
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		echo "Found $file - Waiting 5 seconds before proceeding..."
 		sleep 5
-		cd / && unzip -o $file && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
+		cd / && gzip -dc $file | tar -xvf - && echo "*** Auto-updates enabled and $file completed successfully ***" >>/etc/motd && echo "$file update complete!" && rm -f /root/plutoweb.conf && /bin/readsettings.sh >/dev/null
 		rm -f $file $file.md5sum
 		updatesrunning=n
 		flash_indication_off
