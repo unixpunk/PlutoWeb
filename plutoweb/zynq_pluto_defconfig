@@ -498,7 +498,7 @@ BR2_PACKAGE_SOX=y
 # BR2_PACKAGE_P7ZIP is not set
 # BR2_PACKAGE_PIXZ is not set
 # BR2_PACKAGE_UNRAR is not set
-BR2_PACKAGE_UNZIP=y
+# BR2_PACKAGE_UNZIP is not set
 # BR2_PACKAGE_XZ is not set
 # BR2_PACKAGE_ZIP is not set
 # BR2_PACKAGE_ZSTD is not set
