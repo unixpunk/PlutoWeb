@@ -4,6 +4,7 @@
 Use <a href="https://github.com/unixpunk/PlutoWeb/tree/master/plutoweb/images">latest plutoweb image</a> for most flexibility going forward.  All other single-program images moved to <a href="https://github.com/unixpunk/PlutoWeb/tree/master/legacy">legacy</a>.
 
 Suggested method of flashing the FIRST TIME is dfu: uboot-env.dfu, boot.dfu, pluto.dfu
+
 From then on you just need to flash the pluto.dfu or drop the pluto.frm in the USB mass storage device and eject, you don't need to reflash the others until the next plutosdr-fw update.
 
 Suggested method of configuration is config.txt in the USB mass storage device.
