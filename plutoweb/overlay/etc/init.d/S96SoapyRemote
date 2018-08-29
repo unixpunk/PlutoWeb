@@ -7,7 +7,6 @@ start() {
 	screen -Dm /bin/soapyremote.sh $0 &
 	. /bin/readsettings.sh >/dev/null
 	echo "<BR> - Done - Available here:  $ip  "
-	echo "<BR>You can also now use LeanTRX <a href="/leantrx/">here</a>.
 }
 
 
