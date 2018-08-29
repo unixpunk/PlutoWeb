@@ -21,6 +21,11 @@ PlutoWeb interface up and running thanks to ImDroided
 <BR>PlutoWeb has the ability to select which program to auto-start at boot
 <BR>SoapyRemote automatically allows both normal PlutoSDR via USB and remotely via OTG Ethernet/Wifi
 <BR>OpenWebRX supports persistent settings - change them via USB config.txt file, via SSH settings.sh command or via the PlutoWeb interface
+<BR>Persistent sdr.hu settings allowing the pluto+ethernet adapter to be listed on <a href="https://sdr.hu">sdr.hu</a> (search pluto to find any online)
+<BR>LeanTRX (and leansdr) - Until there is a leantrx button on PlutoWeb, select SoapyRemote instead.  Then visit the /leantrx/ URL on your pluto.
+
+# Known Issues
+Wifi doesn't work at all?  Anyone have it working?  Please open an issue with details on the device and any steps taken to get it working.
 
 # Install
 There are 2 ways to flash the PlutoSDR the first is:
