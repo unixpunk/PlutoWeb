@@ -28,7 +28,6 @@
 		//parse your data here
 		//you can split into lines using data.split('\n') 
 		//an use regex functions to effectively parse it
-		
 		var myArray = data.split('\n');
 		for (i = 0; i < myArray.length; i++) {
                 $('#test' + i).text(myArray[i]);
@@ -42,11 +41,39 @@
 			initForm(document.forms[0], 'aupdate', myArray[2]);
 			initForm(document.forms[0], 'areboot', myArray[1]);
 			initForm(document.forms[0], 'astart', myArray[0]);
+			
 			}
 		});
 		
 		
 
+		</script>
+		<script>
+		$(document).ready(function() {
+		    $.ajax({
+		        url: 'settings.txt',
+		        dataType: 'text',
+		        success: handleSuccess,
+		        error: handleError
+		    });
+		});
+
+		function handleSuccess(data) {
+		    intoArray(data);
+		}
+
+		function handleError(xmlhttp, statusText, errorText) {
+		    document.write('Error: ' + errorText);
+		}
+
+		// This will read file and send information to other function
+		function intoArray(lines) {
+		    var lineArr = lines.split('\n');
+
+		    // Just to check if it works output lineArr[index] as bellow*
+		    //document.write(lineArr[2]);
+		    //document.write(lineArr[3]);
+		}
 		</script>
 </head>
 <body>
@@ -62,9 +89,6 @@
 				<li class="current_page_item"><a href="index.htm">Home</a></li>
 				<li><a href="http://pluto.local:8073" target="blank">OpenWebRX</a></li>
 				<li><a href="http://pluto.local:8080" target="blank">Dump1090</a></li>
-				<!-- <li><a href="#">     </a></li>
-				<li><a href="#">     </a></li>
-				<li><a href="#">     </a></li> -->
 				<li><a class='iframe-settings' href="settings.htm">Settings</a></li>
 				<li><a href="https://github.com/unixpunk/PlutoWeb/" target="blank">Help</a></li>
 				<li><a href="http://www.rfoverride.com/antennas/" target="blank">Antennas</a></li>
@@ -121,6 +145,17 @@
 					</form>
 			  </div>
 			</div>
+			<div class="post">
+				<h2 class="title"><a href="/leantrx" target=blank>LeanTRX</a></h2>
+				<div class="entry">
+					<p>LeanTRX adds a web interface to the LeanSDR toolkit. Its main purpose is to turn embedded SDR platforms into user-friendly, multi-mode RF modems which can be controlled with any web browser. Potential applications range from handheld transceivers to Internet-connected networks of ground stations.</p>
+					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"90%", height:"90%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
+					<input type="hidden" name="app" value="leantrx"></input><br>
+					<input id="search-submit" type="submit" name="subbtn" value="Start LeanTRX">
+					</form>
+				</div>
+					<!-- <div><a href="#" class="links">View Full Story</a><a href="#" class="comments">View Comments</a></div> -->
+			</div>
 		</div><!-- end #content -->
 		<div id="sidebar">
 			<ul>
@@ -128,6 +163,11 @@
 					<h2>Welcome to PlutoWeb</h2>
 					<p>This is a firmware image with a web interface to control settings for OpenWebRX and which program to auto-start so you don't need to use ssh anymore.</p>
 				</li>
+				<!--<li>
+					<h2>Current Running App</h2>
+					<p><a href="http://pluto.local:8073" target="blank">OpenWebRX</a>
+					<p><script>document.write(lineArr[2]);</script></p>
+				</li>-->
 				<li>
 					<h2><font color="red">::::: : : : WARNING : : : :::::</h2>
 					<p>This is not secure in any way at all. I would not put this thing on the internet. First off everyone knows the root password. Second this page is not secure one tiny bit, it uses CGI script and runs system commands. A specially crafted URL would probably p0wn this thing. You have been warned.</p>
@@ -156,66 +196,6 @@
 		<p>Happy scanning</p>
 	</div>
 	<!-- end #footer -->
-	<!-- This contains the hidden content for inline calls -->
-		<div style='display:none'>
-			<div id='inline_content' style='padding:10px; background:#fff;'>
-			<h1><font color="#639CBF">PlutoWeb Settings</font></h1>
-			Make changes to the operations of the PlutoSDR, at least until a reboot.<br><br>
-			<h2><font color="#639CBF">OpenWebRX Settings</font></h2>
-			Change the default settings for OpenWebRX<br><br>
-			<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
-					<input type="hidden" name="app" value="settings">
-					Enter a center freq in Hz: <input type="text" name="freq" value="460250000"></input><br>
-					<input type="radio" name="dmod" value="nfm" checked> NFM
-					<input type="radio" name="dmod" value="am"> AM
-					<input type="radio" name="dmod" value="lsb"> LSB
-					<input type="radio" name="dmod" value="usb"> USB
-					<input type="radio" name="dmod" value="cw"> CW<br><br>
-					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="600000" size="8"><br><br>
-					RF gain in dB: (0-89) <input type="number" name="gain" min="0" max="89" value="89"><br><br>
-					PPM Correction: <input type="text" name="ppm" value="0" size="4"><br><br>
-					
-					<br>
-					<h2><font color="#639CBF">Auto start program</font></h2>
-					Change the default program to run at boot.<br>
-					<input type="radio" name="astart" value="openwebrx" checked> OpenWebRX
-					<input type="radio" name="astart" value="dump1090"> Dump1090
-					<input type="radio" name="astart" value="soapyremote"> SoapyRemote
-					<input type="radio" name="astart" value="none"> None<br><br>
-					
-					<h2><font color="#639CBF">Auto Update</font></h2>
-					Enable auto updates of the overlay folder from GitHub. (Auto update upon boot)<br>
-					<input type="radio" name="aupdate" value="y" checked> Yes
-					<input type="radio" name="aupdate" value="n"> No
-					<br><br>
-					<h2><font color="#639CBF">Auto Reboot</font></h2>
-					Enable auto reboot every X hours this helps OTG Ethernet to stay connected. (Auto reboot doesn't take effect now, write changes to NVRAM and reboot)<br>
-					<input type="radio" name="areboot" value="y" checked> Yes
-					<input type="radio" name="areboot" value="n"> No
-					<br><br>
-					<input type="checkbox" name="nvram" value="writenvram">Write changes to NVRAM for persistence after reboot. (Not yet working in web)<br><br>
-					<input id="search-submit" type="submit" name="subbtn" value="Save Settings"></input>
-					</form>
-					<br>
-					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
-					<input type="hidden" name="app" value="reboot">
-					<input id="search-submit" type="submit" name="subbtn" value="Reboot the PlutoSDR" onclick="return confirm('Are you sure?')"></input>
-					<br><br>
-					<form action="cgi-bin/control.cgi" method="get" onSubmit='$.colorbox({width:"50%", height:"60%", iframe:true, href:"cgi-bin/control.cgi?" + $(this).serialize()}); return false;'>
-					<input type="hidden" name="app" value="wipe">
-					<input id="search-submit" type="submit" name="subbtn" value="Wipe Settings from NVRAM" onclick="return confirm('Are you sure?')"></input>
-					</form>
-					<br>
-					<h2><font color="#639CBF">Upload update.tgz file</font></h2>
-					If you dont have OTG ehternet or WiFi for auto updates you can download the latest update.tgz file from <a href="https://github.com/unixpunk/PlutoWeb/tree/master/plutoweb" target="new">Plutoweb's GitHub</a> and upload it here.  
-					<br><br>
-  					<form action="cgi-bin/upload.cgi" method="POST" enctype="multipart/form-data">
-    					File: <input id="search-submit" name="file" type="file" accept=".tgz">
-    					<input id="search-submit" name="submit" type="submit" value="Upload">
-  					</form>
-					<br>
-					
-			</div>
-		</div>
+	
 </body>
 </html>

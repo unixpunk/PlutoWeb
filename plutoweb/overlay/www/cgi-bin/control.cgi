@@ -72,6 +72,19 @@ echo "Starting SoapyRemote<br><br><br>"
 echo "</body></html>"
 /bin/settings.sh -r SoapyRemote
 
+elif [ "$APP" == "leantrx" ]; then
+
+echo "Content-type: text/html"
+echo ""
+echo "<html><head><title>Starting LeanTRX"
+echo "</title></head><body>"
+
+echo "<h1>LeanTRX:</h1><br><br>"
+
+echo "Starting LeanTRX<br><br><br>"
+echo "</body></html>"
+/bin/settings.sh -r leantrx
+
 elif [ "$APP" == "settings" ]; then
 
 echo "Content-type: text/html"
