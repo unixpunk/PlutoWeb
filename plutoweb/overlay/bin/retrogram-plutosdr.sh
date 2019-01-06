@@ -1,2 +1,2 @@
 #!/bin/sh
-TERM=linux /bin/arm.retrogram-plutosdr
+TERM=linux /bin/arm.retrogram-plutosdr $@
