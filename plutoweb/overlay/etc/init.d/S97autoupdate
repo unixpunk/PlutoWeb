@@ -11,41 +11,41 @@ start() {
 		updatesrunning=y
 		sed -i 's/updatesrunning=n/updatesrunning=y/' /root/plutoweb.conf
 		# Start downloading and updating
-		wget -qT 15 -O /root/update.tgz.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.tgz.md5sum
-		if [ ! -f /root/update.tgz.md5sum ] || [ ! -s /root/update.tgz.md5sum ]; then
+		wget -qT 15 -O /root/update3.tgz.md5sum --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update3.tgz.md5sum
+		if [ ! -f /root/update3.tgz.md5sum ] || [ ! -s /root/update3.tgz.md5sum ]; then
 			echo "*** Auto-updates enabled but unable to download md5sum ***" >>/etc/motd
-			rm -f /root/update.tgz*
+			rm -f /root/update3.tgz*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			/bin/updatewatch.sh &
 			exit
 		fi
-		if diff -q /root/update.tgz.md5sum /root/.update.tgz.md5sum; then
+		if diff -q /root/update3.tgz.md5sum /root/.update3.tgz.md5sum; then
 			echo "*** Auto-updates enabled - already up to date ***" >>/etc/motd
-			rm -f /root/update.tgz*
+			rm -f /root/update3.tgz*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			/bin/updatewatch.sh &
 			exit
 		else
-			wget -qT 15 -O /root/update.tgz --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update.tgz
-			if [ ! -f /root/update.tgz ] || [ ! -s /root/update.tgz ]; then
-                        echo "*** Auto-updates enabled but unable to download update.tgz ***" >>/etc/motd
-			rm -f /root/update.tgz*
+			wget -qT 15 -O /root/update3.tgz --no-check-certificate https://raw.githubusercontent.com/unixpunk/PlutoWeb/master/plutoweb/update3.tgz
+			if [ ! -f /root/update3.tgz ] || [ ! -s /root/update3.tgz ]; then
+                        echo "*** Auto-updates enabled but unable to download update3.tgz ***" >>/etc/motd
+			rm -f /root/update3.tgz*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			/bin/updatewatch.sh &
 			exit
 			fi
-			if [ "$(md5sum -b /root/update.tgz | awk -F\\  '{ print $1 }')" = "$(cat /root/update.tgz.md5sum | awk -F\\  '{ print $1 }')" ]; then
-			cd / && gzip -dc /root/update.tgz | tar -xvf - && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
-			rm -f /root/update.tgz* /root/plutoweb.conf
+			if [ "$(md5sum -b /root/update3.tgz | awk -F\\  '{ print $1 }')" = "$(cat /root/update3.tgz.md5sum | awk -F\\  '{ print $1 }')" ]; then
+			cd / && gzip -dc /root/update3.tgz | tar -xvf - && echo "*** Auto-updates enabled and an update completed successfully ***" >>/etc/motd
+			rm -f /root/update3.tgz* /root/plutoweb.conf
 			updatesrunning=n
 			/bin/updatewatch.sh &
 			exit
 			else
-			echo "*** Auto-updates enabled but md5 mismatch on update.tgz ***" >>/etc/motd
-			rm -f /root/update.tgz*
+			echo "*** Auto-updates enabled but md5 mismatch on update3.tgz ***" >>/etc/motd
+			rm -f /root/update3.tgz*
 			updatesrunning=n
 			sed -i 's/updatesrunning=y/updatesrunning=n/' /root/plutoweb.conf
 			/bin/updatewatch.sh &
@@ -55,7 +55,7 @@ start() {
 	else
 		echo "Auto-updates disabled" >>/etc/motd
 	fi
-# Starting update.tgz watchdog in case someone manually drops in an update.tgz file
+# Starting update3.tgz watchdog in case someone manually drops in an update3.tgz file
 # into the USB mass storage or /root
 /bin/updatewatch.sh &
 exit
