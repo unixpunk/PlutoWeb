@@ -6,7 +6,7 @@
 if [ $# = 0 ]; then
 echo "
 Usage: settings.sh <-i> <-r prog> <-R Hrs> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
-                   <-d DEMOD> <-g DB> <-p PPM> <-E y|d> <-W y>
+                   <-d DEMOD> <-g DB> <-p PPM> <-o num> <-E y|d> <-W y>
 
 Make changes to the operations of the PlutoSDR.
 General Options:
@@ -22,6 +22,7 @@ OpenWebRX Options:
         -d      Demodulation (nfm,am,lsb,usb,cw) [$start_mod]
         -g      RF gain in dB (0-89) [$rf_gain]
         -p      PPM [$ppm]
+	-o	Override Pre-Set (0-4) [$openwebrx_override]
 NVRAM Options:
         -E y|d  Erase all settings from NVRAM (d to reset to defaults too)
         -W y    Write changes to NVRAM for persistence"
@@ -126,6 +127,14 @@ case $i in
 	fi
         shift
         shift;;
+	-o)
+	sed -i "s/openwebrx_override=$openwebrx_override/openwebrx_override=$2/" /root/plutoweb.conf
+	openwebrx_override=$2
+	if [ "$autostart" = "openwebrx" ]; then
+		RESTARTNOW=1
+	fi
+	shift
+	shift;;
         -i)
 . /bin/readsettings.sh
 echo "Changes take effect now and reset to previous on reboot unless -W is used."
