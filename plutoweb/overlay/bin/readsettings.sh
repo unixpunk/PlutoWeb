@@ -100,7 +100,7 @@ if [ -f /root/plutoweb.conf ]; then
 [ -z ${fft_voverlap_factor} ] && export fft_voverlap_factor=$fft_voverlap_factor_def
 [ -z ${sdrhu_key} ] && export sdrhu_key=$sdrhu_key_def
 [ -z ${sdrhu_public_listing} ] && export sdrhu_public_listing=$sdrhu_public_listing_def
-[ -z ${openwebrx_override} && export openwebrx_override=$openwebrx_override_def
+[ -z ${openwebrx_override} ] && export openwebrx_override=$openwebrx_override_def
 [ -z ${updatesrunning} ] && export updatesrunning=$updatesrunning_def
 	echo ""
 	echo "Current settings are:"
