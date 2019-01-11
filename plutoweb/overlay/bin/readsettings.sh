@@ -15,7 +15,7 @@ if [ -f /root/temp-settings ]; then
 	mv /root/temp-settings /root/plutoweb.conf
 fi
 
-# Set defaults if no previous settings found
+# Set defaults if no previous setting(s) found
 # Persistent variables
 autostart_def=openwebrx
 autoreboot_def=0
@@ -40,6 +40,10 @@ sdrhu_public_listing_def=False
 fft_fps_def=5
 fft_size_def=4096
 fft_voverlap_factor_def=0.1
+openwebrx_override_def=0
+
+# Non-persistent variables
+updatesrunning_def=n
 
 # Reset environment before starting
 autostart=
@@ -65,9 +69,7 @@ fft_size=
 fft_voverlap_factor=
 sdrhu_key=
 sdrhu_public_listing=
-
-# Non-persistent variables
-updatesrunning_def=n
+openwebrx_override=
 
 ## Use temp settings if they exist instead of pulling from NVRAM
 if [ -f /root/plutoweb.conf ]; then
@@ -98,6 +100,7 @@ if [ -f /root/plutoweb.conf ]; then
 [ -z ${fft_voverlap_factor} ] && export fft_voverlap_factor=$fft_voverlap_factor_def
 [ -z ${sdrhu_key} ] && export sdrhu_key=$sdrhu_key_def
 [ -z ${sdrhu_public_listing} ] && export sdrhu_public_listing=$sdrhu_public_listing_def
+[ -z ${openwebrx_override} && export openwebrx_override=$openwebrx_override_def
 [ -z ${updatesrunning} ] && export updatesrunning=$updatesrunning_def
 	echo ""
 	echo "Current settings are:"
@@ -124,6 +127,7 @@ if [ -f /root/plutoweb.conf ]; then
 	echo "fft_voverlap_factor = $fft_voverlap_factor"
 	echo "sdrhu_key = $sdrhu_key"
 	echo "sdrhu_public_listing = $sdrhu_public_listing"
+	echo "openwebrx_override = $openwebrx_override"
 	echo "Active IP and hostname = $ip / $hostname"
 	echo "Updates running = $updatesrunning"
 	echo ""
@@ -152,6 +156,7 @@ export fft_size=`fw_printenv -n fft_size 2> /dev/null || echo $fft_size_def`
 export fft_voverlap_factor=`fw_printenv -n fft_voverlap_factor 2> /dev/null || echo $fft_voverlap_factor_def`
 export sdrhu_key=`fw_printenv -n sdrhu_key 2> /dev/null || echo ""`
 export sdrhu_public_listing=`fw_printenv -n sdrhu_public_listing 2> /dev/null || echo $sdrhu_public_listing_def`
+export openwebrx_override=`fw_printenv -n openwebrx_override 2> /dev/null || echo $openwebrx_override_def`
 
 # Create /root/plutoweb.conf
 echo "export autostart=$autostart" >/root/plutoweb.conf
@@ -177,6 +182,7 @@ echo "export fft_size=$fft_size" >>/root/plutoweb.conf
 echo "export fft_voverlap_factor=$fft_voverlap_factor" >>/root/plutoweb.conf
 echo "export sdrhu_key=$sdrhu_key" >>/root/plutoweb.conf
 echo "export sdrhu_public_listing=$sdrhu_public_listing" >>/root/plutoweb.conf
+echo "export openwebrx_override=$openwebrx_override" >>/root/plutoweb.conf
 echo "export updatesrunning=$updatesrunning" >>/root/plutoweb.conf
 chmod +x /root/plutoweb.conf
 echo ""
@@ -206,6 +212,7 @@ echo "fft_size = $fft_size"
 echo "fft_voverlap_factor = $fft_voverlap_factor"
 echo "sdrhu_key = $sdrhu_key"
 echo "sdrhu_public_listing = $sdrhu_public_listing"
+echo "openwebrx_override = $openwebrx_override"
 echo "Active IP and hostname = $ip / $hostname"
 echo "Update running = $updatesrunning"
 echo ""
@@ -237,3 +244,4 @@ echo $sdrhu_key >>/www/settings.txt
 echo $sdrhu_public_listing >>/www/settings.txt
 echo $hostname >>/www/settings.txt
 echo $ip >>/www/settings.txt
+echo $openwebrx_override >>/www/settings.txt

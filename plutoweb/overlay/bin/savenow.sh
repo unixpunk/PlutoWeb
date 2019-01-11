@@ -38,6 +38,7 @@ write_all() {
 		echo "fft_voverlap_factor $fft_voverlap_factor" >> /opt/fw_set.tmp
 		echo "sdrhu_key $sdrhu_key" >> /opt/fw_set.tmp
 		echo "sdrhu_public_listing $sdrhu_public_listing" >> /opt/fw_set.tmp
+		echo "openwebrx_override $openwebrx_override" >> /opt/fw_set.tmp
                 fw_setenv -s /opt/fw_set.tmp
                 rm /opt/fw_set.tmp
                 echo "Done."
@@ -73,6 +74,7 @@ erase_all() {
 		echo fft_voverlap_factor >> /opt/fw_set.tmp
 		echo sdrhu_key >> /opt/fw_set.tmp
 		echo sdrhu_public_listing >> /opt/fw_set.tmp
+		echo openwebrx_override >> /opt/fw_set.tmp
                 fw_setenv -s /opt/fw_set.tmp
                 rm /opt/fw_set.tmp
                 echo "Done."
