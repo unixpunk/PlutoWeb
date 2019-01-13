@@ -37,9 +37,9 @@ receiver_admin_def="____"
 receiver_gps_def=0.000000,0.000000
 sdrhu_key_def=""
 sdrhu_public_listing_def=False
-fft_fps_def=5
+fft_fps_def=10
 fft_size_def=4096
-fft_voverlap_factor_def=0.1
+fft_voverlap_factor_def=0.3
 openwebrx_override_def=0
 
 # Non-persistent variables
