@@ -16,7 +16,7 @@ if [ -f /root/temp-settings ]; then
 fi
 
 # Set defaults if no previous setting(s) found
-# Persistent variables
+# These defaults are 3 users max showing Chicago PD freq's
 autostart_def=openwebrx
 autoreboot_def=0
 autoupdate_def=n
@@ -41,8 +41,6 @@ fft_fps_def=10
 fft_size_def=4096
 fft_voverlap_factor_def=0.3
 openwebrx_override_def=0
-
-# Non-persistent variables
 updatesrunning_def=n
 
 # Reset environment before starting
@@ -186,8 +184,6 @@ echo "export openwebrx_override=$openwebrx_override" >>/root/plutoweb.conf
 echo "export updatesrunning=$updatesrunning" >>/root/plutoweb.conf
 chmod +x /root/plutoweb.conf
 echo ""
-echo "Ignore any messages above this line..."
-echo ""
 echo "Current settings are:"
 echo "Auto-start = $autostart"
 echo "Auto-reboot = $autoreboot"
@@ -218,7 +214,7 @@ echo "Update running = $updatesrunning"
 echo ""
 fi
 
-# (re)Create /www/settings.txt
+# Create /www/settings.txt
 echo $autostart >/www/settings.txt
 echo $autoreboot >>/www/settings.txt
 echo $autoupdate >>/www/settings.txt
