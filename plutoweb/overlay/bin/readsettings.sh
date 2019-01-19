@@ -1,22 +1,14 @@
 #!/bin/sh
 ## Source this file for default and/or previous settings
+
 # Get network info for OpenWebRX
 export hostname=`hostname`
 export ip=`ifconfig eth0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
-if [ -z ${ip} ]; then
-	export ip=`ifconfig wlan0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
-fi
-if [ -z ${ip} ]; then
-	export ip=`ifconfig usb0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
-fi
-
-## In case of upgrade, need to move the temp-settings file to plutoweb.conf
-if [ -f /root/temp-settings ]; then
-	mv /root/temp-settings /root/plutoweb.conf
-fi
+[ -z ${ip} ] && export ip=`ifconfig wlan0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
+[ -z ${ip} ] && export ip=`ifconfig usb0 2> /dev/null | grep -m 1 -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1`
 
 # Set defaults if no previous setting(s) found
-# These defaults are 3 users max showing Chicago PD freq's
+# These defaults are 3 users max showing Chicago PD freq
 autostart_def=openwebrx
 autoreboot_def=0
 autoupdate_def=n
@@ -24,7 +16,7 @@ center_freq_def=460250000
 start_freq_def=460102200
 samp_rate_def=600000
 start_mod_def=nfm
-rf_gain_def=89
+rf_gain_def=73
 ppm_def=0
 web_port_def=8073
 max_clients_def=3
