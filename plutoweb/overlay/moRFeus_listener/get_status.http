@@ -1,0 +1,7 @@
+#!/bin/sh
+
+morf_tool_dir=/moRFeus_listener
+source $morf_tool_dir/get_status.sh
+get_status
+
+
