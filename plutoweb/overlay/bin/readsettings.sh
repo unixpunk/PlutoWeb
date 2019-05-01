@@ -233,3 +233,15 @@ echo $sdrhu_public_listing >>/www/settings.txt
 echo $hostname >>/www/settings.txt
 echo $ip >>/www/settings.txt
 echo $openwebrx_override >>/www/settings.txt
+
+# Create SQLite3 DB
+rm -f /www/settings.sqlite3 /tmp/.sql
+sqlite3 /www/settings.sqlite3 "CREATE TABLE settings (setting CHAR(50), value CHAR(50));"
+IFS=$'\n'
+for i in $(cat /root/plutoweb.conf | sed 's/export //g'); do
+setting=`echo "$i" | awk -F= '{ print $1 }'`
+value=`echo "$i" | awk -F= '{ print $2 }'`
+echo "INSERT INTO settings (setting,value) VALUES('$setting','$value');" >>/tmp/.sql
+done
+sqlite3 /www/settings.sqlite3 </tmp/.sql
+rm -f /tmp/.sql
