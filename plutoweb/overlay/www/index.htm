@@ -88,9 +88,10 @@
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="index.htm">Home</a></li>
-				<li><a href="http://pluto.local:8073" target="blank">OpenWebRX</a></li>
+				<li><a href="http://pluto.local:8073" >OpenWebRX</a></li>
 				<li><a href="http://pluto.local:8080" target="blank">Dump1090</a></li>
 				<li><a class='iframe-leantrx' href="/leantrx">LeanTRX</a></li>
+				<li><a href="/morfeus.htm" target="blank">moRFeus</a></li>
 				<li><a class='iframe-settings' href="settings.htm">Settings</a></li>
 				<li><a href="https://github.com/unixpunk/PlutoWeb/" target="blank">Help</a></li>
 				<li><a href="http://www.rfoverride.com/antennas/" target="blank">Antennas</a></li>
@@ -117,8 +118,15 @@
 					<input type="radio" name="dmod" value="usb"> USB
 					<input type="radio" name="dmod" value="cw"> CW<br><br>
 					Sample rate in SPS (samples/sec) (65105-10000000) <input type="text" name="srate" value="" size="8"><br><br>
-					RF gain in dB: (0-89) <input type="text" name="gain" min="0" max="89" value="" size="4"><br><br>
+					RF gain in dB: (0-73) <input type="text" name="gain" min="0" max="73" value="" size="4"><br><br>
 					PPM Correction: <input type="text" name="ppm" value="" size="4"><br><br>
+					<select name="oride">
+					    <option value="0" selected>Pre-set Overrides Off</option>
+					    <option value="1">100ksps - 15 Users Max</option>
+					    <option value="2">300ksps - 7 Users Max</option>
+					    <option value="3">900ksps - 2 Users Max</option>
+					    <option value="4">1.5msps - 1 User Only</option>
+					  </select><br><br>
 					<input id="search-submit" type="submit" name="search-submit" value="Start OpenWebRX"></input>
 					</form>
 					
