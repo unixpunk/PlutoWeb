@@ -28,7 +28,7 @@ do
 if [ "$updatesrunning" = "y" ]; then
 	sleep $SLEEP
 else
-	for file in /root/update3.tgz
+	for file in /root/update3.tgz /media/update3.tgz
 		do
 	if [ -f $file.md5sum ]; then
 		if diff -q $file.md5sum /root/.update3.tgz.md5sum; then
