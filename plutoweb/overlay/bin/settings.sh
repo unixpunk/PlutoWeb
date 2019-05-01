@@ -16,11 +16,11 @@ PlutoWeb Options:
         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
 Radio Options:
         -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
-        -s      Starting frequency in Hz (70000000-6000000000) [$start_freq]
         -S      Sample rate in SPS (samples/sec) (65105-10000000) [$samp_rate]
         -g      RF gain in dB (0-73) [$rf_gain]
         -p      PPM [$ppm]
 OpenWebRX Options:
+	-s	Starting frequency in Hz (70000000-6000000000) [$start_freq]
 	-d	Demodulation (nfm,am,lsb,usb,cw) [$start_mod]
 	-o	Override Pre-Set (0-4) [$openwebrx_override]
 NVRAM Options:
