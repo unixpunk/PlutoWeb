@@ -31,6 +31,9 @@ PPM=${PPM//+/ }
 SRATE=${QUERY_STRING#*srate=}
 SRATE=${SRATE%%&*}
 SRATE=${SRATE//+/ }
+ORIDE=${QUERY_STRING#*oride=}
+ORIDE=${ORIDE%%&*}
+ORIDE=${ORIDE//+/ }
 TEST=$(uptime)
 echo "Content-type: text/html"
 echo ""
@@ -44,7 +47,7 @@ echo "With $SFREQ as a starting freq<br>"
 echo "Sample rate: $SRATE"
 echo "$DMOD demodulation with $GAIN dB of gain and a PPM correction of $PPM<br>Uptime: $TEST<br>"
 echo "</body></html>"
-/bin/settings.sh -r openwebrx -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE
+/bin/settings.sh -r openwebrx -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -o $ORIDE
 
 elif [ "$APP" == "dump1090" ]; then
 
@@ -112,6 +115,9 @@ PPM=${PPM//+/ }
 SRATE=${QUERY_STRING#*srate=}
 SRATE=${SRATE%%&*}
 SRATE=${SRATE//+/ }
+ORIDE=${QUERY_STRING#*oride=}
+ORIDE=${ORIDE%%&*}
+ORIDE=${ORIDE//+/ }
 ASTART=${QUERY_STRING#*astart=}
 ASTART=${ASTART%%&*}
 ASTART=${ASTART//+/ }
@@ -125,7 +131,7 @@ NVRAM=${QUERY_STRING#*nvram=}
 NVRAM=${NVRAM%%&*}
 NVRAM=${NVRAM//+/ }
 
-/bin/settings.sh -r $ASTART -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT -W $NVRAM
+/bin/settings.sh -r $ASTART -c $FREQ -s $SFREQ -d $DMOD -g $GAIN -p $PPM -S $SRATE -u $AUPDATE -R $AREBOOT -W $NVRAM -o $ORIDE
 
 echo "Settings have been saved.<br><br><br>"
 echo "</body></html>"
