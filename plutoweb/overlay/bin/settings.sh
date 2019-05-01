@@ -6,21 +6,22 @@
 if [ $# = 0 ]; then
 echo "
 Usage: settings.sh <-r prog> <-R Hrs> <-u y|n> <-c HZ> <-s HZ> <-S SPS>
-                   <-d DEMOD> <-g DB> <-p PPM> <-o num> <-E y|d> <-W y>
+                   <-g DB> <-p PPM> <-d DEMOD> <-o num> <-E y|d> <-W y>
 
 Make changes to the operations of the PlutoSDR.
-General Options:
+PlutoWeb Options:
         -r      Program to run (openwebrx,dump1090,SoapyRemote,none) [$autostart]
         -R      Enable/Disable auto-reboot (In hours, 0 to disable) [$autoreboot]
                 (Auto-reboot doesn't take effect now, use with -W y and reboot)
         -u      Enable/Disable auto-updates (y/n) [$autoupdate]
-OpenWebRX Options:
+Radio Options:
         -c      Center frequency in Hz (70000000-6000000000) [$center_freq]
         -s      Starting frequency in Hz (70000000-6000000000) [$start_freq]
         -S      Sample rate in SPS (samples/sec) (65105-10000000) [$samp_rate]
-        -d      Demodulation (nfm,am,lsb,usb,cw) [$start_mod]
         -g      RF gain in dB (0-73) [$rf_gain]
         -p      PPM [$ppm]
+OpenWebRX Options:
+	-d	Demodulation (nfm,am,lsb,usb,cw) [$start_mod]
 	-o	Override Pre-Set (0-4) [$openwebrx_override]
 NVRAM Options:
         -E y|d  Erase all settings from NVRAM (d to reset to defaults too)
