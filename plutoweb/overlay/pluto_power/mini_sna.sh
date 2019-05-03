@@ -24,7 +24,7 @@ for freq in $(seq $((fstart)) $((step)) $((fend)))
 
 # TX : Pluto BIST MODE
 fbist=$(($freq-100000))
-/usr/bin/iio_attr -u ip:pluto.local -q -c ad9361-phy TX_LO frequency ${fbist} 1>/dev/null
+/usr/bin/iio_attr -q -c ad9361-phy TX_LO frequency ${fbist} 1>/dev/null
 
 # RX: get signal level
 # -f 4 = sample rate. Increase up to 50 for a quicker sweep but less accurate.
@@ -34,5 +34,5 @@ tail -n 1 /tmp/test.csv
 done
 
 # Pluto : stop bist mode
-/usr/bin/iio_attr -u ip:pluto.local -D  9361-phy bist_tone "0 0 0 0" 2>/dev/null
+/usr/bin/iio_attr -D  9361-phy bist_tone "0 0 0 0" 2>/dev/null
 
