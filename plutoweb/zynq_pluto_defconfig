@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2018.02.1-g2e41618 Configuration
+# Buildroot 2018.02.1-g4e708af Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_5=y
@@ -1737,7 +1737,18 @@ BR2_PACKAGE_SQLITE_NO_SYNC=y
 # BR2_PACKAGE_EXIV2 is not set
 # BR2_PACKAGE_FONTCONFIG is not set
 # BR2_PACKAGE_FREETYPE is not set
-# BR2_PACKAGE_GD is not set
+BR2_PACKAGE_GD=y
+# BR2_PACKAGE_GD_ANNOTATE is not set
+# BR2_PACKAGE_GD_GD2COPYPAL is not set
+# BR2_PACKAGE_GD_GD2TOGIF is not set
+# BR2_PACKAGE_GD_GD2TOPNG is not set
+# BR2_PACKAGE_GD_GDCMPGIF is not set
+# BR2_PACKAGE_GD_GDPARTTOPNG is not set
+# BR2_PACKAGE_GD_GDTOPNG is not set
+# BR2_PACKAGE_GD_GIFTOGD2 is not set
+# BR2_PACKAGE_GD_PNGTOGD is not set
+# BR2_PACKAGE_GD_PNGTOGD2 is not set
+# BR2_PACKAGE_GD_WEBPNG is not set
 # BR2_PACKAGE_GDK_PIXBUF is not set
 # BR2_PACKAGE_GIFLIB is not set
 
