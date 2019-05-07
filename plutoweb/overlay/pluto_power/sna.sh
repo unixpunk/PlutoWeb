@@ -14,11 +14,13 @@ step=${3}*1000
 rxgain=$4
 
 # TX : Pluto
-/usr/bin/iio_attr -a -q -c -o ad9361-phy voltage0 hardwaregain -10 1>/dev/null
+echo "Applying hw settings..."
+/usr/bin/iio_attr -a -q -c -o ad9361-phy voltage0 hardwaregain -20 1>/dev/null
 /usr/bin/iio_attr -a -q -c -o ad9361-phy voltage0 sampling_frequency 1600000 1>/dev/null
 /usr/bin/iio_attr -a -q -D ad9361-phy bist_prbs 0 1>/dev/null
 /usr/bin/iio_attr -a -q -D ad9361-phy bist_tone "1 1 0 0" 1>/dev/null
 
+echo "Starting scan..."
 for freq in $(seq $((fstart)) $((step)) $((fend)))
  do
 
@@ -28,11 +30,15 @@ fbist=$(($freq-100000))
 
 # RX: get signal level
 # -f 4 = sample rate. Increase up to 50 for a quicker sweep but less accurate.
-/pluto_power/pow_pluto-0.29 -l ${freq} -g ${rxgain} -f 4 >> /tmp/test.csv
-sleep 0.1
-tail -n 1 /tmp/test.csv
+pow_pluto -l $freq -g $rxgain -f 4 >> /tmp/test.csv
+#sleep 0.1
+#tail -n 1 /tmp/test.csv
 done
 
 # Pluto : stop bist mode
 /usr/bin/iio_attr -D  9361-phy bist_tone "0 0 0 0" 2>/dev/null
 
+echo "Scan complete.  Starting gnuplot..."
+
+# Create plot
+/bin/sh /pluto_power/plot.sh

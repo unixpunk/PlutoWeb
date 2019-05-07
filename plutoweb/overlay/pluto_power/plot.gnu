@@ -6,8 +6,8 @@
 # freq(Hz) level
 # comments at the end of file only
 #
-set terminal svg size 1200, 600
-set output '/www/signal.svg'
+set terminal png size 1200, 600
+set output '/www/signal.png'
 set title "Fstart : " . sprintf("%09.3f", f0/1000) . " kHz  -  Fstop " . sprintf("%09.3f", fmax/1000) . " kHz"
 set xlabel "freq. [MHz]"
 #set yrange [90:0]
