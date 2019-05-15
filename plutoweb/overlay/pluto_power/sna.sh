@@ -6,7 +6,7 @@
 #       (frequencies in kHz)
 #
 
-rm -f /tmp/test.csv 2>/dev/null
+rm -f /www/signal.csv 2>/dev/null
 
 fstart=${1}*1000
 fend=${2}*1000
@@ -30,9 +30,9 @@ fbist=$(($freq-100000))
 
 # RX: get signal level
 # -f 4 = sample rate. Increase up to 50 for a quicker sweep but less accurate.
-pow_pluto -l $freq -g $rxgain -f 4 >> /tmp/test.csv
+pow_pluto -l $freq -g $rxgain -f 4 >> /www/signal.csv
 #sleep 0.1
-#tail -n 1 /tmp/test.csv
+#tail -n 1 /www/signal.csv
 done
 
 # Pluto : stop bist mode
